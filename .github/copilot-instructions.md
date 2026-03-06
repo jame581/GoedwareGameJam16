@@ -4,6 +4,7 @@ This repo uses Godot 4.x with GDScript. Keep guidance generic and portable so it
 - Use snake_case for variables and functions, PascalCase for classes and enums, and SCREAMING_SNAKE_CASE for constants.
 - Use @onready for node references accessed in _ready().
 - Prefer explicit typing when beneficial (e.g., `var player: Player`).
+- Always start signal names with the `on_` prefix (e.g., `on_map_loaded`).
 
 ## Project Structure
 - **Scenes (.tscn)**

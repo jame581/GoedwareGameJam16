@@ -10,11 +10,18 @@ config_version=5
 
 [application]
 
-config/name="Godot-QuickStart"
+config/name="Godot-BossFightOhYeah"
 config/description="Game created in Godot for the GoedWare Game Jam #16"
 run/main_scene="uid://lqpji1i1kst3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://autoloads/global.tscn"
+SignalBus="*res://autoloads/signal_bus.gd"
+SceneChanger="*res://autoloads/scene_changer.tscn"
+AudioManager="*res://autoloads/audio_manager.tscn"
 
 [display]
 
@@ -27,8 +34,6 @@ window/stretch/scale_mode="integer"
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="Ball"
-2d_physics/layer_3="Walls"
 
 [rendering]
 
