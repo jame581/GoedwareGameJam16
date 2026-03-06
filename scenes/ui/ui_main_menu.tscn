@@ -1,0 +1,350 @@
+[gd_scene format=3 uid="uid://cowloviriv7pc"]
+
+[ext_resource type="Script" uid="uid://bckg5p2kj1ws3" path="res://scripts/ui/ui_main_menu.gd" id="1_oj6b2"]
+
+[sub_resource type="Animation" id="Animation_aunay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/CreditsBox:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/HBoxContainer/VBoxMenu/GameLogo:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/SettingsBox:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2ta6y"]
+resource_name = "show_credits"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/CreditsBox:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mnume"]
+resource_name = "show_settings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/SettingsBox:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpcv2"]
+_data = {
+&"RESET": SubResource("Animation_aunay"),
+&"show_credits": SubResource("Animation_2ta6y"),
+&"show_settings": SubResource("Animation_mnume")
+}
+
+[node name="MainMenu" type="PanelContainer" unique_id=584200021]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_oj6b2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1296446965]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1824003713]
+layout_mode = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1509026008]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxMenu" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1882133780]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="GameLogo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxMenu" unique_id=1272822633]
+layout_mode = 2
+expand_mode = 5
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxMenu" unique_id=330335687]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="StartGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions" unique_id=1114559807]
+layout_mode = 2
+text = "Start game"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions" unique_id=1836596551]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions" unique_id=307498543]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions" unique_id=855853652]
+layout_mode = 2
+text = "Quit"
+
+[node name="VersionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxMenu" unique_id=575884113]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+text = "Version: 0.0.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxDebugMenu" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=780257998]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxDebugMenu" unique_id=1281810674]
+layout_mode = 2
+text = "Debug menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxDebugMenu" unique_id=390422473]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxDebugMenu" unique_id=738641962]
+layout_mode = 2
+text = "Select level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxDebugMenu" unique_id=1258919975]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions" unique_id=2043243514]
+layout_mode = 2
+auto_height = true
+text_overrun_behavior = 0
+same_column_width = true
+
+[node name="StartSelectedLevelButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions" unique_id=509733727]
+layout_mode = 2
+text = "Start level"
+
+[node name="SettingsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1650168849]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="SettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=942628056]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=310601832]
+layout_mode = 2
+
+[node name="SoundSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1984412032]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid" unique_id=1898941142]
+layout_mode = 2
+text = "Sounds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundsEnabledCheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid" unique_id=1451162795]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+button_pressed = true
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=604171130]
+layout_mode = 2
+
+[node name="ControlSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1942673671]
+layout_mode = 2
+text = "Keyboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=786328399]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="JumpLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=817103361]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 6
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpKeyLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=1103714516]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Spacebar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=397728934]
+layout_mode = 2
+text = "Keyboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=129447592]
+layout_mode = 2
+
+[node name="ControlGamepadSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1024215823]
+layout_mode = 2
+text = "Gamepad"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlGamepadSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1378122279]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="JumpLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=551298894]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 6
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpKeyLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=1480190978]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Spacebar asdasdasd"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="JumpLabel2" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=30450512]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 6
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpKeyLabel3" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=1909572993]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Spacebar asdasdasd asdasdasdasd"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CreditsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=587486894]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CreditsLabel" type="Label" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=653558762]
+layout_mode = 2
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=1738739710]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=657560169]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]
+
+Code:
+Jakub Hubacek
+Jan Mesarc
+
+Art:
+Meru
+
+Game Design:
+Ondra Purchart
+
+[/center]"
+fit_content = true
+scroll_following = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=265668430]
+libraries/ = SubResource("AnimationLibrary_dpcv2")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/StartSelectedLevelButton" to="." method="_on_start_selected_level_button_pressed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid/SoundsEnabledCheckButton" to="." method="_on_sounds_enabled_check_button_toggled"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
