@@ -11,16 +11,18 @@ config_version=5
 [application]
 
 config/name="Godot-QuickStart"
-config/description="A quickstart game template made with Godot 4"
-run/main_scene="res://levels/Main.tscn"
+config/description="Game created in Godot for the GoedWare Game Jam #16"
+run/main_scene="uid://lqpji1i1kst3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [layer_names]
 
