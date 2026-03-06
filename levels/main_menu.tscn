@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://lqpji1i1kst3"]
+
+[node name="MainMenu" type="MarginContainer" unique_id=605207854]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1527863139]
+layout_mode = 2
+
+[node name="LeftVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1316089774]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MiddleVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2033199577]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpVBoxContainer" type="VBoxContainer" parent="HBoxContainer/MiddleVBoxContainer" unique_id=517059288]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/MiddleVBoxContainer/UpVBoxContainer" unique_id=174687275]
+layout_mode = 2
+text = "Title of the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiddleVBoxContainer" type="VBoxContainer" parent="HBoxContainer/MiddleVBoxContainer" unique_id=2043939869]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="HBoxContainer/MiddleVBoxContainer/MiddleVBoxContainer" unique_id=817260188]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="HBoxContainer/MiddleVBoxContainer/MiddleVBoxContainer" unique_id=1699699623]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/MiddleVBoxContainer/MiddleVBoxContainer" unique_id=419600594]
+layout_mode = 2
+text = "Quit"
+
+[node name="BottonVBoxContainer" type="VBoxContainer" parent="HBoxContainer/MiddleVBoxContainer" unique_id=960445715]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="VersionLabel" type="Label" parent="HBoxContainer/MiddleVBoxContainer/BottonVBoxContainer" unique_id=339599177]
+layout_mode = 2
+text = "v0.0.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2070873280]
+layout_mode = 2
+size_flags_horizontal = 3
