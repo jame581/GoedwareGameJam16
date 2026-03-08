@@ -204,7 +204,8 @@ script = ExtResource("4_7ughw")
 animation_player = NodePath("../../AnimationPlayer")
 speed = 250.0
 
-[node name="JumpState" type="LimboState" parent="LimboHSM" unique_id=83159980]
+[node name="JumpState" type="LimboState" parent="LimboHSM" unique_id=83159980 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("6_k4udv")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]

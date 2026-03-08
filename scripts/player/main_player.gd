@@ -23,7 +23,8 @@ func _ready() -> void:
 	jump_state.movement_speed = movement_speed
 	jump_state.jump_velocity = jump_velocity
 
-	remote_transform.remote_path = camera.get_path()
+	if camera:
+		remote_transform.remote_path = camera.get_path()
 
 
 func _physics_process(delta: float) -> void:
