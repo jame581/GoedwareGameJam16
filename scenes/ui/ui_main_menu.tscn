@@ -175,7 +175,9 @@ alignment = 1
 layout_mode = 2
 auto_height = true
 text_overrun_behavior = 0
+item_count = 1
 same_column_width = true
+item_0/text = "playground"
 
 [node name="StartSelectedLevelButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions" unique_id=509733727]
 layout_mode = 2

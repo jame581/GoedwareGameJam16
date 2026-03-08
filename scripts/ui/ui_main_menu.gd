@@ -9,6 +9,8 @@ extends PanelContainer
 @onready var controls_gamepad_setting: GridContainer = $MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid
 @onready var sound_toggle: CheckButton = $MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid/SoundsEnabledCheckButton
 
+@onready var item_list: ItemList = $MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/ItemList
+
 var hide_credits = false
 var hide_settings = false
 
@@ -140,3 +142,10 @@ func clear_action_list() -> void:
 
 	for item in controls_gamepad_setting.get_children():
 		item.queue_free()
+
+
+func _on_start_selected_level_button_pressed() -> void:
+	if item_list.get_selected_items().size() > 0:
+		var item = item_list.get_selected_items()[0]
+		var level_name = item_list.get_item_text(item)
+		SceneChanger.goto_scene("res://levels/" + level_name + ".tscn")
