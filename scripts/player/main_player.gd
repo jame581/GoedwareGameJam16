@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var idle_state: LimboState = $LimboHSM/IdleState
 @onready var move_state: LimboState = $LimboHSM/MoveState
 @onready var jump_state: LimboState = $LimboHSM/JumpState
+@onready var dash_state: LimboState = $LimboHSM/DashState
 
 func _ready() -> void:
 	_init_state_machine()
@@ -53,6 +54,11 @@ func _init_state_machine() -> void:
 	hms.add_transition(move_state, jump_state, "jump_started")
 	hms.add_transition(jump_state, move_state, jump_state.EVENT_FINISHED)
 
+	# Dash transitions
+	hms.add_transition(idle_state, dash_state, "dash_started")
+	hms.add_transition(move_state, dash_state, "dash_started")
+	hms.add_transition(dash_state, move_state, dash_state.EVENT_FINISHED)
+
 	hms.initial_state = idle_state
 
 	hms.initialize(self)
@@ -67,6 +73,10 @@ func move(direction: Vector2) -> void:
 
 func jump(new_jump_velocity: float = jump_velocity):
 	velocity.y = new_jump_velocity
+
+
+func dash(dash_velocity: float) -> void:
+	velocity.x = dash_velocity * sign(velocity.x)
 
 
 func flip_sprite(horizontal_direction: float) -> void:

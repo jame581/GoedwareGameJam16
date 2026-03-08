@@ -13,6 +13,7 @@ func _enter() -> void:
 	agent.jump(-jump_velocity)
 	has_jumped = true
 
+
 func _update(_delta: float) -> void:
 	handle_input()
 
