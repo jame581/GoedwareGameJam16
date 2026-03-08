@@ -6,10 +6,12 @@ extends LimboState
 @export var movement_speed: float = 200.0
 
 var horizontal_direction: float = 0.0
+var has_jumped: bool = false
 
 func _enter() -> void:
 	animation_player.play(animation_name)
-	agent.jump(jump_velocity)
+	agent.jump(-jump_velocity)
+	has_jumped = true
 
 func _update(_delta: float) -> void:
 	handle_input()
