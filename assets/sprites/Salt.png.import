@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtbpat5iydk54"
-path="res://.godot/imported/player_run.png-8bdebf559cb8b6e7e89e032c08076ca8.ctex"
+uid="uid://descp12gj8uhc"
+path="res://.godot/imported/Salt.png-2f9a0cd6437b0f2e9eea3ec8adbfb3c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player_run.png"
-dest_files=["res://.godot/imported/player_run.png-8bdebf559cb8b6e7e89e032c08076ca8.ctex"]
+source_file="res://assets/sprites/Salt.png"
+dest_files=["res://.godot/imported/Salt.png-2f9a0cd6437b0f2e9eea3ec8adbfb3c5.ctex"]
 
 [params]
 

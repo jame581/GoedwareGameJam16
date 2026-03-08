@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vtpyaduau32u"
-path="res://.godot/imported/dash.png-e3cecc70e022abb28b761e29cbf01a02.ctex"
+uid="uid://bae06vhsinyt6"
+path="res://.godot/imported/Tiles-rec.png-0bcd1199c19aa8b67aeeb846971686f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dash.png"
-dest_files=["res://.godot/imported/dash.png-e3cecc70e022abb28b761e29cbf01a02.ctex"]
+source_file="res://assets/sprites/Tiles-rec.png"
+dest_files=["res://.godot/imported/Tiles-rec.png-0bcd1199c19aa8b67aeeb846971686f8.ctex"]
 
 [params]
 
