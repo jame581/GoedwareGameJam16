@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var move_state: LimboState = $LimboHSM/MoveState
 @onready var jump_state: LimboState = $LimboHSM/JumpState
 @onready var dash_state: LimboState = $LimboHSM/DashState
+@onready var fall_state: LimboState = $LimboHSM/FallState
 
 func _ready() -> void:
 	_init_state_machine()
@@ -23,6 +24,7 @@ func _ready() -> void:
 	move_state.speed = movement_speed
 	jump_state.movement_speed = movement_speed
 	jump_state.jump_velocity = jump_velocity
+	fall_state.movement_speed = movement_speed
 
 	if camera:
 		remote_transform.remote_path = camera.get_path()
@@ -52,12 +54,19 @@ func _init_state_machine() -> void:
 	# Jump transitions
 	hms.add_transition(idle_state, jump_state, "jump_started")
 	hms.add_transition(move_state, jump_state, "jump_started")
-	hms.add_transition(jump_state, move_state, jump_state.EVENT_FINISHED)
+	hms.add_transition(jump_state, fall_state, jump_state.EVENT_FINISHED)
 
 	# Dash transitions (from move and jump only, not idle)
 	hms.add_transition(move_state, dash_state, "dash_started")
 	hms.add_transition(jump_state, dash_state, "dash_started")
+	hms.add_transition(fall_state, dash_state, "dash_started")
+	hms.add_transition(dash_state, fall_state, "dash_airborne")
 	hms.add_transition(dash_state, move_state, dash_state.EVENT_FINISHED)
+
+	# Fall transitions
+	hms.add_transition(idle_state, fall_state, "fall_started")
+	hms.add_transition(move_state, fall_state, "fall_started")
+	hms.add_transition(fall_state, idle_state, fall_state.EVENT_FINISHED)
 
 	hms.initial_state = idle_state
 

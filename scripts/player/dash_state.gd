@@ -29,7 +29,10 @@ func _exit() -> void:
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == animation_name:
-		get_root().dispatch(EVENT_FINISHED)
+		if not agent.is_on_floor():
+			get_root().dispatch("dash_airborne")
+		else:
+			get_root().dispatch(EVENT_FINISHED)
 
 func _dash_movement_ended() -> void:
 	dash_movement_done = true

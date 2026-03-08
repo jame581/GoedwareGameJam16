@@ -15,6 +15,10 @@ func _update(_delta: float) -> void:
 
 	agent.move(Vector2(horizontal_direction * speed, 0))
 
+	if not agent.is_on_floor():
+		get_root().dispatch("fall_started")
+		return
+
 	if horizontal_direction == 0.0:
 		get_root().dispatch(EVENT_FINISHED)
 

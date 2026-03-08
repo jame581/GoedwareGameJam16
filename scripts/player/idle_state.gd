@@ -12,6 +12,10 @@ func _enter() -> void:
 func _update(_delta: float) -> void:
 	_handle_input()
 
+	if not agent.is_on_floor():
+		get_root().dispatch("fall_started")
+		return
+
 	if horizontal_direction != 0.0:
 		get_root().dispatch(EVENT_FINISHED)
 
