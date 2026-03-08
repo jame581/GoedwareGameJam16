@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://c7urrr5poaxu7"]
 
 [ext_resource type="Script" uid="uid://c2kb2yo8oijl3" path="res://scripts/player/main_player.gd" id="1_ais3i"]
-[ext_resource type="Texture2D" uid="uid://cdxk62f42hpma" path="res://assets/sprites/player_idle.png" id="2_xr3bu"]
-[ext_resource type="Texture2D" uid="uid://dtbpat5iydk54" path="res://assets/sprites/player_run.png" id="3_52rm5"]
+[ext_resource type="Texture2D" uid="uid://cdxk62f42hpma" path="res://assets/sprites/player/player_idle.png" id="2_xr3bu"]
+[ext_resource type="Texture2D" uid="uid://dtbpat5iydk54" path="res://assets/sprites/player/player_run.png" id="3_52rm5"]
 [ext_resource type="Script" uid="uid://dw268pkamqi13" path="res://scripts/player/idle_state.gd" id="3_vr3wt"]
 [ext_resource type="Script" uid="uid://bv3453donxc1h" path="res://scripts/player/move_state.gd" id="4_7ughw"]
+[ext_resource type="Script" uid="uid://delwq2fs5wvvi" path="res://scripts/player/jump_state.gd" id="6_k4udv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
 size = Vector2(20, 30)
@@ -204,3 +205,6 @@ animation_player = NodePath("../../AnimationPlayer")
 speed = 250.0
 
 [node name="JumpState" type="LimboState" parent="LimboHSM" unique_id=83159980]
+script = ExtResource("6_k4udv")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]

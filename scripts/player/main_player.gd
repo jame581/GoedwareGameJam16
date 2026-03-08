@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -400.0
+
+@export_group("Player Properties")
+@export var camera: Camera2D
+@export var movement_speed: float = 200.0
+@export var jump_velocity: float = 400.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var remote_transform: RemoteTransform2D = $RemoteTransform2D
 
 #LimboHSM and LimboStates
 @onready var hms: LimboHSM = $LimboHSM
@@ -14,15 +19,17 @@ const JUMP_VELOCITY = -400.0
 func _ready() -> void:
 	_init_state_machine()
 
+	move_state.speed = movement_speed
+	jump_state.movement_speed = movement_speed
+	jump_state.jump_velocity = jump_velocity
+
+	remote_transform.remote_path = camera.get_path()
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -40,6 +47,11 @@ func _init_state_machine() -> void:
 	hms.add_transition(idle_state, move_state, idle_state.EVENT_FINISHED)
 	hms.add_transition(move_state, idle_state, move_state.EVENT_FINISHED)
 
+	# Jump transitions
+	hms.add_transition(idle_state, jump_state, "jump_started")
+	hms.add_transition(move_state, jump_state, "jump_started")
+	hms.add_transition(jump_state, move_state, jump_state.EVENT_FINISHED)
+
 	hms.initial_state = idle_state
 
 	hms.initialize(self)
@@ -50,6 +62,10 @@ func move(direction: Vector2) -> void:
 	velocity.x = direction.x
 	flip_sprite(direction.x)
 	move_and_slide()
+
+
+func jump(new_jump_velocity: float = jump_velocity):
+	velocity.y = new_jump_velocity
 
 
 func flip_sprite(horizontal_direction: float) -> void:

@@ -21,3 +21,6 @@ func _update(_delta: float) -> void:
 func _handle_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	horizontal_direction = Input.get_axis(&"left", &"right")
+
+	if (Input.is_action_pressed("jump") and agent.is_on_floor()):
+		get_root().dispatch("jump_started")
