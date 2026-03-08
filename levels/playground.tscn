@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://caecghx01mh7l"]
 
 [ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="1_hddm4"]
+[ext_resource type="Texture2D" uid="uid://cc7b22sy46gwn" path="res://demo/assets/env_ground.png" id="2_jcyrx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_maef2"]
 
 [node name="Playground" type="Node2D" unique_id=448867500]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=947321396]
+texture = ExtResource("2_jcyrx")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1416924423]
 
@@ -12,7 +16,8 @@
 position = Vector2(0, 592)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1099471974]
+position = Vector2(0, -307)
 shape = SubResource("WorldBoundaryShape2D_maef2")
 
 [node name="MainPlayer" parent="." unique_id=1957947444 instance=ExtResource("1_hddm4")]
-position = Vector2(330, 454)
+position = Vector2(110, 242)
