@@ -5,14 +5,20 @@ extends LimboState
 @export var dash_velocity: float = 400.0
 
 var dash_movement_done: bool = false
+var was_airborne: bool = false
 
 func _enter() -> void:
 	dash_movement_done = false
+	was_airborne = not agent.is_on_floor()
+	if was_airborne:
+		agent.velocity.y = 0.0
 	animation_player.animation_finished.connect(_on_animation_finished)
 	animation_player.play(animation_name)
 	agent.dash(dash_velocity)
 
 func _update(_delta: float) -> void:
+	if was_airborne:
+		agent.velocity.y = 0.0
 	if not dash_movement_done:
 		agent.move_and_slide()
 

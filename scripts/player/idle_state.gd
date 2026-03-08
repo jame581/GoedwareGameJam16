@@ -24,6 +24,3 @@ func _handle_input() -> void:
 
 	if (Input.is_action_pressed("jump") and agent.is_on_floor()):
 		get_root().dispatch("jump_started")
-
-	if (Input.is_action_pressed("dash") and agent.is_on_floor()):
-		get_root().dispatch("dash_started")

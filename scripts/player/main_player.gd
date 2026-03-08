@@ -54,9 +54,9 @@ func _init_state_machine() -> void:
 	hms.add_transition(move_state, jump_state, "jump_started")
 	hms.add_transition(jump_state, move_state, jump_state.EVENT_FINISHED)
 
-	# Dash transitions
-	hms.add_transition(idle_state, dash_state, "dash_started")
+	# Dash transitions (from move and jump only, not idle)
 	hms.add_transition(move_state, dash_state, "dash_started")
+	hms.add_transition(jump_state, dash_state, "dash_started")
 	hms.add_transition(dash_state, move_state, dash_state.EVENT_FINISHED)
 
 	hms.initial_state = idle_state

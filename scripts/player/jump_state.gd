@@ -27,3 +27,6 @@ func _update(_delta: float) -> void:
 func handle_input():
 	# Get the input direction and handle the movement/deceleration.
 	horizontal_direction = Input.get_axis(&"left", &"right")
+
+	if Input.is_action_pressed("dash"):
+		get_root().dispatch("dash_started")
