@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://caecghx01mh7l"]
+
+[ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="1_hddm4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_maef2"]
+
+[node name="Playground" type="Node2D" unique_id=448867500]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1416924423]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1050364044]
+position = Vector2(0, 592)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1099471974]
+shape = SubResource("WorldBoundaryShape2D_maef2")
+
+[node name="MainPlayer" parent="." unique_id=1957947444 instance=ExtResource("1_hddm4")]
+position = Vector2(330, 454)
