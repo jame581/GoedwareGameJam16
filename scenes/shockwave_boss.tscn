@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf4oemb4cxotq"]
+[gd_scene load_steps=8 format=3 uid="uid://cf4oemb4cxotq"]
 
 [ext_resource type="Script" uid="uid://cuwuwhl2ii81f" path="res://scripts/boss/shockwave_boss.gd" id="1_sw_boss"]
 [ext_resource type="Script" uid="uid://cfvexod1q080" path="res://scripts/boss/approach_state.gd" id="2_approach"]
 [ext_resource type="Script" uid="uid://cnkn062r5juvl" path="res://scripts/boss/summon_state.gd" id="3_summon"]
-[ext_resource type="Script" uid="uid://bijua4qkd368e" path="res://scripts/boss/shockwave_state.gd" id="4_shockwave"]
-[ext_resource type="Script" uid="uid://d0eqfggbbn15t" path="res://scripts/boss/exposed_state.gd" id="5_exposed"]
-[ext_resource type="Script" uid="uid://doptn6g86puc2" path="res://scripts/boss/bomb_attack_state.gd" id="6_bomb_attack"]
-[ext_resource type="PackedScene" path="res://scenes/bomb_projectile.tscn" id="7_bomb_scene"]
+[ext_resource type="Script" uid="uid://d0eqfggbbn15t" path="res://scripts/boss/shockwave_state.gd" id="4_shockwave"]
+[ext_resource type="Script" uid="uid://doptn6g86puc2" path="res://scripts/boss/bomb_attack_state.gd" id="5_bomb_attack"]
+[ext_resource type="PackedScene" path="res://scenes/bomb_projectile.tscn" id="6_bomb_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
 size = Vector2(32, 32)
@@ -37,11 +36,8 @@ script = ExtResource("3_summon")
 [node name="ShockwaveState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("4_shockwave")
 
-[node name="ExposedState" type="LimboState" parent="LimboHSM"]
-script = ExtResource("5_exposed")
-
 [node name="BombAttackState" type="LimboState" parent="LimboHSM"]
-script = ExtResource("6_bomb_attack")
-bomb_scene = ExtResource("7_bomb_scene")
+script = ExtResource("5_bomb_attack")
+bomb_scene = ExtResource("6_bomb_scene")
 arena_width = 600.0
 spawn_y = -150.0

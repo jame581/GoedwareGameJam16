@@ -16,7 +16,6 @@ extends CharacterBody2D
 @onready var approach_state: LimboState = $LimboHSM/ApproachState
 @onready var summon_state: LimboState = $LimboHSM/SummonState
 @onready var shockwave_state: LimboState = $LimboHSM/ShockwaveState
-@onready var exposed_state: LimboState = $LimboHSM/ExposedState
 @onready var bomb_attack_state: LimboState = $LimboHSM/BombAttackState
 
 var is_grounded: bool = false
@@ -40,9 +39,9 @@ func _init_state_machine() -> void:
 	hsm.add_transition(approach_state, bomb_attack_state, "start_bomb")
 
 	# Path 1: Shockwave sequence
-	# Summon (mid-air charge) -> Exposed (land + spawn waves + vulnerable)
-	hsm.add_transition(summon_state, exposed_state, summon_state.EVENT_FINISHED)
-	hsm.add_transition(exposed_state, approach_state, exposed_state.EVENT_FINISHED)
+	# Summon (mid-air charge) -> Shockwave (land + spawn waves + vulnerable)
+	hsm.add_transition(summon_state, shockwave_state, summon_state.EVENT_FINISHED)
+	hsm.add_transition(shockwave_state, approach_state, shockwave_state.EVENT_FINISHED)
 
 	# Path 2: Bomb sequence
 	hsm.add_transition(bomb_attack_state, approach_state, bomb_attack_state.EVENT_FINISHED)
