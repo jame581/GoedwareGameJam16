@@ -22,3 +22,5 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		print("[Shockwave] Hit player: ", body.name)
+		# TODO: Deal damage to player
+		queue_free()

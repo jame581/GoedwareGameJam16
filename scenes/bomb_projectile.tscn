@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbombproj1"]
+
+[ext_resource type="Script" uid="uid://b2scf051vyfwa" path="res://scripts/boss/bomb_projectile.gd" id="1_bomb_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bomb"]
+radius = 20.0
+
+[node name="BombProjectile" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_bomb_script")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(1, 0.0784314, 0.576471, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bomb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

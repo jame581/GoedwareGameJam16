@@ -16,7 +16,11 @@ extends CharacterBody2D
 @onready var approach_state: LimboState = $LimboHSM/ApproachState
 @onready var summon_state: LimboState = $LimboHSM/SummonState
 @onready var shockwave_state: LimboState = $LimboHSM/ShockwaveState
+@onready var exposed_state: LimboState = $LimboHSM/ExposedState
+@onready var bomb_attack_state: LimboState = $LimboHSM/BombAttackState
 
+var is_grounded: bool = false
+var is_exposed: bool = false
 
 func _ready() -> void:
 	_init_state_machine()
@@ -24,18 +28,43 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	position.y = levitate_y
+	if not is_grounded:
+		position.y = lerp(position.y, levitate_y, 0.1)
+	else:
+		position.y = lerp(position.y, floor_y, 0.2)
 
 
 func _init_state_machine() -> void:
-	hsm.add_transition(approach_state, summon_state, "in_range")
-	hsm.add_transition(summon_state, shockwave_state, summon_state.EVENT_FINISHED)
-	hsm.add_transition(shockwave_state, approach_state, shockwave_state.EVENT_FINISHED)
+	# Approach -> Decision (based on cycle)
+	hsm.add_transition(approach_state, summon_state, "start_shockwave")
+	hsm.add_transition(approach_state, bomb_attack_state, "start_bomb")
+
+	# Path 1: Shockwave sequence
+	# Summon (mid-air charge) -> Exposed (land + spawn waves + vulnerable)
+	hsm.add_transition(summon_state, exposed_state, summon_state.EVENT_FINISHED)
+	hsm.add_transition(exposed_state, approach_state, exposed_state.EVENT_FINISHED)
+
+	# Path 2: Bomb sequence
+	hsm.add_transition(bomb_attack_state, approach_state, bomb_attack_state.EVENT_FINISHED)
 
 	hsm.initial_state = approach_state
 
 	hsm.initialize(self)
 	hsm.set_active(true)
+
+
+func take_damage() -> void:
+	if is_exposed:
+		print("[ShockwaveBoss] Ouch!")
+		hsm.blackboard.set_var("was_hit", true)
+
+
+func set_exposed(exposed: bool) -> void:
+	is_exposed = exposed
+	if exposed:
+		$ColorRect.color = Color(1.0, 1.0, 0.0) # Yellow for exposed
+	else:
+		$ColorRect.color = Color(0.6, 0.1, 0.1) # Red for normal
 
 
 func get_direction_to_player() -> float:

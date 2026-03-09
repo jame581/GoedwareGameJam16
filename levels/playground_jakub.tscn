@@ -469,11 +469,9 @@ camera = NodePath("../Camera2D")
 [node name="ShockwaveBoss" parent="." unique_id=1856180662 node_paths=PackedStringArray("player") instance=ExtResource("6_boss")]
 position = Vector2(200, -20)
 player = NodePath("../MainPlayer")
-approach_speed = 200.0
 levitate_y = -20.0
 horizontal_threshold = 60.0
 shockwave_scene = ExtResource("7_proj")
-shockwave_speed = 300.0
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=544016425]
 position = Vector2(0, 136)
