@@ -1,16 +1,32 @@
 extends CharacterBody2D
 
 
-@export_group("Boss Properties")
-@export var player: CharacterBody2D
-@export var approach_speed: float = 100.0
-@export var levitate_y: float = 50.0
-@export var horizontal_threshold: float = 30.0
+@export_group("References")
+@export var target_player: CharacterBody2D
 
-@export_group("Shockwave Properties")
+@export_group("Movement")
+@export var move_speed: float = 100.0
+@export var float_height: float = 50.0
+@export var ground_height: float = 128.0
+
+@export_group("Combat")
+@export var attack_range: float = 30.0
+@export var attack_cooldown: float = 5.0
+
+@export_group("Shockwave Attack")
 @export var shockwave_scene: PackedScene
-@export var shockwave_speed: float = 200.0
-@export var floor_y: float = 128.0
+@export var shockwave_projectile_speed: float = 200.0
+@export var shockwave_summon_duration: float = 1.2
+@export var shockwave_exposed_duration: float = 2.0
+@export var shockwave_weight: float = 1.0
+
+@export_group("Bomb Attack")
+@export var bomb_scene: PackedScene
+@export var bomb_count: int = 6
+@export var bomb_spawn_interval: float = 0.3
+@export var bomb_drop_height: float = -200.0
+@export var bomb_arena_width: float = 800.0
+@export var bomb_weight: float = 1.0
 
 @onready var hsm: LimboHSM = $LimboHSM
 @onready var approach_state: LimboState = $LimboHSM/ApproachState
@@ -23,14 +39,14 @@ var is_exposed: bool = false
 
 func _ready() -> void:
 	_init_state_machine()
-	position.y = levitate_y
+	position.y = float_height
 
 
 func _physics_process(_delta: float) -> void:
 	if not is_grounded:
-		position.y = lerp(position.y, levitate_y, 0.1)
+		position.y = lerp(position.y, float_height, 0.1)
 	else:
-		position.y = lerp(position.y, floor_y, 0.2)
+		position.y = lerp(position.y, ground_height, 0.2)
 
 
 func _init_state_machine() -> void:
@@ -67,15 +83,15 @@ func set_exposed(exposed: bool) -> void:
 
 
 func get_direction_to_player() -> float:
-	if not player:
+	if not target_player:
 		return 0.0
-	return sign(player.global_position.x - global_position.x)
+	return sign(target_player.global_position.x - global_position.x)
 
 
 func is_within_threshold() -> bool:
-	if not player:
+	if not target_player:
 		return false
-	return abs(player.global_position.x - global_position.x) < horizontal_threshold
+	return abs(target_player.global_position.x - global_position.x) < attack_range
 
 
 func spawn_shockwaves() -> void:
@@ -85,12 +101,12 @@ func spawn_shockwaves() -> void:
 
 	var left_wave: Area2D = shockwave_scene.instantiate()
 	left_wave.direction = -1.0
-	left_wave.speed = shockwave_speed
-	left_wave.global_position = Vector2(global_position.x, floor_y)
+	left_wave.speed = shockwave_projectile_speed
+	left_wave.global_position = Vector2(global_position.x, ground_height)
 	get_tree().current_scene.add_child(left_wave)
 
 	var right_wave: Area2D = shockwave_scene.instantiate()
 	right_wave.direction = 1.0
-	right_wave.speed = shockwave_speed
-	right_wave.global_position = Vector2(global_position.x, floor_y)
+	right_wave.speed = shockwave_projectile_speed
+	right_wave.global_position = Vector2(global_position.x, ground_height)
 	get_tree().current_scene.add_child(right_wave)

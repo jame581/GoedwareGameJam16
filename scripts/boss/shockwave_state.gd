@@ -1,7 +1,5 @@
 extends LimboState
 
-const EXPOSED_DURATION: float = 2.0
-
 var _elapsed: float = 0.0
 
 
@@ -22,8 +20,8 @@ func _exit() -> void:
 func _update(delta: float) -> void:
 	_elapsed += delta
 
-	# Check for 2s timeout
-	if _elapsed >= EXPOSED_DURATION:
+	# Check for timeout
+	if _elapsed >= agent.shockwave_exposed_duration:
 		get_root().dispatch(EVENT_FINISHED)
 		return
 

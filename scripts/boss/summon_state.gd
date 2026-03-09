@@ -1,7 +1,5 @@
 extends LimboState
 
-const SUMMON_DURATION: float = 1.2
-
 var _elapsed: float = 0.0
 
 
@@ -13,5 +11,5 @@ func _enter() -> void:
 
 func _update(delta: float) -> void:
 	_elapsed += delta
-	if _elapsed >= SUMMON_DURATION:
+	if _elapsed >= agent.shockwave_summon_duration:
 		get_root().dispatch(EVENT_FINISHED)

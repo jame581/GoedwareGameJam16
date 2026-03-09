@@ -1,43 +1,59 @@
+# Godot-BossFightOhYeah (GoedWare Game Jam #16)
 
-# Godot QuickStart Template
-
-[![itch.io](https://img.shields.io/badge/itch.io-Live%20Demo-3eff6a?logo=itch.io)](https://hubacekjakub.itch.io/godot-quick-start)
 [![CI Status](https://github.com/hubacekjakub/Godot-QuickStart/actions/workflows/main.yml/badge.svg)](https://github.com/hubacekjakub/Godot-QuickStart/actions/workflows/main.yml)
 [![Build Status](https://github.com/hubacekjakub/Godot-QuickStart/actions/workflows/main.yml/badge.svg)](https://github.com/hubacekjakub/Godot-QuickStart/actions/workflows/main.yml)
-[![Latest Release](https://img.shields.io/badge/GitHub-Release-blue?logo=github)](https://github.com/hubacekjakub/Godot-QuickStart/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hubacekjakub/Godot-QuickStart/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Godot 4.6](https://img.shields.io/badge/Godot-4.6-blue)](https://godotengine.org/)
 
-**My personal Godot 4.6 template with automated CI/CD and itch.io deployment.** Speed up development and deployment of any Godot project.
+**Godot-BossFightOhYeah** is a 2D boss fight game prototype developed for the **GoedWare Game Jam #16**. 
 
-🎮 **[Try Live Demo](https://hubacekjakub.itch.io/godot-quick-start)**
-
-## ✨ What Makes This Special
-
-This template eliminates the tedious setup work for modern Godot development:
-- **Zero-config CI/CD** - Works out of the box with GitHub Actions
-- **Production-ready workflow** - Used for real game releases
-- **Developer-friendly** - VS Code integration with proper debugging
-- **One-tag deployment** - Push `v1.0.0` and your game is live on itch.io
-
-Perfect for game jams, prototypes, or serious indie projects!
-
-## 🚀 Quick Start
-
-1. **Fork** this repository → **Clone** your fork → **Open** in Godot
-2. **Press F5** to run • **Replace the ball** with your game
-3. **Optional:** Set up [itch.io deployment](#-automated-deployment) for one-click publishing
-
-**Controls:** WASD/Arrows to move • Escape to quit
+Built with Godot 4.6, this project focuses on robust state machine-driven AI using the [LimboAI](https://github.com/limboai/limboai) plugin. It features a fully functioning player controller with platformer mechanics (jump, dash, movement) and a multi-phase boss enemy (Shockwave Boss) complete with telegraphing, approach states, bomb drops, and shockwave attacks.
 
 ## ⚡ Features
 
-- **Complete CI/CD Pipeline** - Push a tag, get automatic builds + itch.io deployment
-- **Multi-Platform Builds** - Windows, Linux, Web exports on every release
-- **VS Code Integration** - Debugging, tasks, and launch configurations included
-- **Professional Structure** - Organized folders, export presets, proper gitignore
+- **LimboAI Integration:** Both the player and boss utilize `LimboHSM` (Hierarchical State Machines) for clean, decoupled logic and scalable behaviors.
+- **Boss Prototype:** Includes a multi-phase "Shockwave Boss" featuring:
+  - Approach state
+  - Bomb attack phase (spawning delayed explosive projectiles across the arena)
+  - Shockwave attack phase (spawning ground-based waves)
+  - Vulnerability phases
+- **Player Controller:** Smooth 2D platforming logic with idle, move, jump, fall, and dash states.
+- **Automated CI/CD:** Integrated GitHub Actions for automatic validation, multi-platform builds (Windows, Linux, Web), and itch.io deployment.
+- **Main Menu UI:** Includes options, settings toggles (sounds, controls), and a level selector.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- [Godot Engine 4.6](https://godotengine.org/download/) or later (GL Compatibility renderer).
+
+### Running the Game locally
+1. **Clone** this repository: `git clone <repository-url>`
+2. **Open** Godot Engine and import the `project.godot` file.
+3. The main entry scene is configured to `res://levels/level_main_menu.tscn`.
+4. Press **F5** (or click the Play button in the editor top right) to run the game.
+
+**Controls:**
+- **Move:** A/D or Left/Right Arrows
+- **Jump:** Space or W or Up Arrow
+- **Dash:** Shift
+
+## 📁 Project Structure
+
+```text
+├── addons/limboai/  # LimboAI plugin for state machines and behavior trees
+├── assets/          # Sprites, sounds, fonts, and textures
+├── autoloads/       # Global singletons (Global, SignalBus, SceneChanger, AudioManager)
+├── levels/          # Game levels and menus (Main Menu, Level 1, Playgrounds)
+├── scenes/          # Reusable entity scenes (Player, Boss, Projectiles, UI)
+└── scripts/         # GDScript source code (Strictly typed, organized by entity)
+    ├── boss/        # Boss states and projectiles
+    ├── player/      # Player states
+    └── ui/          # UI logic
+```
 
 ## 🤖 Automated Deployment
+
+This project inherits a zero-config CI/CD pipeline.
 
 ### One-Command Release
 ```bash
@@ -47,41 +63,10 @@ git tag v1.0.0 && git push origin v1.0.0
 
 ### Deployment Setup
 Add these GitHub secrets for itch.io deployment:
-- **`BUTLER_API_KEY`** - Get from https://itch.io/user/settings/api-keys
-- **`ITCH_USERNAME`** - Your itch.io username
-- **`ITCH_GAME_NAME`** - Your game project name (e.g., `godot-quick-start`)
-
-**Example:** This demo was deployed automatically: https://hubacekjakub.itch.io/godot-quick-start
-
-### What Happens Automatically
-1. **Validation** - GDScript syntax check and project verification
-2. **Build** - Creates Windows .exe, Linux executable, and Web build
-3. **Release** - GitHub release with downloadable files
-4. **Deploy** - Web version automatically published to itch.io
-5. **Notify** - Build status and links in GitHub Actions
-
-## 📁 Project Structure
-
-```
-├── scenes/          # Game scenes (.tscn)
-├── levels/          # Main game levels
-├── scripts/         # GDScript files (.gd)
-├── assets/          # Fonts, sounds, textures
-├── .vscode/         # VS Code integration
-└── .github/         # CI/CD workflows
-```
-
-## 🔧 VS Code Features
-
-- **Tasks:** Run Godot Project, Run Game, Debug modes
-- **Debugging:** Breakpoints, step-through, remote debug
-- **Launch configs:** F5 to start debugging sessions
+- **`BUTLER_API_KEY`** - Get from your itch.io account settings.
+- **`ITCH_USERNAME`** - Your itch.io username.
+- **`ITCH_GAME_NAME`** - Your game project name.
 
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
-You are free to use, modify, and distribute this template in your own projects.
-
----
-
-**💡 Pro Tip:** Star this repo if it helps your workflow! Questions? Open an issue or check the [live demo](https://hubacekjakub.itch.io/godot-quick-start) to see everything working.
