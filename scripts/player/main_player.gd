@@ -19,6 +19,7 @@ extends CharacterBody2D
 @onready var fall_state: LimboState = $LimboHSM/FallState
 
 func _ready() -> void:
+	Global.register_player(self)
 	_init_state_machine()
 
 	move_state.speed = movement_speed

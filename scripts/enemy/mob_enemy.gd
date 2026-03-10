@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var bt_player: BTPlayer = $BTPlayer
 
+var _moved_this_frame: bool = false
+
 func _ready() -> void:
 	# Try to register immediately, or wait for Global to have a player
 	_update_bt_target()
