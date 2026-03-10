@@ -1,13 +1,14 @@
 extends PanelContainer
 
-@onready var version_label: Label = get_node("%VersionLabel")
-@onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
-@onready var settings_box: VBoxContainer = %SettingsBox
+@onready var version_label: Label = %VersionLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var vbox_menu: VBoxContainer = $MarginContainer/HBoxContainer/VBoxMenu
+@onready var settings_scroll: ScrollContainer = $MarginContainer/HBoxContainer/SettingsScroll
 @onready var credits_box: VBoxContainer = %CreditsBox
 
-@onready var controls_setting: GridContainer = $MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid
-@onready var controls_gamepad_setting: GridContainer = $MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid
-@onready var sound_toggle: CheckButton = $MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid/SoundsEnabledCheckButton
+@onready var controls_setting: GridContainer = %ControlSettingsGrid
+@onready var controls_gamepad_setting: GridContainer = %ControlGamepadSettingsGrid
+@onready var sound_toggle: CheckButton = %SoundsEnabledCheckButton
 
 @onready var item_list: ItemList = $MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/ItemList
 
@@ -46,29 +47,32 @@ func _on_quit_button_pressed() -> void:
 func _on_animation_player_animation_finished(anim_name: String) -> void:
 	if anim_name == "show_credits" and hide_credits:
 		credits_box.hide()
+		vbox_menu.show()
 
 	if anim_name == "show_settings" and hide_settings:
-		settings_box.hide()
+		settings_scroll.hide()
+		vbox_menu.show()
 
 func _on_options_button_pressed() -> void:
 	AudioManager.play_button_sound()
-	if settings_box.is_visible():
+	if settings_scroll.visible:
 		animation_player.play("show_settings", -1, -2.0, true)
 		hide_settings = true
 	else:
 		hide_all_settings()
-		settings_box.show()
+		vbox_menu.hide()
+		settings_scroll.show()
 		hide_settings = false
 		animation_player.play("show_settings")
 
 func _on_credits_button_pressed() -> void:
 	AudioManager.play_button_sound()
-	if credits_box.is_visible():
+	if credits_box.visible:
 		animation_player.play("show_credits", -1, -4.0, true)
 		hide_credits = true
-		#play(name: StringName = &"", custom_blend: float = -1, custom_speed: float = 1.0, from_end: bool = false)
 	else:
 		hide_all_settings()
+		vbox_menu.hide()
 		credits_box.show()
 		hide_credits = false
 		animation_player.play("show_credits")
@@ -80,8 +84,9 @@ func _on_sounds_enabled_check_button_toggled(button_pressed: bool) -> void:
 		AudioManager.set_sound_enabled(false)
 
 func hide_all_settings() -> void:
-	settings_box.hide()
+	settings_scroll.hide()
 	credits_box.hide()
+	vbox_menu.show()
 
 func create_action_list() -> void:
 	InputMap.load_from_project_settings()

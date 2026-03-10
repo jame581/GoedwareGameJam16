@@ -5,3 +5,5 @@
 [node name="LevelMainMenu" type="Node" unique_id=1153901963]
 
 [node name="MainMenu" parent="." unique_id=800314247 instance=ExtResource("1_mm")]
+offset_right = 4.0
+offset_bottom = -17.0
