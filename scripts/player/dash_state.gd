@@ -22,6 +22,9 @@ func _update(_delta: float) -> void:
 	if not dash_movement_done:
 		agent.move_and_slide()
 
+	if dash_movement_done and not agent.is_on_floor():
+		get_root().dispatch("dash_airborne")
+
 
 func _exit() -> void:
 	animation_player.animation_finished.disconnect(_on_animation_finished)

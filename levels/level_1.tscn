@@ -423,8 +423,6 @@ texture = ExtResource("4_n46q3")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_btoec")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kx6l7"]
-
 [node name="Level1" type="Node2D" unique_id=2076091239]
 
 [node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=1355143801]
@@ -463,9 +461,3 @@ position_smoothing_enabled = true
 
 [node name="MainPlayer" parent="." unique_id=1957947444 node_paths=PackedStringArray("camera") instance=ExtResource("4_kx6l7")]
 camera = NodePath("../Camera2D")
-
-[node name="Floor" type="StaticBody2D" parent="." unique_id=1918485199]
-position = Vector2(0, 136)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1134115185]
-shape = SubResource("WorldBoundaryShape2D_kx6l7")

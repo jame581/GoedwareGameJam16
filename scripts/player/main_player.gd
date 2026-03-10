@@ -17,6 +17,8 @@ extends CharacterBody2D
 @onready var jump_state: LimboState = $LimboHSM/JumpState
 @onready var dash_state: LimboState = $LimboHSM/DashState
 @onready var fall_state: LimboState = $LimboHSM/FallState
+@onready var light_attack_state: LimboState = $LimboHSM/LightAttackState
+@onready var heavy_attack_state: LimboState = $LimboHSM/HeavyAttackState
 
 func _ready() -> void:
 	Global.register_player(self)
@@ -68,6 +70,16 @@ func _init_state_machine() -> void:
 	hms.add_transition(idle_state, fall_state, "fall_started")
 	hms.add_transition(move_state, fall_state, "fall_started")
 	hms.add_transition(fall_state, idle_state, fall_state.EVENT_FINISHED)
+
+	# Light attack transitions (from idle and move, grounded only)
+	hms.add_transition(idle_state, light_attack_state, "light_attack_started")
+	hms.add_transition(move_state, light_attack_state, "light_attack_started")
+	hms.add_transition(light_attack_state, idle_state, light_attack_state.EVENT_FINISHED)
+
+	# Heavy attack transitions (from idle and move, grounded only)
+	hms.add_transition(idle_state, heavy_attack_state, "heavy_attack_started")
+	hms.add_transition(move_state, heavy_attack_state, "heavy_attack_started")
+	hms.add_transition(heavy_attack_state, idle_state, heavy_attack_state.EVENT_FINISHED)
 
 	hms.initial_state = idle_state
 

@@ -10,9 +10,15 @@
 [ext_resource type="Script" uid="uid://delwq2fs5wvvi" path="res://scripts/player/jump_state.gd" id="6_k4udv"]
 [ext_resource type="Script" uid="uid://c1u3yqt1pvcwc" path="res://scripts/player/dash_state.gd" id="9_qksnn"]
 [ext_resource type="Script" uid="uid://c3k85fb55yk5j" path="res://scripts/player/fall_state.gd" id="10_hjun7"]
+[ext_resource type="Script" uid="uid://du465knydkywd" path="res://scripts/player/light_attack_state.gd" id="11_light"]
+[ext_resource type="Texture2D" uid="uid://ivk1jcd8vls2" path="res://assets/sprites/player/player_sword_attack.png" id="12_3oxqv"]
+[ext_resource type="Script" uid="uid://cb37po2fdeghl" path="res://scripts/player/heavy_attack_state.gd" id="12_heavy"]
+[ext_resource type="Texture2D" uid="uid://bkxdrntjfpldo" path="res://assets/sprites/player/player_sword_stab.png" id="12_k1aeb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
 size = Vector2(20, 30)
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ais3i"]
 
 [sub_resource type="Animation" id="Animation_7ughw"]
 length = 0.001
@@ -181,6 +187,58 @@ tracks/3/keys = {
 "values": [3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_3oxqv"]
+resource_name = "heavy_attack"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_k1aeb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667, 0.6666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
 [sub_resource type="Animation" id="Animation_xr3bu"]
 resource_name = "idle"
 loop_mode = 1
@@ -284,6 +342,58 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_hafb0"]
+resource_name = "light_attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_3oxqv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_vr3wt"]
 resource_name = "run"
 loop_mode = 1
@@ -341,12 +451,12 @@ _data = {
 &"RESET": SubResource("Animation_7ughw"),
 &"dash": SubResource("Animation_ais3i"),
 &"fall": SubResource("Animation_hjun7"),
+&"heavy_attack": SubResource("Animation_3oxqv"),
 &"idle": SubResource("Animation_xr3bu"),
 &"jump": SubResource("Animation_gv8u8"),
+&"light_attack": SubResource("Animation_hafb0"),
 &"run": SubResource("Animation_vr3wt")
 }
-
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_ais3i"]
 
 [node name="MainPlayer" type="CharacterBody2D" unique_id=1957947444]
 script = ExtResource("1_ais3i")
@@ -358,9 +468,6 @@ hframes = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=740946254]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_xr3bu")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=112140856]
-libraries/ = SubResource("AnimationLibrary_7ughw")
 
 [node name="LimboHSM" type="LimboHSM" parent="." unique_id=477047900]
 blackboard_plan = SubResource("BlackboardPlan_ais3i")
@@ -386,4 +493,15 @@ animation_player = NodePath("../../AnimationPlayer")
 script = ExtResource("10_hjun7")
 animation_player = NodePath("../../AnimationPlayer")
 
+[node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("11_light")
+animation_player = NodePath("../../AnimationPlayer")
+
+[node name="HeavyAttackState" type="LimboState" parent="LimboHSM" unique_id=1183741551 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("12_heavy")
+animation_player = NodePath("../../AnimationPlayer")
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=112140856]
+libraries/ = SubResource("AnimationLibrary_7ughw")

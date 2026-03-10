@@ -31,7 +31,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/HBoxContainer/SettingsBox:modulate")
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/SettingsScroll:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -62,7 +62,7 @@ resource_name = "show_settings"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/HBoxContainer/SettingsBox:modulate")
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/SettingsScroll:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -94,20 +94,22 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1824003713]
 layout_mode = 2
-theme_override_constants/margin_left = 75
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_right = 75
-theme_override_constants/margin_bottom = 75
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1509026008]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 10
+alignment = 1
 
 [node name="VBoxMenu" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1882133780]
-custom_minimum_size = Vector2(200, 0)
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 50
+alignment = 1
 
 [node name="GameLogo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxMenu" unique_id=1272822633]
 layout_mode = 2
@@ -144,9 +146,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxDebugMenu" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=780257998]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
@@ -183,130 +184,86 @@ item_0/text = "playground"
 layout_mode = 2
 text = "Start level"
 
-[node name="SettingsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1650168849]
-unique_name_in_owner = true
+[node name="SettingsScroll" type="ScrollContainer" parent="MarginContainer/HBoxContainer" unique_id=399138124]
+visible = false
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="SettingsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/SettingsScroll" unique_id=1292770497]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="SettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=942628056]
+[node name="SettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1870520698]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=310601832]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1982954070]
 layout_mode = 2
 
-[node name="SoundSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1984412032]
-custom_minimum_size = Vector2(50, 50)
+[node name="SoundSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=260398606]
 layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid" unique_id=1898941142]
+[node name="MusicLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox/SoundSettingsGrid" unique_id=1386719803]
 layout_mode = 2
 text = "Sounds"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundsEnabledCheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid" unique_id=1451162795]
+[node name="SoundsEnabledCheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox/SoundSettingsGrid" unique_id=450672172]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 button_pressed = true
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=604171130]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1473268166]
 layout_mode = 2
 
-[node name="ControlSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1942673671]
+[node name="ControlSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=2034756524]
 layout_mode = 2
 text = "Keyboard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ControlSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=786328399]
-custom_minimum_size = Vector2(50, 50)
+[node name="ControlSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1493598842]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="JumpLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=817103361]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 6
-text = "Jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="JumpKeyLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=1103714516]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Spacebar"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ControlSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlSettingsGrid" unique_id=397728934]
-layout_mode = 2
-text = "Keyboard"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=129447592]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1430376890]
 layout_mode = 2
 
-[node name="ControlGamepadSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1024215823]
+[node name="ControlGamepadSettingsLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=345975326]
 layout_mode = 2
 text = "Gamepad"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ControlGamepadSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsBox" unique_id=1378122279]
-custom_minimum_size = Vector2(50, 50)
+[node name="ControlGamepadSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=58042931]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="JumpLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=551298894]
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=1699411999]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 6
-text = "Jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="JumpKeyLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=1480190978]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Spacebar asdasdasd"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="JumpLabel2" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=30450512]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 6
-text = "Jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="JumpKeyLabel3" type="Label" parent="MarginContainer/HBoxContainer/SettingsBox/ControlGamepadSettingsGrid" unique_id=1909572993]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Spacebar asdasdasd asdasdasdasd"
-horizontal_alignment = 2
-vertical_alignment = 1
+text = "Back"
 
 [node name="CreditsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=587486894]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
@@ -320,24 +277,47 @@ vertical_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=1738739710]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=657560169]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=1378277030]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgrammersRichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/CreditsBox/HBoxContainer" unique_id=657560169]
+layout_mode = 2
+size_flags_horizontal = 3
 bbcode_enabled = true
 text = "[center]
-
 Code:
 Jakub Hubacek
 Jan Mesarc
-
-Art:
-Meru
-
-Game Design:
-Ondra Purchart
-
 [/center]"
 fit_content = true
 scroll_following = true
+
+[node name="ArtRichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/CreditsBox/HBoxContainer" unique_id=1164687672]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]
+Art and Music:
+Meru
+[/center]"
+fit_content = true
+scroll_following = true
+
+[node name="GameDesignRichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/CreditsBox/HBoxContainer" unique_id=1408092865]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]
+Game Design:
+Ondra Purchart
+[/center]"
+fit_content = true
+scroll_following = true
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/CreditsBox" unique_id=831320470]
+layout_mode = 2
+text = "Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=265668430]
 libraries/ = SubResource("AnimationLibrary_dpcv2")
@@ -348,5 +328,7 @@ libraries/ = SubResource("AnimationLibrary_dpcv2")
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxMenu/MenuOptions/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxDebugMenu/MenuOptions/StartSelectedLevelButton" to="." method="_on_start_selected_level_button_pressed"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/SettingsBox/SoundSettingsGrid/SoundsEnabledCheckButton" to="." method="_on_sounds_enabled_check_button_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox/SoundSettingsGrid/SoundsEnabledCheckButton" to="." method="_on_sounds_enabled_check_button_toggled"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox/BackButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CreditsBox/BackButton" to="." method="_on_credits_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
