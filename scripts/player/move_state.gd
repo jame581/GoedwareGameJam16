@@ -32,3 +32,9 @@ func _handle_input() -> void:
 
 	if (Input.is_action_pressed("dash") and agent.is_on_floor()):
 		get_root().dispatch("dash_started")
+
+	if Input.is_action_just_pressed("light_attack"):
+		get_root().dispatch("light_attack_started")
+
+	if Input.is_action_just_pressed("heavy_attack"):
+		get_root().dispatch("heavy_attack_started")
