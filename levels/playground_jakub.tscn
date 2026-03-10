@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="4_kx6l7"]
 [ext_resource type="Texture2D" uid="uid://bae06vhsinyt6" path="res://assets/sprites/Tiles-rec.png" id="4_n46q3"]
 [ext_resource type="PackedScene" uid="uid://cf4oemb4cxotq" path="res://scenes/boss/shockwave_boss.tscn" id="6_boss"]
-[ext_resource type="PackedScene" path="res://scenes/enemy/mob_enemy.tscn" id="8_6a1tr"]
+[ext_resource type="PackedScene" uid="uid://0g6nk0lqrjor" path="res://scenes/enemy/mob_enemy.tscn" id="8_6a1tr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btoec"]
 texture = ExtResource("4_n46q3")
@@ -467,6 +467,8 @@ position_smoothing_enabled = true
 camera = NodePath("../Camera2D")
 
 [node name="ShockwaveBoss" parent="." unique_id=1856180662 node_paths=PackedStringArray("target_player") instance=ExtResource("6_boss")]
+process_mode = 4
+visible = false
 position = Vector2(200, -20)
 target_player = NodePath("../MainPlayer")
 float_height = -20.0

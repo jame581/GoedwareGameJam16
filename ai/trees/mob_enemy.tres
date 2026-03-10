@@ -14,15 +14,86 @@ var/target/name = &"target"
 var/target/type = 24
 var/target/hint = 0
 var/target/hint_string = ""
+var/close_enough/name = &"close_enough"
+var/close_enough/type = 1
+var/close_enough/value = false
+var/close_enough/hint = 0
+var/close_enough/hint_string = ""
+var/is_initiated/name = &"is_initiated"
+var/is_initiated/type = 1
+var/is_initiated/value = false
+var/is_initiated/hint = 0
+var/is_initiated/hint_string = ""
+
+[sub_resource type="BTComment" id="BTComment_hjwmp"]
+custom_name = "Initial waiting here"
+
+[sub_resource type="BBVariant" id="BBVariant_8iegs"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_5hd6b"]
+variable = &"is_initiated"
+value = SubResource("BBVariant_8iegs")
+
+[sub_resource type="BBVariant" id="BBVariant_cu6k4"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTSetVar" id="BTSetVar_qfc4r"]
+variable = &"is_initiated"
+value = SubResource("BBVariant_cu6k4")
+
+[sub_resource type="BTDelay" id="BTDelay_hjwmp"]
+seconds = 2.0
+children = [SubResource("BTSetVar_qfc4r")]
+
+[sub_resource type="BTSelector" id="BTSelector_mor0f"]
+children = [SubResource("BTComment_hjwmp"), SubResource("BTCheckVar_5hd6b"), SubResource("BTDelay_hjwmp")]
+
+[sub_resource type="BTComment" id="BTComment_8iegs"]
+custom_name = "If we are close enough, stop pursue and explode"
+
+[sub_resource type="BBVariant" id="BBVariant_hjwmp"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_8iegs"]
+variable = &"close_enough"
+value = SubResource("BBVariant_hjwmp")
 
 [sub_resource type="BTAction" id="BTAction_detonate"]
 script = ExtResource("2_2")
 fuse_time = 0.5
 
+[sub_resource type="BTSequence" id="BTSequence_6jani"]
+children = [SubResource("BTComment_8iegs"), SubResource("BTCheckVar_8iegs"), SubResource("BTAction_detonate")]
+
+[sub_resource type="BTComment" id="BTComment_5hd6b"]
+custom_name = "We are close enough!"
+
+[sub_resource type="BBVariant" id="BBVariant_5hd6b"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTSetVar" id="BTSetVar_cu6k4"]
+variable = &"close_enough"
+value = SubResource("BBVariant_5hd6b")
+
 [sub_resource type="BTDecorator" id="BTDecorator_close"]
-children = [SubResource("BTAction_detonate")]
+children = [SubResource("BTSetVar_cu6k4")]
 script = ExtResource("1_1")
 distance = 60.0
+
+[sub_resource type="BTSequence" id="BTSequence_8iegs"]
+children = [SubResource("BTComment_5hd6b"), SubResource("BTDecorator_close")]
+
+[sub_resource type="BTComment" id="BTComment_cu6k4"]
+custom_name = "We are far away, lets pursue the player"
 
 [sub_resource type="BTAction" id="BTAction_pursue"]
 script = ExtResource("3_3")
@@ -33,12 +104,18 @@ script = ExtResource("1_1")
 distance = 60.0
 check_less_than = false
 
+[sub_resource type="BTSequence" id="BTSequence_5hd6b"]
+children = [SubResource("BTComment_cu6k4"), SubResource("BTDecorator_far")]
+
 [sub_resource type="BTWait" id="BTWait_1"]
 duration = 0.1
 
-[sub_resource type="BTSelector" id="BTSelector_1"]
-children = [SubResource("BTDecorator_close"), SubResource("BTDecorator_far"), SubResource("BTWait_1")]
+[sub_resource type="BTSelector" id="BTSelector_yeu2h"]
+children = [SubResource("BTSequence_6jani"), SubResource("BTSequence_8iegs"), SubResource("BTSequence_5hd6b"), SubResource("BTWait_1")]
+
+[sub_resource type="BTSequence" id="BTSequence_qfc4r"]
+children = [SubResource("BTSelector_mor0f"), SubResource("BTSelector_yeu2h")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_1")
-root_task = SubResource("BTSelector_1")
+root_task = SubResource("BTSequence_qfc4r")
