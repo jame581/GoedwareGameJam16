@@ -146,7 +146,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxDebugMenu" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=780257998]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -210,8 +209,6 @@ layout_mode = 2
 
 [node name="SoundSettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox" unique_id=260398606]
 layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 columns = 2
 
 [node name="MusicLabel" type="Label" parent="MarginContainer/HBoxContainer/SettingsScroll/SettingsBox/SoundSettingsGrid" unique_id=1386719803]
@@ -265,6 +262,7 @@ text = "Back"
 
 [node name="CreditsBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=587486894]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3

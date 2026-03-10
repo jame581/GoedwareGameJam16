@@ -67,6 +67,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	AudioManager.play_button_sound()
+	#SceneChanger.goto_scene("res://scenes/ui/ui_credits_screen.tscn")
 	if credits_box.visible:
 		animation_player.play("show_credits", -1, -4.0, true)
 		hide_credits = true
