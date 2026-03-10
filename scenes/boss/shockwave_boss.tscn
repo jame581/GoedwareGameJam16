@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0eqfggbbn15t" path="res://scripts/boss/shockwave_state.gd" id="4_shockwave"]
 [ext_resource type="Script" uid="uid://doptn6g86puc2" path="res://scripts/boss/bomb_attack_state.gd" id="5_bomb_attack"]
 [ext_resource type="PackedScene" path="res://scenes/boss/bomb_projectile.tscn" id="6_bomb_scene"]
+[ext_resource type="PackedScene" path="res://scenes/boss/shockwave_projectile.tscn" id="7_shockwave_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
 size = Vector2(32, 32)
@@ -14,6 +15,7 @@ size = Vector2(32, 32)
 collision_layer = 2
 collision_mask = 1
 script = ExtResource("1_sw_boss")
+shockwave_scene = ExtResource("7_shockwave_scene")
 bomb_scene = ExtResource("6_bomb_scene")
 bomb_drop_height = -150.0
 bomb_arena_width = 600.0

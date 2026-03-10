@@ -32,6 +32,11 @@ window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+player=""
+enemy=""
+
 [input]
 
 left={

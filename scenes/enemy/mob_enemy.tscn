@@ -1,22 +1,24 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://0g6nk0lqrjor"]
 
-[ext_resource type="Script" path="res://scripts/enemy/mob_enemy.gd" id="1_1"]
-[ext_resource type="Texture2D" path="res://icon.svg" id="2_2"]
-[ext_resource type="BehaviorTree" path="res://ai/trees/mob_enemy.tres" id="3_3"]
+[ext_resource type="Script" uid="uid://bb6x0sp4k1noc" path="res://scripts/enemy/mob_enemy.gd" id="1_1"]
+[ext_resource type="Texture2D" uid="uid://beedroerhpg0s" path="res://icon.svg" id="2_2"]
+[ext_resource type="BehaviorTree" uid="uid://bi75h2nf8qcov" path="res://ai/trees/mob_enemy.tres" id="3_3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(64, 64)
 
-[node name="MobEnemy" type="CharacterBody2D"]
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_gawil"]
+
+[node name="MobEnemy" type="CharacterBody2D" unique_id=1673544333 groups=["enemy"]]
 script = ExtResource("1_1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=889075583]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1455217852]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="BTPlayer" type="BTPlayer" parent="."]
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=780099441]
 behavior_tree = ExtResource("3_3")
-active = true
+blackboard_plan = SubResource("BlackboardPlan_gawil")

@@ -42,11 +42,11 @@ func _ready() -> void:
 	position.y = float_height
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_grounded:
-		position.y = lerp(position.y, float_height, 0.1)
+		position.y = lerp(position.y, float_height, 1.0 - exp(-5.0 * delta))
 	else:
-		position.y = lerp(position.y, ground_height, 0.2)
+		position.y = lerp(position.y, ground_height, 1.0 - exp(-10.0 * delta))
 
 
 func _init_state_machine() -> void:

@@ -30,8 +30,9 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	explode()
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		explode()
 
 
 func explode() -> void:

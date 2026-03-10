@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="4_kx6l7"]
 [ext_resource type="Texture2D" uid="uid://bae06vhsinyt6" path="res://assets/sprites/Tiles-rec.png" id="4_n46q3"]
 [ext_resource type="PackedScene" uid="uid://cf4oemb4cxotq" path="res://scenes/boss/shockwave_boss.tscn" id="6_boss"]
-[ext_resource type="PackedScene" uid="uid://cf4oemb4q1kkq" path="res://scenes/boss/shockwave_projectile.tscn" id="7_proj"]
 [ext_resource type="PackedScene" path="res://scenes/enemy/mob_enemy.tscn" id="8_6a1tr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btoec"]
@@ -472,7 +471,6 @@ position = Vector2(200, -20)
 target_player = NodePath("../MainPlayer")
 float_height = -20.0
 attack_range = 60.0
-shockwave_scene = ExtResource("7_proj")
 bomb_arena_width = 640.0
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=544016425]
@@ -482,4 +480,4 @@ position = Vector2(0, 136)
 shape = SubResource("WorldBoundaryShape2D_kx6l7")
 
 [node name="MobEnemy" parent="." unique_id=511094631 instance=ExtResource("8_6a1tr")]
-position = Vector2(394, 28)
+position = Vector2(-151, 8)
