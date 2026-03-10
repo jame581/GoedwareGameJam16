@@ -19,9 +19,6 @@ func _ready() -> void:
 
 	if audio_enabled:
 		audio_background.play()
-	if audio_enabled:
-		audio_background.play()
-		pass
 
 func play_button_sound() -> void:
 	if audio_enabled:
@@ -47,4 +44,3 @@ func stop_music() -> void:
 func _on_audio_stream_player_2d_finished() -> void:
 	if audio_enabled:
 		audio_background.play()
-	pass
