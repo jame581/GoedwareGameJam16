@@ -1,0 +1,44 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://bi75h2nf8qcov"]
+
+[ext_resource type="Script" uid="uid://p4ce7hpg0j7a" path="res://ai/tasks/check_distance.gd" id="1_1"]
+[ext_resource type="Script" uid="uid://c7e052c5mppuy" path="res://ai/tasks/detonate.gd" id="2_2"]
+[ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="3_3"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_1"]
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 150.0
+var/speed/hint = 0
+var/speed/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_detonate"]
+script = ExtResource("2_2")
+fuse_time = 0.5
+
+[sub_resource type="BTDecorator" id="BTDecorator_close"]
+children = [SubResource("BTAction_detonate")]
+script = ExtResource("1_1")
+distance = 60.0
+
+[sub_resource type="BTAction" id="BTAction_pursue"]
+script = ExtResource("3_3")
+
+[sub_resource type="BTDecorator" id="BTDecorator_far"]
+children = [SubResource("BTAction_pursue")]
+script = ExtResource("1_1")
+distance = 60.0
+check_less_than = false
+
+[sub_resource type="BTWait" id="BTWait_1"]
+duration = 0.1
+
+[sub_resource type="BTSelector" id="BTSelector_1"]
+children = [SubResource("BTDecorator_close"), SubResource("BTDecorator_far"), SubResource("BTWait_1")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_1")
+root_task = SubResource("BTSelector_1")

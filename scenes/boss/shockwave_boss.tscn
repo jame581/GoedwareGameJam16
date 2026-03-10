@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf4oemb4cxotq"]
+[gd_scene format=3 uid="uid://cf4oemb4cxotq"]
 
 [ext_resource type="Script" uid="uid://cuwuwhl2ii81f" path="res://scripts/boss/shockwave_boss.gd" id="1_sw_boss"]
 [ext_resource type="Script" uid="uid://cfvexod1q080" path="res://scripts/boss/approach_state.gd" id="2_approach"]
 [ext_resource type="Script" uid="uid://cnkn062r5juvl" path="res://scripts/boss/summon_state.gd" id="3_summon"]
 [ext_resource type="Script" uid="uid://d0eqfggbbn15t" path="res://scripts/boss/shockwave_state.gd" id="4_shockwave"]
 [ext_resource type="Script" uid="uid://doptn6g86puc2" path="res://scripts/boss/bomb_attack_state.gd" id="5_bomb_attack"]
-[ext_resource type="PackedScene" path="res://scenes/bomb_projectile.tscn" id="6_bomb_scene"]
+[ext_resource type="PackedScene" path="res://scenes/boss/bomb_projectile.tscn" id="6_bomb_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
 size = Vector2(32, 32)

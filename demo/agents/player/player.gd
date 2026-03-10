@@ -25,6 +25,7 @@ var attack_pressed: bool = false
 
 
 func _ready() -> void:
+	Global.register_player(self)
 	super._ready()
 	can_dodge = true
 	_init_input_events()
