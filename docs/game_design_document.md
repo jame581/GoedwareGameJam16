@@ -6,45 +6,65 @@
 
 ## Story
 
-Medieval village, Grimm brothers atmosphere — dark forest, wooden cottages, fog.
+A warrior village hidden in the mountains. One day, a stranger arrives. When he leaves, something remains — a **cursed stone**. After that, things change. People grow quiet. The nights grow longer.
 
-A small family: **Father**, **Mother**, and **Daughter**.
+The **Mother (Sanaki)** finds the stone — and is consumed by it. She transforms into something inhuman. She runs into the dark.
 
-One night, a **shadowy figure** appears at the family's door and places a cursed object (a dark grimoire / cursed relic) on the doorstep. Father finds it, picks it up — and is instantly possessed by a demon. His eyes glow, his body twists. He becomes the **Boss**.
+The **Father (Hitoshi)** takes his sword and goes after her. He tells the **Daughter** to stay. He doesn't return.
 
-The Daughter must fight her own father to save her family. But she can't save them all.
+The Daughter can't wait any longer. She takes her blade and goes after them both.
+
+At the village edge, an **NPC** warns her: Sanaki is gone, Hitoshi has fallen. Run. But the Daughter won't run.
+
+She must face her possessed mother to save her family. But she can't save them all.
 
 ---
 
 ## Game Flow
 
 ```
-Main Menu → Beginning Cutscene → Boss Fight (Main Level) → Ending Cutscene
+Main Menu → Beginning Cutscene → NPC Dialogue → Boss Fight (Main Level) → Ending Cutscene
 ```
-
-That's it. Four screens. Keep it tight.
 
 ---
 
 ## Beginning Cutscene
 
-Simple sequence (can be still images with text, or minimal animation):
+Meru's intro text — narrated by the Daughter, shown as static frames with text:
 
-1. Night. A shadowy figure approaches the cottage, places a glowing object at the door, disappears into the dark
-2. Father opens the door, sees the object, picks it up
-3. Dark energy consumes him — he transforms, eyes glowing
-4. Mother screams, tries to reach him
-5. Daughter grabs her sword — the fight begins
+1. "Our village lies hidden in the mountains. A village of warriors."
+2. "One day, a stranger came. When he left, something remained. A stone."
+3. "After that, things changed. People grew quiet. The nights grew longer."
+4. "And my mother... different."
+5. "That night, she ran into the dark. I remember her eyes."
+6. "And the moment my father took his sword. 'Stay here,' he said."
+7. "Then he disappeared into the night. I waited. An hour."
+8. "The wind still carries sounds from the village. My father hasn't returned."
+9. "So now... I'm going after them."
 
-> **Scope note**: This can be as simple as 3-5 static pixel art frames with text overlays. No need for full animation.
+> **Scope note**: Static pixel art frames with text overlays. ~9 beats, can be condensed to 4-5 frames if needed.
 
 ---
 
-## Boss Fight — The Possessed Father
+## NPC Dialogue (before boss fight)
+
+Short exchange at the village edge, before the player enters the arena:
+
+- **NPC**: "Stop! Don't go any further."
+- **NPC**: "Sanaki... she's gone. Whatever she became, it isn't your mother anymore."
+- **NPC**: "Hitoshi tried to stop her."
+- **NPC**: "He's fallen."
+- **NPC**: "You need to run. Leave this place while you still can."
+
+Player proceeds anyway → boss fight begins.
+
+---
+
+## Boss Fight — The Possessed Mother (Sanaki)
 
 ### Arena
 - Single flat arena, village background (burning cottages, dark sky)
-- Mother is visible in the background (tied/trapped/cowering) as emotional motivation
+- Father (Hitoshi) is visible in the background — fallen, wounded, as emotional motivation
 - Simple ground with maybe one raised platform
 
 ### Boss Phases
@@ -66,7 +86,7 @@ Simple sequence (can be still images with text, or minimal animation):
 **Phase 3 (add if time allows)**
 - Both attacks combined, faster pace
 - Boss becomes more erratic — shorter telegraph windows
-- Possible visual change: father's human form flickers through the demon, hinting he's still in there (emotional storytelling through gameplay)
+- Possible visual change: mother's human form flickers through the demon, hinting she's still in there
 
 ### Boss AI (LimboAI Behavior Tree)
 
@@ -105,34 +125,34 @@ Root (Selector)
 
 ## The Choice Moment
 
-When the boss reaches critical HP (~10%), the fight pauses. The demon staggers. The father's human face flickers through.
+When the boss reaches critical HP (~10%), the fight pauses. The demon staggers. The mother's human face flickers through.
 
 Three options appear:
 
-### Ending 1 — Kill the Boss → Save Mother
+### Ending 1 — Kill the Boss → Save Father
 - Player delivers the final blow
-- The demon is destroyed — but so is the father
-- Mother is saved, she and daughter embrace
+- The demon is destroyed — but so is the mother (Sanaki)
+- Father (Hitoshi) is saved, daughter and father embrace over the loss
 - Bittersweet: the family survives, but broken
 
-### Ending 2 — Spare the Boss → Save Father, Mother Dies
+### Ending 2 — Spare the Boss → Save Mother, Father Dies
 - Player drops their weapon / walks away
-- The demon remains, but the father regains partial control
-- However, the curse claims the mother instead — she fades away
-- Father is saved but at a terrible price
+- The demon remains, but the mother regains partial control
+- However, the curse fully claims the father — Hitoshi fades away
+- Mother is saved but at a terrible price
 
 ### Ending 3 — Sacrifice (Secret Ending)
 - Player offers themselves to the demon
-- The daughter's life force breaks the curse — father is freed, mother is saved
+- The daughter's life force breaks the curse — mother is freed, father is saved
 - But the daughter is gone
 - The most emotional ending — both parents survive, but lose their child
 
 ### How to Trigger Endings
 - **Kill**: Keep attacking when boss is staggered → ending 1
 - **Spare**: Don't attack for X seconds during stagger → ending 2
-- **Sacrifice**: Interact with the cursed object/special prompt during stagger → ending 3
+- **Sacrifice**: Interact with the cursed stone during stagger → ending 3
 
-> The sacrifice ending should feel hidden — maybe the cursed relic appears on the ground during the stagger, and interacting with it triggers the secret ending. Players who are curious or observant find it.
+> The sacrifice ending should feel hidden — the cursed stone appears on the ground during the stagger, and interacting with it triggers the secret ending. Players who are curious or observant find it.
 
 ---
 
@@ -163,6 +183,7 @@ Same style as beginning cutscene — static frames with text. One scene per endi
 
 - [ ] Main menu (start button, that's it)
 - [ ] Beginning cutscene (static images + text)
+- [ ] NPC dialogue scene
 - [ ] Arena scene with background
 - [ ] Player: move, jump, light attack, dash
 - [ ] Boss: walk + Demon Smash attack (glow → levitate → slam → shockwave)
@@ -176,7 +197,7 @@ Same style as beginning cutscene — static frames with text. One scene per endi
 - [ ] Phase 2: Demon Spawn attack
 - [ ] Phase 3: Combined + faster
 - [ ] Heavy attack for player
-- [ ] Father's face flickering through demon in phase 3
+- [ ] Mother's face flickering through demon in phase 3
 - [ ] Animated cutscenes instead of static
 - [ ] Music / ambient audio
 - [ ] Screen shake, particles, juice
@@ -185,10 +206,11 @@ Same style as beginning cutscene — static frames with text. One scene per endi
 
 ## Characters
 
-| Character | Role   | Sprite         |
-|-----------|--------|----------------|
-| Daughter  | Player | `samurai.png`  |
-| Mother    | NPC    | (need sprite)  |
-| Father    | Boss   | `char1.png`    |
+| Character | Role        | Sprite        | Name    |
+|-----------|-------------|---------------|---------|
+| Daughter  | Player      | `samurai.png` | —       |
+| Mother    | Boss        | `char1.png`   | Sanaki  |
+| Father    | NPC (fallen)| (need sprite) | Hitoshi |
+| NPC       | Village elder / warrior | (need sprite) | — |
 
-> **Note**: Father's sprite may need a "possessed" variant (glowing eyes, dark aura). Could be done with a shader overlay on the existing sprite.
+> **Note**: Mother's sprite needs a "possessed" variant (glowing eyes, dark aura). Could be done with a shader overlay on the existing sprite. Father needs a wounded/fallen sprite visible in the arena background.
