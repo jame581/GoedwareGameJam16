@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 150.0
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var visual: ColorRect = $ColorRect
 @onready var bt_player: BTPlayer = $BTPlayer
 
 var _moved_this_frame: bool = false
@@ -33,4 +33,4 @@ func move(p_velocity: Vector2) -> void:
 ## Update facing based on velocity
 func update_facing() -> void:
 	if velocity.x != 0:
-		sprite.scale.x = sign(velocity.x) * abs(sprite.scale.x)
+		visual.scale.x = sign(velocity.x) * abs(visual.scale.x)

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://p4ce7hpg0j7a" path="res://ai/tasks/check_distance.gd" id="1_1"]
 [ext_resource type="Script" uid="uid://c7e052c5mppuy" path="res://ai/tasks/detonate.gd" id="2_2"]
 [ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="3_3"]
+[ext_resource type="Script" uid="uid://nteq37yumq8j" path="res://ai/tasks/fall.gd" id="4_4"]
+[ext_resource type="Script" uid="uid://bkibt730ycwsn" path="res://ai/tasks/is_on_ground.gd" id="5_5"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1"]
 var/speed/name = &"speed"
@@ -73,7 +75,7 @@ fuse_time = 0.5
 children = [SubResource("BTComment_8iegs"), SubResource("BTCheckVar_8iegs"), SubResource("BTAction_detonate")]
 
 [sub_resource type="BTComment" id="BTComment_5hd6b"]
-custom_name = "We are close enough!"
+custom_name = "We are close enough, lets explode"
 
 [sub_resource type="BBVariant" id="BBVariant_5hd6b"]
 type = 1
@@ -92,6 +94,20 @@ distance = 60.0
 [sub_resource type="BTSequence" id="BTSequence_8iegs"]
 children = [SubResource("BTComment_5hd6b"), SubResource("BTDecorator_close")]
 
+[sub_resource type="BTComment" id="BTComment_qfc4r"]
+custom_name = "We need to drop to ground first"
+
+[sub_resource type="BTAction" id="BTAction_5hd6b"]
+script = ExtResource("4_4")
+
+[sub_resource type="BTDecorator" id="BTDecorator_cu6k4"]
+children = [SubResource("BTAction_5hd6b")]
+script = ExtResource("5_5")
+invert = true
+
+[sub_resource type="BTSequence" id="BTSequence_mor0f"]
+children = [SubResource("BTComment_qfc4r"), SubResource("BTDecorator_cu6k4")]
+
 [sub_resource type="BTComment" id="BTComment_cu6k4"]
 custom_name = "We are far away, lets pursue the player"
 
@@ -104,18 +120,25 @@ script = ExtResource("1_1")
 distance = 60.0
 check_less_than = false
 
+[sub_resource type="BTDecorator" id="BTDecorator_5hd6b"]
+children = [SubResource("BTDecorator_far")]
+script = ExtResource("5_5")
+
 [sub_resource type="BTSequence" id="BTSequence_5hd6b"]
-children = [SubResource("BTComment_cu6k4"), SubResource("BTDecorator_far")]
+children = [SubResource("BTComment_cu6k4"), SubResource("BTDecorator_5hd6b")]
 
 [sub_resource type="BTWait" id="BTWait_1"]
 duration = 0.1
 
 [sub_resource type="BTSelector" id="BTSelector_yeu2h"]
-children = [SubResource("BTSequence_6jani"), SubResource("BTSequence_8iegs"), SubResource("BTSequence_5hd6b"), SubResource("BTWait_1")]
+children = [SubResource("BTSequence_6jani"), SubResource("BTSequence_8iegs"), SubResource("BTSequence_mor0f"), SubResource("BTSequence_5hd6b"), SubResource("BTWait_1")]
 
 [sub_resource type="BTSequence" id="BTSequence_qfc4r"]
 children = [SubResource("BTSelector_mor0f"), SubResource("BTSelector_yeu2h")]
 
+[sub_resource type="BTSelector" id="BTSelector_root"]
+children = [SubResource("BTSequence_qfc4r")]
+
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_1")
-root_task = SubResource("BTSequence_qfc4r")
+root_task = SubResource("BTSelector_root")

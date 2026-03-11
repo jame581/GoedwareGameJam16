@@ -10,9 +10,9 @@ func _generate_name() -> String:
 
 func _enter() -> void:
 	_timer = fuse_time
-	# Visual feedback: Turn Red
-	if agent.has_node("Sprite2D"):
-		agent.get_node("Sprite2D").modulate = Color(1.0, 0.2, 0.2)
+	# Visual feedback: Turn Light Purple
+	if agent.has_node("ColorRect"):
+		agent.get_node("ColorRect").color = Color(0.8, 0.5, 1.0)
 	
 	if agent.has_node("AnimationPlayer"):
 		agent.get_node("AnimationPlayer").play("idle") # Placeholder
@@ -21,11 +21,11 @@ func _tick(delta: float) -> Status:
 	_timer -= delta
 	
 	# Rapid flash before exploding
-	if agent.has_node("Sprite2D"):
+	if agent.has_node("ColorRect"):
 		if fmod(_timer, 0.1) < 0.05:
-			agent.get_node("Sprite2D").modulate = Color(1.0, 1.0, 1.0)
+			agent.get_node("ColorRect").color = Color(0.8, 0.5, 1.0) # Light Purple
 		else:
-			agent.get_node("Sprite2D").modulate = Color(1.0, 0.2, 0.2)
+			agent.get_node("ColorRect").color = Color(0.4, 0.1, 0.6) # Dark Purple
 
 	if _timer <= 0:
 		print("BOOM! MobEnemy detonated at ", agent.global_position)
@@ -36,5 +36,5 @@ func _tick(delta: float) -> Status:
 
 func _exit() -> void:
 	# Reset visual if interrupted
-	if is_instance_valid(agent) and agent.has_node("Sprite2D"):
-		agent.get_node("Sprite2D").modulate = Color(1.0, 1.0, 1.0)
+	if is_instance_valid(agent) and agent.has_node("ColorRect"):
+		agent.get_node("ColorRect").color = Color(0.5, 0.2, 0.8) # Base Purple

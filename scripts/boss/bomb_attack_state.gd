@@ -46,6 +46,6 @@ func _update(delta: float) -> void:
 func _spawn_bomb(x_pos: float) -> void:
 	if not agent.bomb_scene:
 		return
-	var bomb: Area2D = agent.bomb_scene.instantiate()
+	var bomb: CharacterBody2D = agent.bomb_scene.instantiate()
 	bomb.global_position = Vector2(x_pos, agent.bomb_drop_height)
 	get_tree().current_scene.add_child(bomb)
