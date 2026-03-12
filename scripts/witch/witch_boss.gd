@@ -148,3 +148,7 @@ func _flash_damage() -> void:
 func _die() -> void:
 	print("[WitchBoss] Defeated!")
 	queue_free()
+
+func play_animation(anim_name: String) -> void:
+	if is_instance_valid(animation_player):
+		animation_player.play(anim_name)
