@@ -1,6 +1,18 @@
-[gd_scene format=3 uid="uid://d1b5wvhabtv6b"]
+[gd_scene format=3 uid="uid://cnctjrea61er1"]
 
-[ext_resource type="Script" uid="uid://dsjosxbexfc2p" path="res://scripts/ui/ui_credits_screen.gd" id="1_cred"]
+[sub_resource type="GDScript" id="GDScript_kah4g"]
+script/source = "extends Control
+
+@onready var back_button: Button = %BackButton
+
+func _ready() -> void:
+	back_button.pressed.connect(_on_back_pressed)
+
+func _on_back_pressed() -> void:
+	AudioManager.play_button_sound()
+	await get_tree().create_timer(0.3).timeout
+	SceneChanger.goto_main_menu()
+"
 
 [node name="CreditsScreen" type="Control" unique_id=176910765]
 layout_mode = 3
@@ -9,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cred")
+script = SubResource("GDScript_kah4g")
 
 [node name="Background" type="ColorRect" parent="." unique_id=875716234]
 layout_mode = 1

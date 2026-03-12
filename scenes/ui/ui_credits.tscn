@@ -37,7 +37,8 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ThanksLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1459749108]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1459749108]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Thanks for playing!"
@@ -60,6 +61,7 @@ Meru
 [/center]"
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1980961002]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back to Main Menu"
