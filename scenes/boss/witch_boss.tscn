@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbgivxyet6snh" path="res://assets/sprites/witch/MOVE.png" id="4_d2gtl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
+size = Vector2(34, 53)
 
 [sub_resource type="Animation" id="Animation_swct6"]
 length = 0.001
@@ -230,6 +231,7 @@ texture = ExtResource("2_qltcn")
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=243540751]
+position = Vector2(9, 16.5)
 shape = SubResource("RectangleShape2D_f5ye7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1767109420]
