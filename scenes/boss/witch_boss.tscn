@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://pw7vnpc22pyg" path="res://assets/sprites/witch/ATTACK.png" id="3_kibf7"]
 [ext_resource type="Texture2D" uid="uid://cbgivxyet6snh" path="res://assets/sprites/witch/MOVE.png" id="4_d2gtl"]
 [ext_resource type="BehaviorTree" uid="uid://c1mvsq63aj35x" path="res://ai/trees/witch_boss.tres" id="5_bt"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="6_health"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
 size = Vector2(34, 53)
@@ -252,6 +253,10 @@ libraries/ = SubResource("AnimationLibrary_swct6")
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1824099273]
 behavior_tree = ExtResource("5_bt")
 blackboard_plan = SubResource("BlackboardPlan_witch")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_health")
+max_hp = 100
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1971034523]
 collision_layer = 0

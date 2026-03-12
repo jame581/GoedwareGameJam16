@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var remote_transform: RemoteTransform2D = $RemoteTransform2D
+@onready var health: HealthComponent = $HealthComponent
 
 #LimboHSM and LimboStates
 @onready var hms: LimboHSM = $LimboHSM
@@ -31,6 +32,9 @@ func _ready() -> void:
 
 	if camera:
 		remote_transform.remote_path = camera.get_path()
+
+	health.damage_taken.connect(_on_damage_taken)
+	health.died.connect(_on_died)
 
 
 func _physics_process(delta: float) -> void:
@@ -104,3 +108,14 @@ func dash(dash_velocity: float) -> void:
 func flip_sprite(horizontal_direction: float) -> void:
 	if horizontal_direction != 0.0:
 		sprite.scale.x = sign(horizontal_direction)
+
+func take_damage(amount: int) -> void:
+	health.take_damage(amount)
+
+func _on_damage_taken(_amount: int) -> void:
+	sprite.modulate = Color(1.0, 0.3, 0.3)
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
+
+func _on_died() -> void:
+	print("[Player] Died!")

@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ivk1jcd8vls2" path="res://assets/sprites/player/player_sword_attack.png" id="12_3oxqv"]
 [ext_resource type="Script" uid="uid://cb37po2fdeghl" path="res://scripts/player/heavy_attack_state.gd" id="12_heavy"]
 [ext_resource type="Texture2D" uid="uid://bkxdrntjfpldo" path="res://assets/sprites/player/player_sword_stab.png" id="12_k1aeb"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="13_health"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
 size = Vector2(20, 30)
@@ -501,6 +502,11 @@ animation_player = NodePath("../../AnimationPlayer")
 [node name="HeavyAttackState" type="LimboState" parent="LimboHSM" unique_id=1183741551 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("12_heavy")
 animation_player = NodePath("../../AnimationPlayer")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("13_health")
+max_hp = 5
+invincibility_duration = 0.8
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]
 

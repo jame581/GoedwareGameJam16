@@ -10,7 +10,6 @@ extends CharacterBody2D
 @export var levitate_duration: float = 0.5
 
 @export_group("Combat")
-@export var max_hp: int = 100
 @export var phase2_threshold: float = 0.5
 @export var shockwave_speed: float = 200.0
 
@@ -29,16 +28,17 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bt_player: BTPlayer = $BTPlayer
+@onready var health: HealthComponent = $HealthComponent
 
-var hp: int
 var is_exposed: bool = false
 var is_phase2: bool = false
 var _original_y: float
 
 func _ready() -> void:
-	hp = max_hp
 	_original_y = global_position.y
 	_setup_blackboard()
+	health.damage_taken.connect(_on_damage_taken)
+	health.died.connect(_on_died)
 
 func _setup_blackboard() -> void:
 	if not is_instance_valid(bt_player):
@@ -121,33 +121,29 @@ func spawn_demons() -> void:
 func take_damage(amount: int = 1) -> void:
 	if not is_exposed:
 		return
-	hp -= amount
-	_flash_damage()
-	print("[WitchBoss] Hit! HP: %d/%d" % [hp, max_hp])
-	if hp <= 0:
-		_die()
-		return
+	health.take_damage(amount)
+
+func _on_damage_taken(_amount: int) -> void:
+	sprite.modulate = Color(1.0, 0.3, 0.3)
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
+	print("[WitchBoss] Hit! HP: %d/%d" % [health.hp, health.max_hp])
 	_check_phase_transition()
+
+func _on_died() -> void:
+	print("[WitchBoss] Defeated!")
+	queue_free()
 
 func _check_phase_transition() -> void:
 	if is_phase2:
 		return
-	if float(hp) / float(max_hp) <= phase2_threshold:
+	if health.get_hp_ratio() <= phase2_threshold:
 		is_phase2 = true
 		print("[WitchBoss] Phase 2!")
 		var bb := bt_player.blackboard
 		bb.set_var(&"glow_duration", glow_duration_p2)
 		bb.set_var(&"vulnerable_duration", vulnerable_duration_p2)
 		bb.set_var(&"spawn_enabled", true)
-
-func _flash_damage() -> void:
-	sprite.modulate = Color(1.0, 0.3, 0.3)
-	var tween := create_tween()
-	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
-
-func _die() -> void:
-	print("[WitchBoss] Defeated!")
-	queue_free()
 
 func play_animation(anim_name: String) -> void:
 	if is_instance_valid(animation_player):

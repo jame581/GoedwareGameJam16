@@ -13,3 +13,13 @@ signal on_fade_out_finished()
 
 @warning_ignore("unused_signal")
 signal on_fade_in_finished()
+
+# Health events
+@warning_ignore("unused_signal")
+signal player_health_changed(current_hp: int, max_hp: int)
+@warning_ignore("unused_signal")
+signal player_died
+@warning_ignore("unused_signal")
+signal boss_health_changed(current_hp: int, max_hp: int)
+@warning_ignore("unused_signal")
+signal boss_died
