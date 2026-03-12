@@ -15,9 +15,17 @@
 [ext_resource type="Script" uid="uid://cb37po2fdeghl" path="res://scripts/player/heavy_attack_state.gd" id="12_heavy"]
 [ext_resource type="Texture2D" uid="uid://bkxdrntjfpldo" path="res://assets/sprites/player/player_sword_stab.png" id="12_k1aeb"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="13_health"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="14_hurtbox"]
+[ext_resource type="Script" path="res://scripts/components/hitbox_component.gd" id="15_hitbox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
 size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(24, 20)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ais3i"]
 
@@ -495,18 +503,41 @@ animation_player = NodePath("../../AnimationPlayer")
 script = ExtResource("10_hjun7")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player")]
+[node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player", "hitbox")]
 script = ExtResource("11_light")
 animation_player = NodePath("../../AnimationPlayer")
+hitbox = NodePath("../../HitBox")
 
-[node name="HeavyAttackState" type="LimboState" parent="LimboHSM" unique_id=1183741551 node_paths=PackedStringArray("animation_player")]
+[node name="HeavyAttackState" type="LimboState" parent="LimboHSM" unique_id=1183741551 node_paths=PackedStringArray("animation_player", "hitbox")]
 script = ExtResource("12_heavy")
 animation_player = NodePath("../../AnimationPlayer")
+hitbox = NodePath("../../HitBox")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("13_health")
 max_hp = 5
 invincibility_duration = 0.8
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("14_hurtbox")
+collision_layer = 16
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("15_hitbox")
+collision_layer = 0
+collision_mask = 32
+damage = 1
+enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]
 
