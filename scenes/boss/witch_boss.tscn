@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://cbsexmkl8q1dh"]
 
 [ext_resource type="Script" uid="uid://d4k52ccljl3rr" path="res://scripts/witch/witch_boss.gd" id="1_45u2h"]
+[ext_resource type="PackedScene" uid="uid://cf4oemb4q1kkq" path="res://scenes/boss/shockwave_projectile.tscn" id="2_d2gtl"]
 [ext_resource type="Texture2D" uid="uid://d4fnmxbpbl0k2" path="res://assets/sprites/witch/IDLE.png" id="2_qltcn"]
+[ext_resource type="PackedScene" uid="uid://0g6nk0lqrjor" path="res://scenes/enemy/mob_enemy.tscn" id="3_gymyl"]
 [ext_resource type="Texture2D" uid="uid://pw7vnpc22pyg" path="res://assets/sprites/witch/ATTACK.png" id="3_kibf7"]
 [ext_resource type="Texture2D" uid="uid://cbgivxyet6snh" path="res://assets/sprites/witch/MOVE.png" id="4_d2gtl"]
+[ext_resource type="BehaviorTree" uid="uid://c1mvsq63aj35x" path="res://ai/trees/witch_boss.tres" id="5_bt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
 size = Vector2(34, 53)
@@ -223,8 +226,17 @@ _data = {
 &"move": SubResource("Animation_m02dm")
 }
 
-[node name="WitchBoss" type="CharacterBody2D" unique_id=188008074]
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_witch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(30, 48)
+
+[node name="WitchBoss" type="CharacterBody2D" unique_id=188008074 groups=["boss", "enemy"]]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_45u2h")
+shockwave_scene = ExtResource("2_d2gtl")
+demon_scene = ExtResource("3_gymyl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=273742446]
 texture = ExtResource("2_qltcn")
@@ -236,3 +248,14 @@ shape = SubResource("RectangleShape2D_f5ye7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1767109420]
 libraries/ = SubResource("AnimationLibrary_swct6")
+
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=1824099273]
+behavior_tree = ExtResource("5_bt")
+blackboard_plan = SubResource("BlackboardPlan_witch")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1971034523]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1038020158]
+position = Vector2(9, 16.5)
+shape = SubResource("RectangleShape2D_hurtbox")

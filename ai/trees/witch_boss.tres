@@ -1,0 +1,121 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://c1mvsq63aj35x"]
+
+[ext_resource type="Script" uid="uid://d3o3eqk6dqcy8" path="res://ai/tasks/witch/is_smash_ready.gd" id="1_smash_ready"]
+[ext_resource type="Script" uid="uid://p4ce7hpg0j7a" path="res://ai/tasks/check_distance.gd" id="2_check_dist"]
+[ext_resource type="Script" uid="uid://cg0n3gi6ux06a" path="res://ai/tasks/witch/face_target.gd" id="3_face"]
+[ext_resource type="Script" uid="uid://bql7dqvfeurai" path="res://ai/tasks/witch/glow_telegraph.gd" id="4_glow"]
+[ext_resource type="Script" uid="uid://drvkb0al3ivjr" path="res://ai/tasks/witch/levitate.gd" id="5_levitate"]
+[ext_resource type="Script" uid="uid://by0cak5vmlt2f" path="res://ai/tasks/witch/slam_down.gd" id="6_slam"]
+[ext_resource type="Script" uid="uid://fa7lsfah8jxw" path="res://ai/tasks/witch/spawn_shockwaves.gd" id="7_shockwaves"]
+[ext_resource type="Script" uid="uid://bl668ay7ojlix" path="res://ai/tasks/witch/vulnerable_window.gd" id="8_vulnerable"]
+[ext_resource type="Script" uid="uid://bfslvbug7et66" path="res://ai/tasks/witch/reset_after_slam.gd" id="9_reset_slam"]
+[ext_resource type="Script" uid="uid://nj5sfj2yr5pj" path="res://ai/tasks/witch/check_blackboard_var.gd" id="10_check_var"]
+[ext_resource type="Script" uid="uid://b7gnigklsmjxv" path="res://ai/tasks/witch/is_spawn_ready.gd" id="11_spawn_ready"]
+[ext_resource type="Script" uid="uid://0m0d0v88hs01" path="res://ai/tasks/witch/spawn_demons.gd" id="12_spawn_demons"]
+[ext_resource type="Script" uid="uid://b75hs4678x57m" path="res://ai/tasks/witch/reset_spawn_cooldown.gd" id="13_reset_spawn"]
+[ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="14_pursue"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_1"]
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 60.0
+var/speed/hint = 0
+var/speed/hint_string = ""
+var/smash_cooldown_timer/name = &"smash_cooldown_timer"
+var/smash_cooldown_timer/type = 3
+var/smash_cooldown_timer/value = 0.0
+var/smash_cooldown_timer/hint = 0
+var/smash_cooldown_timer/hint_string = ""
+var/spawn_cooldown_timer/name = &"spawn_cooldown_timer"
+var/spawn_cooldown_timer/type = 3
+var/spawn_cooldown_timer/value = 10.0
+var/spawn_cooldown_timer/hint = 0
+var/spawn_cooldown_timer/hint_string = ""
+var/glow_duration/name = &"glow_duration"
+var/glow_duration/type = 3
+var/glow_duration/value = 0.8
+var/glow_duration/hint = 0
+var/glow_duration/hint_string = ""
+var/vulnerable_duration/name = &"vulnerable_duration"
+var/vulnerable_duration/type = 3
+var/vulnerable_duration/value = 2.0
+var/vulnerable_duration/hint = 0
+var/vulnerable_duration/hint_string = ""
+var/spawn_enabled/name = &"spawn_enabled"
+var/spawn_enabled/type = 1
+var/spawn_enabled/value = false
+var/spawn_enabled/hint = 0
+var/spawn_enabled/hint_string = ""
+
+[sub_resource type="BTCondition" id="BTCondition_smash_ready"]
+script = ExtResource("1_smash_ready")
+
+[sub_resource type="BTDecorator" id="BTDecorator_dist_smash"]
+script = ExtResource("2_check_dist")
+distance = 120.0
+
+[sub_resource type="BTAction" id="BTAction_face1"]
+script = ExtResource("3_face")
+
+[sub_resource type="BTAction" id="BTAction_glow"]
+script = ExtResource("4_glow")
+
+[sub_resource type="BTAction" id="BTAction_levitate"]
+script = ExtResource("5_levitate")
+
+[sub_resource type="BTAction" id="BTAction_slam"]
+script = ExtResource("6_slam")
+
+[sub_resource type="BTAction" id="BTAction_shockwaves"]
+script = ExtResource("7_shockwaves")
+
+[sub_resource type="BTAction" id="BTAction_vulnerable"]
+script = ExtResource("8_vulnerable")
+
+[sub_resource type="BTAction" id="BTAction_reset_slam"]
+script = ExtResource("9_reset_slam")
+
+[sub_resource type="BTSequence" id="BTSequence_smash"]
+children = [SubResource("BTCondition_smash_ready"), SubResource("BTDecorator_dist_smash"), SubResource("BTAction_face1"), SubResource("BTAction_glow"), SubResource("BTAction_levitate"), SubResource("BTAction_slam"), SubResource("BTAction_shockwaves"), SubResource("BTAction_vulnerable"), SubResource("BTAction_reset_slam")]
+
+[sub_resource type="BTCondition" id="BTCondition_spawn_enabled"]
+script = ExtResource("10_check_var")
+
+[sub_resource type="BTCondition" id="BTCondition_spawn_ready"]
+script = ExtResource("11_spawn_ready")
+
+[sub_resource type="BTAction" id="BTAction_face2"]
+script = ExtResource("3_face")
+
+[sub_resource type="BTAction" id="BTAction_spawn_demons"]
+script = ExtResource("12_spawn_demons")
+
+[sub_resource type="BTAction" id="BTAction_reset_spawn"]
+script = ExtResource("13_reset_spawn")
+
+[sub_resource type="BTSequence" id="BTSequence_spawn"]
+children = [SubResource("BTCondition_spawn_enabled"), SubResource("BTCondition_spawn_ready"), SubResource("BTAction_face2"), SubResource("BTAction_spawn_demons"), SubResource("BTAction_reset_spawn")]
+
+[sub_resource type="BTAction" id="BTAction_face3"]
+script = ExtResource("3_face")
+
+[sub_resource type="BTAction" id="BTAction_pursue"]
+script = ExtResource("14_pursue")
+approach_distance = 80.0
+
+[sub_resource type="BTSequence" id="BTSequence_pursue"]
+children = [SubResource("BTAction_face3"), SubResource("BTAction_pursue")]
+
+[sub_resource type="BTWait" id="BTWait_idle"]
+duration = 0.1
+
+[sub_resource type="BTSelector" id="BTSelector_root"]
+children = [SubResource("BTSequence_smash"), SubResource("BTSequence_spawn"), SubResource("BTSequence_pursue"), SubResource("BTWait_idle")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_1")
+root_task = SubResource("BTSelector_root")
