@@ -29,6 +29,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bt_player: BTPlayer = $BTPlayer
 @onready var health: HealthComponent = $HealthComponent
+@onready var hurtbox: HurtboxComponent = $HurtBox
 
 var is_exposed: bool = false
 var is_phase2: bool = false
@@ -39,6 +40,7 @@ func _ready() -> void:
 	_setup_blackboard()
 	health.damage_taken.connect(_on_damage_taken)
 	health.died.connect(_on_died)
+	hurtbox.hurt.connect(_on_hurtbox_hurt)
 
 func _setup_blackboard() -> void:
 	if not is_instance_valid(bt_player):
@@ -118,10 +120,10 @@ func spawn_demons() -> void:
 		demon.global_position = Vector2(global_position.x + offset_x, global_position.y - 20.0)
 		get_tree().current_scene.add_child(demon)
 
-func take_damage(amount: int = 1) -> void:
+func _on_hurtbox_hurt(damage: int, _hitbox: HitboxComponent) -> void:
 	if not is_exposed:
 		return
-	health.take_damage(amount)
+	health.take_damage(damage)
 
 func _on_damage_taken(_amount: int) -> void:
 	sprite.modulate = Color(1.0, 0.3, 0.3)
