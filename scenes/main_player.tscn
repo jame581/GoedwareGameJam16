@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://c2kb2yo8oijl3" path="res://scripts/player/main_player.gd" id="1_ais3i"]
 [ext_resource type="Texture2D" uid="uid://cdxk62f42hpma" path="res://assets/sprites/player/player_idle.png" id="2_xr3bu"]
 [ext_resource type="Texture2D" uid="uid://dtbpat5iydk54" path="res://assets/sprites/player/player_run.png" id="3_52rm5"]
-[ext_resource type="Texture2D" uid="uid://vtpyaduau32u" path="res://assets/sprites/player/dash.png" id="3_r5n64"]
 [ext_resource type="Script" uid="uid://dw268pkamqi13" path="res://scripts/player/idle_state.gd" id="3_vr3wt"]
 [ext_resource type="Script" uid="uid://bv3453donxc1h" path="res://scripts/player/move_state.gd" id="4_7ughw"]
 [ext_resource type="Texture2D" uid="uid://b8meca5c58jwh" path="res://assets/sprites/player/player_jump.png" id="4_gv8u8"]
 [ext_resource type="Script" uid="uid://delwq2fs5wvvi" path="res://scripts/player/jump_state.gd" id="6_k4udv"]
 [ext_resource type="Script" uid="uid://c1u3yqt1pvcwc" path="res://scripts/player/dash_state.gd" id="9_qksnn"]
 [ext_resource type="Script" uid="uid://c3k85fb55yk5j" path="res://scripts/player/fall_state.gd" id="10_hjun7"]
+[ext_resource type="Texture2D" uid="uid://i5wr7smxnqop" path="res://assets/sprites/player/player_dash.png" id="10_k1aeb"]
 [ext_resource type="Script" uid="uid://du465knydkywd" path="res://scripts/player/light_attack_state.gd" id="11_light"]
 [ext_resource type="Texture2D" uid="uid://ivk1jcd8vls2" path="res://assets/sprites/player/player_sword_attack.png" id="12_3oxqv"]
 [ext_resource type="Script" uid="uid://cb37po2fdeghl" path="res://scripts/player/heavy_attack_state.gd" id="12_heavy"]
@@ -73,6 +73,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_ais3i"]
 resource_name = "dash"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_r5n64")]
+"values": [ExtResource("10_k1aeb")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -95,7 +96,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [5]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -109,31 +110,31 @@ tracks/2/keys = {
 "update": 1,
 "values": [1]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/path = NodePath("LimboHSM/DashState")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.111, 0.222, 0.333, 0.444, 0.555, 0.666, 0.777, 0.888),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("LimboHSM/DashState")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.53333336),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"_dash_movement_ended"
 }]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_hjun7"]
