@@ -38,7 +38,7 @@ func initialize() -> void:
 
 func _on_start_game_button_pressed() -> void:
 	AudioManager.play_button_sound()
-	SceneChanger.goto_scene("res://levels/Level_1.tscn")
+	SceneChanger.goto_intro()
 
 func _on_quit_button_pressed() -> void:
 	AudioManager.play_button_sound()

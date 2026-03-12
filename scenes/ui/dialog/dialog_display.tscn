@@ -1,0 +1,139 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3hp38ybl556v"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialog/dialog_display.gd" id="1_g5jqe"]
+
+[sub_resource type="Animation" id="Animation_dnlnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 370)]
+}
+
+[sub_resource type="Animation" id="Animation_15sip"]
+resource_name = "hide_dialog"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 210), Vector2(0, 370)]
+}
+
+[sub_resource type="Animation" id="Animation_vfon6"]
+resource_name = "show_dialog"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 360), Vector2(0, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wbcx"]
+_data = {
+"RESET": SubResource("Animation_dnlnj"),
+"hide_dialog": SubResource("Animation_15sip"),
+"show_dialog": SubResource("Animation_vfon6")
+}
+
+[node name="DialogDisplay" type="MarginContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_g5jqe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="PressToContinueLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Press Enter to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PanelScreen" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="AIScreenTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PanelText" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DialogText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/PanelText/MarginContainer"]
+layout_mode = 2
+text = "Sample dialogue text."
+scroll_following = true
+tab_size = 6
+
+[node name="WriteTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="WaitTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7wbcx")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[connection signal="timeout" from="WriteTimer" to="." method="_on_write_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://duy1vdeh7bpf7"]
+
+[ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="1_h4nyc"]
+[ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="2_k1cft"]
+
+[sub_resource type="Animation" id="Animation_vlhle"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story/Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0705882, 0.0705882, 0.141176, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vgjcm"]
+resource_name = "intro_start"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_qfynl"]
+resource_name = "lockdown"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story/Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.25098, 0.0313726, 0.0313726, 1), Color(0.0705882, 0.0705882, 0.141176, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0m2fh"]
+_data = {
+&"RESET": SubResource("Animation_vlhle"),
+&"intro_start": SubResource("Animation_vgjcm"),
+&"lockdown": SubResource("Animation_qfynl")
+}
+
+[node name="IntroScene" type="Node2D" unique_id=2084577372]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1858174919]
+anchor_mode = 0
+
+[node name="DialogPlayer" parent="." node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_h4nyc")]
+dialog_display = NodePath("../DialogUI/DialogDisplay")
+animation_player = NodePath("../AnimationPlayer")
+load_level_after = "res://levels/level_tutorial.tscn"
+dialog_text_file = "res://resources/dialogs/intro_dialog.json"
+wait_for_input = true
+
+
+[node name="Story" type="CanvasLayer" parent="." unique_id=1626216344]
+
+[node name="Background" type="ColorRect" parent="Story" unique_id=330844222]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.141176, 1)
+
+[node name="Ship" type="ColorRect" parent="Story" unique_id=1243087908]
+offset_left = -100.0
+offset_top = 500.0
+offset_right = -36.0
+offset_bottom = 563.99994
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Fade" type="Panel" parent="Story" unique_id=1365328618]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogUI" type="CanvasLayer" parent="." unique_id=1124579837]
+
+[node name="DialogDisplay" parent="DialogUI" unique_id=1324200531 instance=ExtResource("2_k1cft")]
+offset_top = 10.0
+offset_bottom = 130.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=989189828]
+libraries/ = SubResource("AnimationLibrary_0m2fh")

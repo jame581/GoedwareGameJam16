@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnrarc37sqtj6"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialog/dialog_player.gd" id="1_f5hpt"]
+
+[node name="DialogPlayer" type="Node2D"]
+script = ExtResource("1_f5hpt")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LoadLevelTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LoadLevelTimer" to="." method="_on_load_level_timer_timeout"]

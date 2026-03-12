@@ -1,0 +1,16 @@
+{
+    "dialogs": [
+        {
+            "text": "Our village lies hidden in the mountains. A village of warriors.",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "animation": "intro_start"
+        },
+        {
+            "text": "But since the stranger left the cursed stone, the nights have grown longer and my mother... different.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "animation": "lockdown"
+        }
+    ]
+}

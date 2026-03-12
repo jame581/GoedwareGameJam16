@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+var main_menu_path = "res://levels/level_main_menu.tscn"
+var intro_path = "res://levels/cutscene/intro_scene.tscn"
+var tutorial_path = "res://levels/level_tutorial.tscn"
+var boss_battle_path = "res://levels/level_1.tscn"
+var outro_path = "res://levels/cutscene/outro_scene.tscn"
+
 @onready var animation_player = $AnimationPlayer
 
 var current_scene: Node = null
@@ -32,7 +38,19 @@ func restart_current_scene() -> void:
 	animation_player.play("fade_in")
 
 func goto_main_menu() -> void:
-	goto_scene("res://scenes/ui/ui_main_menu.tscn")
+	goto_scene(main_menu_path)
+
+func goto_intro() -> void:
+	goto_scene(intro_path)
+
+func goto_tutorial() -> void:
+	goto_scene(tutorial_path)
+
+func goto_boss_battle() -> void:
+	goto_scene(boss_battle_path)
+
+func goto_outro() -> void:
+	goto_scene(outro_path)
 
 func fade_in() -> void:
 	animation_player.play("just_fade_in")

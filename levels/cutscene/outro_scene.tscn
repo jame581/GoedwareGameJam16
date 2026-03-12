@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://wvou4pnfkcpx"]
+
+[ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="1_ahlts"]
+[ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="2_ma1lu"]
+
+[sub_resource type="Animation" id="Animation_yrjoe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story/ThankYouPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j28lv"]
+resource_name = "outro_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story/Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.1, 0.1, 0.1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5nueo"]
+resource_name = "thank_you"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story/ThankYouPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uu677"]
+_data = {
+"RESET": SubResource("Animation_yrjoe"),
+"outro_start": SubResource("Animation_j28lv"),
+"thank_you": SubResource("Animation_5nueo")
+}
+
+[node name="OutroScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="DialogPlayer" parent="." node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_ahlts")]
+dialog_display = NodePath("../DialogUI/DialogDisplay")
+start_wait_time = 2.0
+load_level_after = "res://levels/level_main_menu.tscn"
+animation_player = NodePath("../AnimationPlayer")
+dialog_text_file = "res://resources/dialogs/outro_dialog.json"
+wait_for_input = true
+
+[node name="Story" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="Story"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ThankYouPanel" type="Panel" parent="Story"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(450, 450)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -225.0
+offset_right = 225.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Story/ThankYouPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]
+Thank you for playing!
+
+Team: Goedware
+
+[/center]"
+fit_content = true
+
+[node name="DialogUI" type="CanvasLayer" parent="."]
+
+[node name="DialogDisplay" parent="DialogUI" instance=ExtResource("2_ma1lu")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uu677")
+}
