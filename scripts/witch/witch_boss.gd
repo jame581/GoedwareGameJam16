@@ -87,11 +87,11 @@ func move(p_velocity: Vector2) -> void:
 
 func update_facing() -> void:
 	if velocity.x != 0:
-		sprite.flip_h = velocity.x < 0
+		sprite.flip_h = velocity.x > 0
 
 func face_toward(target: Node2D) -> void:
 	if is_instance_valid(target):
-		sprite.flip_h = target.global_position.x < global_position.x
+		sprite.flip_h = target.global_position.x > global_position.x
 
 func spawn_shockwaves() -> void:
 	if not shockwave_scene:
