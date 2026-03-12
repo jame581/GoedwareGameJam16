@@ -23,21 +23,32 @@ func _process(delta: float) -> void:
 			is_invincible = false
 
 func take_damage(amount: int) -> void:
-	if hp <= 0 or is_invincible:
+	var entity_name := owner.name if owner else name
+	if hp <= 0:
+		print("[Health] %s already dead, ignoring %d damage" % [entity_name, amount])
+		return
+	if is_invincible:
+		print("[Health] %s is invincible, ignoring %d damage" % [entity_name, amount])
 		return
 	hp = maxi(hp - amount, 0)
+	print("[Health] %s took %d damage — HP: %d/%d" % [entity_name, amount, hp, max_hp])
 	damage_taken.emit(amount)
 	health_changed.emit(hp, max_hp)
 	if invincibility_duration > 0.0:
 		is_invincible = true
 		_invincibility_timer = invincibility_duration
+		print("[Health] %s invincible for %.1fs" % [entity_name, invincibility_duration])
 	if hp <= 0:
+		print("[Health] %s died!" % [entity_name])
 		died.emit()
 
 func heal(amount: int) -> void:
+	var entity_name := owner.name if owner else name
 	if hp <= 0:
 		return
+	var old_hp := hp
 	hp = mini(hp + amount, max_hp)
+	print("[Health] %s healed %d — HP: %d/%d" % [entity_name, hp - old_hp, hp, max_hp])
 	health_changed.emit(hp, max_hp)
 
 func get_hp_ratio() -> float:

@@ -18,6 +18,8 @@ func _ready() -> void:
 	collision_mask = 0
 
 func receive_hit(damage: int, hitbox: HitboxComponent) -> void:
+	var source_name: String = hitbox.owner.name if hitbox and hitbox.owner else "unknown"
+	print("[HurtBox] %s hurt by %s for %d damage" % [owner.name if owner else name, source_name, damage])
 	hurt.emit(damage, hitbox)
 	if is_instance_valid(health_component):
 		health_component.take_damage(damage)

@@ -36,5 +36,6 @@ func _on_area_entered(area: Area2D) -> void:
 			if id in _hit_targets:
 				return
 			_hit_targets.append(id)
+		print("[HitBox] %s hit %s for %d damage" % [owner.name if owner else name, hurtbox.owner.name if hurtbox.owner else hurtbox.name, damage])
 		hurtbox.receive_hit(damage, self)
 		hit.emit(hurtbox)
