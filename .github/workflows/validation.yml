@@ -12,7 +12,7 @@ jobs:
     name: "⚡ Validate Project"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           lfs: true
 
@@ -24,7 +24,7 @@ jobs:
           include-templates: false
 
       - name: Cache Project Imports
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .godot/
           key: ${{ runner.os }}-godot-${{ env.GODOT_VERSION }}-${{ hashFiles('**/*.import', 'project.godot') }}
@@ -73,7 +73,7 @@ jobs:
     name: "📏 Code Style"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install gdtoolkit
         run: pip install gdtoolkit==4.*
