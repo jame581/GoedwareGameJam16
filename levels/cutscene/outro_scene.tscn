@@ -64,7 +64,7 @@ anchor_mode = 0
 [node name="DialogPlayer" parent="." node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_ahlts")]
 dialog_display = NodePath("../DialogUI/DialogDisplay")
 start_wait_time = 2.0
-load_level_after = "res://levels/level_main_menu.tscn"
+load_level_after = "res://levels/level_credits.tscn"
 animation_player = NodePath("../AnimationPlayer")
 dialog_text_file = "res://resources/dialogs/outro_dialog.json"
 wait_for_input = true

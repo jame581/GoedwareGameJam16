@@ -427,6 +427,7 @@ sources/0 = SubResource("TileSetAtlasSource_btoec")
 
 [node name="Level1" type="Node2D" unique_id=2076091239]
 script = ExtResource("1_test")
+next_level = "Outro"
 
 [node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=1355143801]
 scroll_scale = Vector2(0.1, 1)

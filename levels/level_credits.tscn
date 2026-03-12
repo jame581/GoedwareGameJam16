@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cw8p8p8p8p8p8"]
+
+[ext_resource type="PackedScene" uid="uid://bv8klsw8p8p8p" path="res://scenes/ui/ui_credits.tscn" id="1_credits_ui"]
+
+[node name="LevelCredits" type="Node"]
+
+[node name="CreditsUI" parent="." instance=ExtResource("1_credits_ui")]

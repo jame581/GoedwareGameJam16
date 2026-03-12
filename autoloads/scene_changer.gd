@@ -5,6 +5,7 @@ var intro_path = "res://levels/cutscene/intro_scene.tscn"
 var tutorial_path = "res://levels/level_tutorial.tscn"
 var boss_battle_path = "res://levels/level_1.tscn"
 var outro_path = "res://levels/cutscene/outro_scene.tscn"
+var credits_path = "res://levels/level_credits.tscn"
 
 @onready var animation_player = $AnimationPlayer
 
@@ -51,6 +52,9 @@ func goto_boss_battle() -> void:
 
 func goto_outro() -> void:
 	goto_scene(outro_path)
+
+func goto_credits() -> void:
+	goto_scene(credits_path)
 
 func fade_in() -> void:
 	animation_player.play("just_fade_in")

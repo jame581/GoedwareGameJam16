@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bv8klsw8p8p8p"]
+
+[ext_resource type="Script" uid="uid://bqakdi0thybxx" path="res://scripts/ui/ui_credits.gd" id="1_credits"]
+
+[node name="CreditsUI" type="Control" unique_id=680534462]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_credits")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=318429259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.05, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=671863201]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1904258352]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ThanksLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1459749108]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Thanks for playing!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1083123587]
+layout_mode = 2
+
+[node name="CreditsLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=43453610]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]
+[b]Code[/b]
+Jakub Hubacek
+Jan Mesarc
+
+[b]Art and Music[/b]
+Meru
+[/center]"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1980961002]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back to Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -97,5 +97,7 @@ func change_to_next_scene() -> void:
 			SceneChanger.goto_intro()
 		elif load_level_after == "res://levels/cutscene/outro_scene.tscn":
 			SceneChanger.goto_outro()
+		elif load_level_after == "res://levels/level_credits.tscn":
+			SceneChanger.goto_credits()
 		else:
 			SceneChanger.goto_scene(load_level_after)
