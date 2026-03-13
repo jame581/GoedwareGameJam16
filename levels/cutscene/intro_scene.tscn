@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://duy1vdeh7bpf7"]
 
 [ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="1_h4nyc"]
+[ext_resource type="Texture2D" uid="uid://bmj33cfnnfia0" path="res://assets/sprites/Background_0.png" id="1_rsv5v"]
+[ext_resource type="Texture2D" uid="uid://dsx1kdclsaw2d" path="res://assets/sprites/Background_1.png" id="2_iy76w"]
 [ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="2_k1cft"]
+[ext_resource type="Texture2D" uid="uid://brp87xpkix3uv" path="res://assets/sprites/Grass_background_2.png" id="3_y5q1b"]
 
 [sub_resource type="Animation" id="Animation_vlhle"]
 length = 0.001
@@ -18,9 +21,21 @@ tracks/0/keys = {
 "values": [Color(0.0705882, 0.0705882, 0.141176, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vgjcm"]
-resource_name = "intro_start"
-length = 5.0
+[sub_resource type="Animation" id="Animation_pan"]
+resource_name = "camera_pan"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1000, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_qfynl"]
 resource_name = "lockdown"
@@ -42,24 +57,47 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0m2fh"]
 _data = {
 &"RESET": SubResource("Animation_vlhle"),
-&"intro_start": SubResource("Animation_vgjcm"),
+&"camera_pan": SubResource("Animation_pan"),
 &"lockdown": SubResource("Animation_qfynl")
 }
 
 [node name="IntroScene" type="Node2D" unique_id=2084577372]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1858174919]
-anchor_mode = 0
+[node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=2117792423]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(768, 0)
+repeat_times = 4
 
-[node name="DialogPlayer" parent="." node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_h4nyc")]
+[node name="MoonBackground" type="Sprite2D" parent="ParallaxLayer1" unique_id=568465994]
+texture = ExtResource("1_rsv5v")
+
+[node name="ParallaxLayer3" type="Parallax2D" parent="." unique_id=132819124]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(768, 0)
+repeat_times = 4
+
+[node name="BuildingBackground" type="Sprite2D" parent="ParallaxLayer3" unique_id=2108943134]
+texture = ExtResource("2_iy76w")
+
+[node name="ParallaxLayer2" type="Parallax2D" parent="." unique_id=994016890]
+scroll_scale = Vector2(0.7, 1)
+repeat_size = Vector2(352, 0)
+repeat_times = 5
+
+[node name="BuildingBackground" type="Sprite2D" parent="ParallaxLayer2" unique_id=589994295]
+texture = ExtResource("3_y5q1b")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1858174919]
+
+[node name="DialogPlayer" parent="." unique_id=929480165 node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_h4nyc")]
 dialog_display = NodePath("../DialogUI/DialogDisplay")
-animation_player = NodePath("../AnimationPlayer")
 load_level_after = "res://levels/level_tutorial.tscn"
+animation_player = NodePath("../AnimationPlayer")
 dialog_text_file = "res://resources/dialogs/intro_dialog.json"
 wait_for_input = true
 
-
 [node name="Story" type="CanvasLayer" parent="." unique_id=1626216344]
+visible = false
 
 [node name="Background" type="ColorRect" parent="Story" unique_id=330844222]
 anchors_preset = 15

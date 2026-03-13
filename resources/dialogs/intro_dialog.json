@@ -11,7 +11,7 @@
             "text": "When he left, something remained. A stone. After that, things changed.",
             "wait_time": 4,
             "hide_dialog_after": false,
-            "animation": "lockdown",
+            "animation": "camera_pan",
             "portrait": "res://assets/placeholders/placeholder_man.png"
         },
         {
