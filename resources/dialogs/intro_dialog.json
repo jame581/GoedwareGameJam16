@@ -1,7 +1,7 @@
 {
     "dialogs": [
         {
-            "text": "A village of warriors. One day, a stranger came.",
+            "text": "One day, a stranger came.",
             "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "intro_start"
