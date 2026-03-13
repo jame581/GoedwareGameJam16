@@ -74,6 +74,11 @@ func _set_portrait(portrait_path: String) -> void:
 		portrait = null
 
 func hide_dialog() -> void:
+	if not dialog_playing:
+		return
+		
+	dialog_playing = false
+	
 	if animation_player.has_animation("hide_dialog"):
 		animation_player.play("hide_dialog")
 	else:
@@ -84,7 +89,6 @@ func hide_dialog() -> void:
 	wait_timer.stop()
 	audio_player.stop()
 	dialog_shown = false
-	dialog_playing = false
 	dialog_finished.emit()
 
 func _on_animation_player_animation_finished(anim_name: String) -> void:

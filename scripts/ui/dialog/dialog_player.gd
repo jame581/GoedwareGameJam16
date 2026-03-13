@@ -31,6 +31,9 @@ func _ready() -> void:
 		timer.start()
 
 func _input(event: InputEvent) -> void:
+	if not dialog_display or not dialog_display.dialog_playing:
+		return
+		
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("skip_dialog_text"):
 		if dialog_display.dialog_writing:
 			dialog_display.finish_writing()
@@ -41,6 +44,7 @@ func parse_json() -> void:
 	if dialog_text_file == "":
 		return
 		
+	dialog_index = 0
 	var file_content = load_dialog_text()
 	if file_content == "":
 		return
@@ -75,10 +79,11 @@ func next_message() -> void:
 			if animation_player2.has_animation(dialogs_data[dialog_index]["animation2"]):
 				animation_player2.play(dialogs_data[dialog_index]["animation2"])
 		dialog_index += 1
-	else:
+	elif dialog_index == dialogs_data.size():
 		if dialog_display.hide_dialog_after:
 			dialog_display.hide_dialog()
 		change_to_next_scene()
+		dialog_index += 1
 
 func _on_timer_timeout() -> void:
 	next_message()
