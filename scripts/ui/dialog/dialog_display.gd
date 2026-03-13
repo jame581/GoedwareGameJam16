@@ -40,7 +40,7 @@ func show_dialog(dialog_data: Dictionary) -> void:
 	dialog_text.set_text(dialog_data["text"])
 	wait_timer.wait_time = dialog_data["wait_time"] if dialog_data.has("wait_time") and dialog_data["wait_time"] > 0 else 2.0
 	hide_dialog_after = dialog_data["hide_dialog_after"] if dialog_data.has("hide_dialog_after") else true
-	portrait = dialog_data["portrait"] if dialog_data.has("portrait") else null
+	_set_portrait(dialog_data["portrait"] if dialog_data.has("portrait") else "")
 
 	if animation_player.has_animation("show_dialog"):
 		animation_player.play("show_dialog")
@@ -54,7 +54,7 @@ func display_next_message(dialog_data: Dictionary) -> void:
 		dialog_text.set_text(dialog_data["text"])
 		wait_timer.wait_time = dialog_data["wait_time"] if dialog_data.has("wait_time") and dialog_data["wait_time"] > 0 else 2.0  
 		hide_dialog_after = dialog_data["hide_dialog_after"] if dialog_data.has("hide_dialog_after") else true
-		portrait = dialog_data["portrait"] if dialog_data.has("portrait") else null
+		_set_portrait(dialog_data["portrait"] if dialog_data.has("portrait") else "")
 
 		write_timer.start()
 		dialog_writing = true
@@ -62,6 +62,16 @@ func display_next_message(dialog_data: Dictionary) -> void:
 			audio_player.play()
 	else:
 		show_dialog(dialog_data)
+
+func _set_portrait(portrait_path: String) -> void:
+	if portrait_path != "":
+		if ResourceLoader.exists(portrait_path):
+			portrait = load(portrait_path) as Texture2D
+		else:
+			push_error("Portrait not found: ", portrait_path)
+			portrait = null
+	else:
+		portrait = null
 
 func hide_dialog() -> void:
 	if animation_player.has_animation("hide_dialog"):

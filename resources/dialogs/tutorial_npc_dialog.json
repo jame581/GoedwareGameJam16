@@ -1,0 +1,34 @@
+{
+    "dialogs": [
+        {
+            "text": "Stop! Don’t go any further.",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "Sanaki… she’s gone. Whatever she became, it isn’t your mother anymore.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "Hitoshi tried to stop her.",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "He’s fallen.",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "You need to run. Leave this place while you still can.",
+            "wait_time": 4,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        }
+    ]
+}
