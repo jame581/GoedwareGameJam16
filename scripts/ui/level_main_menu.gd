@@ -30,4 +30,4 @@ func _on_credits_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	AudioManager.play_button_sound()
-	SceneChanger.goto_boss_battle()
+	SceneChanger.goto_intro()

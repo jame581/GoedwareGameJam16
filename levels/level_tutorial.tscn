@@ -1,7 +1,7 @@
-[gd_scene format=4]
+[gd_scene format=4 uid="uid://btuan1dr3vldk"]
 
 [ext_resource type="Texture2D" uid="uid://bmj33cfnnfia0" path="res://assets/sprites/Background_0.png" id="1_jirdo"]
-[ext_resource type="Script" path="res://scripts/levels/level_test.gd" id="1_test"]
+[ext_resource type="Script" uid="uid://ksb6i1a45awc" path="res://scripts/levels/level_test.gd" id="1_test"]
 [ext_resource type="Texture2D" uid="uid://dsx1kdclsaw2d" path="res://assets/sprites/Background_1.png" id="2_bt44k"]
 [ext_resource type="Texture2D" uid="uid://brp87xpkix3uv" path="res://assets/sprites/Grass_background_2.png" id="3_bt44k"]
 [ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="4_kx6l7"]
@@ -427,8 +427,8 @@ sources/0 = SubResource("TileSetAtlasSource_btoec")
 [node name="LevelTutorial" type="Node2D" unique_id=2076091239]
 script = ExtResource("1_test")
 next_level = "Boss Battle"
-
-script = ExtResource("1_u2472")
+transition_delay = 5.0
+auto_transition = true
 
 [node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=1355143801]
 scroll_scale = Vector2(0.1, 1)
