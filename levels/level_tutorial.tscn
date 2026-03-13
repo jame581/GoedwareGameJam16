@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="5_dialog_player"]
 [ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="6_dialog_display"]
 [ext_resource type="Script" uid="uid://bqkdefmfvds85" path="res://scripts/levels/tutorial_trigger.gd" id="7_trigger_script"]
+[ext_resource type="Script" path="res://scripts/levels/level_transition_trigger.gd" id="8_exit_trigger_script"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btoec"]
 texture = ExtResource("4_n46q3")
@@ -489,6 +490,14 @@ script = ExtResource("7_trigger_script")
 dialog_player_path = NodePath("../DialogPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger" unique_id=1808144890]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="ExitTrigger" type="Area2D" parent="." unique_id=123456790]
+position = Vector2(1000, 0)
+script = ExtResource("8_exit_trigger_script")
+target_level = "Boss Battle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger" unique_id=1808144891]
 shape = SubResource("RectangleShape2D_trigger")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=989189828]
