@@ -1,16 +1,41 @@
 {
     "dialogs": [
         {
-            "text": "Our village lies hidden in the mountains. A village of warriors.",
-            "wait_time": 3,
+            "text": "A village of warriors. One day, a stranger came.",
+            "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "intro_start"
         },
         {
-            "text": "But since the stranger left the cursed stone, the nights have grown longer and my mother... different.",
+            "text": "When he left, something remained. A stone. After that, things changed.",
             "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "lockdown"
+        },
+        {
+            "text": "People grew quiet. The nights grew longer. And my mother… different.",
+            "wait_time": 4,
+            "hide_dialog_after": false
+        },
+        {
+            "text": "That night, she ran into the dark. I remember her eyes... and the moment my father took his sword.",
+            "wait_time": 5,
+            "hide_dialog_after": false
+        },
+        {
+            "text": "“Stay here,” he said. Then he disappeared into the night.",
+            "wait_time": 4,
+            "hide_dialog_after": false
+        },
+        {
+            "text": "I waited. An hour. The wind still carries sounds from the village. My father hasn’t returned.",
+            "wait_time": 5,
+            "hide_dialog_after": false
+        },
+        {
+            "text": "So now… I’m going after them.",
+            "wait_time": 4,
+            "hide_dialog_after": false
         }
     ]
 }
