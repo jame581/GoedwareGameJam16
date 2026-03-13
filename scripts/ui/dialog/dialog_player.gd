@@ -76,6 +76,8 @@ func next_message() -> void:
 				animation_player2.play(dialogs_data[dialog_index]["animation2"])
 		dialog_index += 1
 	else:
+		if dialog_display.hide_dialog_after:
+			dialog_display.hide_dialog()
 		change_to_next_scene()
 
 func _on_timer_timeout() -> void:
