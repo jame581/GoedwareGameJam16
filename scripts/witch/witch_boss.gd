@@ -134,6 +134,7 @@ func _on_damage_taken(_amount: int) -> void:
 
 func _on_died() -> void:
 	print("[WitchBoss] Defeated!")
+	SignalBus.boss_died.emit()
 	queue_free()
 
 func _check_phase_transition() -> void:
