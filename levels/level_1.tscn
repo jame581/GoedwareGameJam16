@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bae06vhsinyt6" path="res://assets/sprites/Tiles-rec.png" id="4_n46q3"]
 [ext_resource type="PackedScene" uid="uid://cbsexmkl8q1dh" path="res://scenes/boss/witch_boss.tscn" id="6_btoec"]
 [ext_resource type="AudioStream" uid="uid://lmultyhd5l48" path="res://assets/sounds/japanesebossfight.mp3" id="7_boss_music"]
+[ext_resource type="PackedScene" uid="uid://bqihj2rv2ew10" path="res://scenes/ui/player_hud.tscn" id="9_3sk1a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwceb"]
 texture = ExtResource("4_n46q3")
@@ -906,6 +907,8 @@ position_smoothing_enabled = true
 
 [node name="MainPlayer" parent="." unique_id=1957947444 node_paths=PackedStringArray("camera") instance=ExtResource("4_kx6l7")]
 camera = NodePath("../Camera2D")
+
+[node name="PlayerHUD" parent="MainPlayer" unique_id=411540823 instance=ExtResource("9_3sk1a")]
 
 [node name="WitchBoss" parent="." unique_id=188008074 instance=ExtResource("6_btoec")]
 position = Vector2(379, 59)
