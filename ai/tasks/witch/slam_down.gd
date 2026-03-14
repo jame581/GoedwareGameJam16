@@ -10,7 +10,7 @@ func _generate_name() -> String:
 func _enter() -> void:
 	agent.velocity = Vector2(0, slam_speed)
 
-func _tick(delta: float) -> Status:
+func _tick(_delta: float) -> Status:
 	if agent.is_on_floor():
 		agent.velocity = Vector2.ZERO
 		return SUCCESS
