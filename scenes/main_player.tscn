@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dpstpfpvalx46" path="res://scripts/components/health_component.gd" id="13_health"]
 [ext_resource type="Script" uid="uid://cut0p50nmyq4r" path="res://scripts/components/hurtbox_component.gd" id="14_hurtbox"]
 [ext_resource type="Script" uid="uid://g6vx3wpny3e" path="res://scripts/components/hitbox_component.gd" id="15_hitbox"]
+[ext_resource type="Script" uid="uid://cx7vqsa8rs07t" path="res://scripts/player/death_state.gd" id="15_lu6se"]
 [ext_resource type="AudioStream" uid="uid://d0hppwyuoqlf0" path="res://assets/sounds/snd_jump.wav" id="16_jump_snd"]
 [ext_resource type="Texture2D" uid="uid://dy1omuftri64b" path="res://assets/sprites/player/player_death.png" id="17_8vkaw"]
 [ext_resource type="AudioStream" uid="uid://dm1dqunur3d0v" path="res://assets/sounds/snd_land.wav" id="17_land_snd"]
@@ -597,6 +598,10 @@ attack_sound = ExtResource("18_attack_snd")
 
 [node name="HurtState" type="LimboState" parent="LimboHSM" unique_id=1240843138]
 script = ExtResource("13_31dow")
+
+[node name="DeathState" type="LimboState" parent="LimboHSM" unique_id=777739118 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("15_lu6se")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=974169095]
 script = ExtResource("13_health")

@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var light_attack_state: LimboState = $LimboHSM/LightAttackState
 @onready var heavy_attack_state: LimboState = $LimboHSM/HeavyAttackState
 @onready var hurt_state: LimboState = $LimboHSM/HurtState
+@onready var death_state: LimboState = $LimboHSM/DeathState
 
 func _ready() -> void:
 	Global.register_player(self)
@@ -37,6 +38,7 @@ func _ready() -> void:
 
 	health.damage_taken.connect(_on_damage_taken)
 	health.died.connect(_on_died)
+	SignalBus.player_health_changed.emit(health.hp, health.max_hp)
 
 
 func _physics_process(delta: float) -> void:
@@ -91,6 +93,9 @@ func _init_state_machine() -> void:
 	hms.add_transition(hms.ANYSTATE, hurt_state, "hurt_started")
 	hms.add_transition(hurt_state, idle_state, hurt_state.EVENT_FINISHED)
 
+	# Death transition (from any state, terminal — no exit)
+	hms.add_transition(hms.ANYSTATE, death_state, "died")
+
 	hms.initial_state = idle_state
 
 	hms.initialize(self)
@@ -128,4 +133,4 @@ func _on_damage_taken(_amount: int) -> void:
 	hms.dispatch("hurt_started")
 
 func _on_died() -> void:
-	print("[Player] Died!")
+	hms.dispatch("died")
