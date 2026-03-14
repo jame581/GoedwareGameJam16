@@ -42,6 +42,7 @@ func _ready() -> void:
 	health.damage_taken.connect(_on_damage_taken)
 	health.died.connect(_on_died)
 	hurtbox.hurt.connect(_on_hurtbox_hurt)
+	SignalBus.boss_health_changed.emit(health.hp, health.max_hp)
 	
 	if is_instance_valid(bt_player):
 		bt_player.set_active(active_by_default)
@@ -140,6 +141,7 @@ func _on_damage_taken(_amount: int) -> void:
 	var tween := create_tween()
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
 	print("[WitchBoss] Hit! HP: %d/%d" % [health.hp, health.max_hp])
+	SignalBus.boss_health_changed.emit(health.hp, health.max_hp)
 	_check_phase_transition()
 
 func _on_died() -> void:

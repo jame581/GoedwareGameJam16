@@ -16,10 +16,24 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss_bg"]
+bg_color = Color(0.15, 0.15, 0.15, 0.8)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss_fill"]
+bg_color = Color(0.5, 0.1, 0.6, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="PlayerHUD" type="CanvasLayer" unique_id=104526250]
 script = ExtResource("1_hud")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=787393413]
+[node name="PlayerBarContainer" type="MarginContainer" parent="." unique_id=787393413]
 offset_right = 100.0
 offset_bottom = 24.0
 theme_override_constants/margin_left = 4
@@ -27,12 +41,34 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer" unique_id=894061881]
+[node name="HealthBar" type="ProgressBar" parent="PlayerBarContainer" unique_id=894061881]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 8)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="BossBarContainer" type="MarginContainer" parent="." unique_id=1937138532]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_bottom = 20.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="BossHealthBar" type="ProgressBar" parent="BossBarContainer" unique_id=1372158447]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_boss_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_boss_fill")
 max_value = 10.0
 value = 10.0
 show_percentage = false
