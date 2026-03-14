@@ -10,12 +10,14 @@ class_name DialogPlayer
 @export var animation_player2: AnimationPlayer
 @export_file("*.json") var dialog_text_file: String
 @export var wait_for_input: bool = false
+@export var pause_player_movement: bool = false
 
 @onready var timer = $Timer
 @onready var load_level_timer = $LoadLevelTimer
 
 var dialogs_data: Array = []
 var dialog_index: int = 0
+var _player_was_paused: bool = false
 
 func _ready() -> void:
 	parse_json()
@@ -71,6 +73,7 @@ func load_dialog_text() -> String:
 
 func next_message() -> void:
 	if dialog_index < dialogs_data.size():
+		_pause_player()
 		dialog_display.display_next_message(dialogs_data[dialog_index])
 		if dialogs_data[dialog_index].has("animation") and animation_player != null:
 			if animation_player.has_animation(dialogs_data[dialog_index]["animation"]):
@@ -80,6 +83,7 @@ func next_message() -> void:
 				animation_player2.play(dialogs_data[dialog_index]["animation2"])
 		dialog_index += 1
 	elif dialog_index == dialogs_data.size():
+		_unpause_player()
 		if dialog_display.hide_dialog_after:
 			dialog_display.hide_dialog()
 		change_to_next_scene()
@@ -108,3 +112,24 @@ func change_to_next_scene() -> void:
 			SceneChanger.goto_credits()
 		else:
 			SceneChanger.goto_scene(load_level_after)
+
+
+func _pause_player() -> void:
+	if not pause_player_movement or _player_was_paused:
+		return
+	var player = Global.player
+	if player and player.has_node("LimboHSM"):
+		player.velocity = Vector2.ZERO
+		player.get_node("LimboHSM").set_active(false)
+		if player.has_node("AnimationPlayer"):
+			player.get_node("AnimationPlayer").play("idle")
+		_player_was_paused = true
+
+
+func _unpause_player() -> void:
+	if not _player_was_paused:
+		return
+	var player = Global.player
+	if player and player.has_node("LimboHSM"):
+		player.get_node("LimboHSM").set_active(true)
+		_player_was_paused = false
