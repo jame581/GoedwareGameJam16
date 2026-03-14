@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bqihj2rv2ew10"]
 
 [ext_resource type="Script" uid="uid://bcglq524y7glv" path="res://scripts/ui/player_hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="2_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_over_menu.tscn" id="3_gameover"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.15, 0.15, 0.15, 0.8)
@@ -72,3 +74,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_boss_fill")
 max_value = 10.0
 value = 10.0
 show_percentage = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_pause")]
+unique_name_in_owner = true
+
+[node name="GameOverMenu" parent="." instance=ExtResource("3_gameover")]
+unique_name_in_owner = true
