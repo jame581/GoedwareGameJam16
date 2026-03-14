@@ -5,44 +5,44 @@
             "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "intro_start",
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "When he left, something remained. A stone. After that, things changed.",
             "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "camera_pan",
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "People grew quiet. The nights grew longer. And my mother… different.",
             "wait_time": 4,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "That night, she ran into the dark. I remember her eyes... and the moment my father took his sword.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "“Stay here,” he said. Then he disappeared into the night.",
             "wait_time": 4,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "I waited. An hour. The wind still carries sounds from the village. My father hasn’t returned.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "So now… I’m going after them.",
             "wait_time": 4,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         }
     ]
 }

@@ -4,31 +4,37 @@
             "text": "Stop! Don’t go any further.",
             "wait_time": 3,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/npc_bunny.png"
         },
         {
             "text": "Sanaki… she’s gone. Whatever she became, it isn’t your mother anymore.",
             "wait_time": 4,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/npc_bunny.png"
         },
         {
             "text": "Hitoshi tried to stop her.",
             "wait_time": 3,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/npc_bunny.png"
         },
         {
             "text": "He’s fallen.",
             "wait_time": 3,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/npc_bunny.png"
         },
         {
             "text": "You need to run. Leave this place while you still can.",
             "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/npc_bunny.png"
+        },
+        {
+            "text": "...",
+            "wait_time": 2,
             "hide_dialog_after": true,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         }
     ]
 }
