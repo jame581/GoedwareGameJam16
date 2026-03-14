@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var levitate_duration: float = 0.5
 
 @export_group("Combat")
+@export var active_by_default: bool = true
 @export var phase2_threshold: float = 0.5
 @export var shockwave_speed: float = 200.0
 
@@ -41,6 +42,15 @@ func _ready() -> void:
 	health.damage_taken.connect(_on_damage_taken)
 	health.died.connect(_on_died)
 	hurtbox.hurt.connect(_on_hurtbox_hurt)
+	
+	if is_instance_valid(bt_player):
+		bt_player.set_active(active_by_default)
+	
+	SignalBus.boss_activated.connect(_on_boss_activated)
+
+func _on_boss_activated() -> void:
+	if is_instance_valid(bt_player):
+		bt_player.set_active(true)
 
 func _setup_blackboard() -> void:
 	if not is_instance_valid(bt_player):

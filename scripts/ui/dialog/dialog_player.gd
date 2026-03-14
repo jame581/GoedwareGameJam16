@@ -2,6 +2,8 @@ extends Node2D
 
 class_name DialogPlayer
 
+signal dialog_finished
+
 @export_group("Dialog Data")
 @export var dialog_display: DialogDisplay
 @export var start_wait_time: float = 2.0
@@ -84,6 +86,7 @@ func next_message() -> void:
 		dialog_index += 1
 	elif dialog_index == dialogs_data.size():
 		_unpause_player()
+		dialog_finished.emit()
 		if dialog_display.hide_dialog_after:
 			dialog_display.hide_dialog()
 		change_to_next_scene()

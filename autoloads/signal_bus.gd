@@ -22,4 +22,6 @@ signal player_died
 @warning_ignore("unused_signal")
 signal boss_health_changed(current_hp: int, max_hp: int)
 @warning_ignore("unused_signal")
+signal boss_activated
+@warning_ignore("unused_signal")
 signal boss_died

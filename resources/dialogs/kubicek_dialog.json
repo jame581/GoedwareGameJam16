@@ -1,0 +1,28 @@
+{
+    "dialogs": [
+        {
+            "text": "Mother please wake up!",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Become one with me!",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "No... Mina... please... run. You can't save her....I cant... fight...any...",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_man.png"
+        },
+        {
+            "text": "Dad... ",
+            "wait_time": 3,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        }
+    ]
+}
