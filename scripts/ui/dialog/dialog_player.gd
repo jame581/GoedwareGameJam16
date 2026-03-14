@@ -84,19 +84,25 @@ func next_message() -> void:
 			if animation_player2.has_animation(dialogs_data[dialog_index]["animation2"]):
 				animation_player2.play(dialogs_data[dialog_index]["animation2"])
 		dialog_index += 1
-	elif dialog_index == dialogs_data.size():
-		_unpause_player()
-		dialog_finished.emit()
-		if dialog_display.hide_dialog_after:
-			dialog_display.hide_dialog()
+	else:
+		_on_dialog_completed()
+
+func _on_dialog_completed() -> void:
+	_unpause_player()
+	dialog_finished.emit()
+	if dialog_display.hide_dialog_after:
+		dialog_display.hide_dialog()
+	
+	if load_level_after != "":
 		change_to_next_scene()
-		dialog_index += 1
 
 func _on_timer_timeout() -> void:
 	next_message()
 
 func handle_dialog_finished() -> void:
-	load_level_timer.start()
+	# This is called when DialogDisplay finishes hiding
+	if dialog_index >= dialogs_data.size():
+		load_level_timer.start()
 
 func _on_load_level_timer_timeout() -> void:
 	change_to_next_scene()
