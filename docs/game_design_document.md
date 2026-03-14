@@ -67,59 +67,135 @@ Player proceeds anyway → boss fight begins.
 - Father (Hitoshi) is visible in the background — fallen, wounded, as emotional motivation
 - Simple ground with maybe one raised platform
 
+### Boss Stats
+- **HP**: 100
+- **Move speed**: 60
+- **Shockwave projectile speed**: 200
+- **Phase 2 threshold**: 50% HP
+
 ### Boss Phases
 
-**Phase 1 (MVP — build this first)**
+Phase transitions are handled by updating blackboard variables (timings + `spawn_enabled` flag) when HP crosses 50%. A single parameterized behavior tree handles both phases.
+
+**Phase 1 (Implemented)**
 - Boss has one main attack pattern:
-  1. **Demon Smash**: Boss glows bright (like a candle lighting up) → levitates upward → slams into the ground → shockwave spreads along the floor
-  - Telegraph: glow effect (warns player to prepare)
+  1. **Demon Smash**: Boss glows bright (0.8s telegraph) → levitates upward → slams into the ground → shockwave spreads L+R along the floor
+  - Telegraph: glow effect with sprite tint (warns player to prepare)
   - Dodge window: player must jump or dash to avoid the shockwave
-  - After slam, boss is briefly vulnerable (punish window)
-- Between slams, boss slowly walks toward player (menacing, not fast)
+  - After slam, boss is vulnerable for 2.0s (punish window) — only time damage registers
+  - Smash cooldown: 2.0s between attacks
+- Between slams, boss slowly walks toward player (speed 60, menacing, not fast)
+- Boss only takes damage during the vulnerable window (`is_exposed` flag)
 
-**Phase 2 (add if time allows)**
-- Demon Smash continues but faster
-- New attack: **Demon Spawn** — boss raises hand, summons 1-2 small demons that chase the player
+**Phase 2 (Implemented — activates at 50% HP)**
+- Demon Smash continues but faster: glow telegraph shortened to 0.5s, vulnerable window shortened to 1.2s
+- New attack: **Demon Spawn** — boss summons 1-2 small demons that chase the player
   - Demons are weak (1-2 hits to kill) but force the player to split attention
-  - Spawns on a cooldown so it doesn't overwhelm
+  - Spawns on a 10s cooldown so it doesn't overwhelm
 
-**Phase 3 (add if time allows)**
+**Phase 3 (stretch goal)**
 - Both attacks combined, faster pace
 - Boss becomes more erratic — shorter telegraph windows
 - Possible visual change: mother's human form flickers through the demon, hinting she's still in there
 
 ### Boss AI (LimboAI Behavior Tree)
 
+Single parameterized tree at `ai/trees/witch_boss.tres`. Phase transitions update blackboard variables instead of switching branches.
+
 ```
-Root (Selector)
-├── Phase Check (current HP determines phase)
-├── Phase 1 Branch
-│   ├── Walk toward player
-│   ├── If in range → Demon Smash sequence (glow → levitate → slam → recover)
-│   └── Idle / reposition
-├── Phase 2 Branch (if implemented)
-│   ├── Demon Smash (shorter cooldown)
-│   └── Spawn Demons (on timer)
-└── Phase 3 Branch (if implemented)
-    ├── Faster Demon Smash
-    ├── Spawn Demons (more frequent)
-    └── Rage mode (shorter recovery)
+ROOT (Selector)
+├── DEMON SMASH (Sequence)
+│   ├── IsSmashReady           — checks cooldown timer on blackboard
+│   ├── CheckDistance < 120    — reuses ai/tasks/check_distance.gd
+│   ├── FaceTarget             — flip sprite toward player
+│   ├── GlowTelegraph          — tint sprite, wait glow_duration (0.8s P1 / 0.5s P2)
+│   ├── Levitate               — rise upward over 0.5s
+│   ├── SlamDown               — rapid descent to floor
+│   ├── SpawnShockwaves        — instantiate L+R shockwave projectiles
+│   ├── VulnerableWindow       — exposed for vulnerable_duration (2.0s P1 / 1.2s P2)
+│   └── ResetAfterSlam         — reset cooldown, clear exposed flag
+│
+├── DEMON SPAWN (Sequence)     — only runs in Phase 2
+│   ├── CheckBlackboardVar     — spawn_enabled == true
+│   ├── IsSpawnReady           — checks spawn cooldown timer
+│   ├── FaceTarget
+│   ├── SpawnDemons            — instantiate 1-2 mob enemies
+│   └── ResetSpawnCooldown
+│
+├── PURSUE (Sequence)          — walk toward player when no attack ready
+│   ├── FaceTarget
+│   └── Pursue                 — reuses ai/tasks/pursue.gd, approach_distance=80
+│
+└── BTWait 0.1                 — fallback idle tick
 ```
+
+### Blackboard Variables
+| Variable | Type | P1 Default | P2 Value | Description |
+|----------|------|------------|----------|-------------|
+| `target` | Node2D | Global.player | — | Player reference |
+| `speed` | float | 60.0 | 60.0 | Walk speed |
+| `smash_cooldown_timer` | float | 2.0 | — | Counts down each frame |
+| `spawn_cooldown_timer` | float | 10.0 | — | Counts down each frame |
+| `glow_duration` | float | 0.8 | 0.5 | Telegraph warning time |
+| `vulnerable_duration` | float | 2.0 | 1.2 | Punish window time |
+| `spawn_enabled` | bool | false | true | Gates demon spawn branch |
 
 ---
 
 ## Player — The Daughter (Samurai)
 
-### Controls
-| Action       | Description                                    |
-|--------------|------------------------------------------------|
-| Move         | Left/right movement                            |
-| Jump         | Jump to avoid shockwaves, reach platforms       |
-| Light Attack | Fast sword slash, low damage                   |
-| Heavy Attack | Slow swing, high damage, use during punish windows |
-| Dash         | Quick dodge, brief invincibility frames         |
+### Stats
+- **HP**: 5
+- **Move speed**: 250
+- **Jump velocity**: 400
+- **Invincibility frames**: 0.8s after being hit
 
-> **Scope note**: Light attack + dash + jump is enough for MVP. Add heavy attack if time allows.
+### Controls (Implemented)
+| Action       | Input              | Description                                    |
+|--------------|--------------------|------------------------------------------------|
+| Move         | A/D, Left/Right    | Left/right movement                            |
+| Jump         | W, Up, Space       | Jump to avoid shockwaves, reach platforms       |
+| Light Attack | light_attack       | Fast sword slash, 1 damage (0.6s animation)    |
+| Heavy Attack | heavy_attack       | Slow swing, 3 damage (1.1s animation), roots player |
+| Dash         | dash               | Quick dodge, brief invincibility frames         |
+
+### State Machine (LimboAI HSM)
+Player uses LimboHSM with states: Idle, Move, Jump, Fall, Dash, LightAttack, HeavyAttack. Attack states enable the player's HitboxComponent for the duration of the attack animation.
+
+---
+
+## Combat System (Implemented)
+
+### Components
+Three reusable components in `scripts/components/` that can be attached to any entity:
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| **HealthComponent** | Node | Tracks HP, handles damage/healing, emits `health_changed`/`damage_taken`/`died` signals. Supports invincibility frames. |
+| **HitboxComponent** | Area2D | Deals damage. Disabled by default, enabled during attacks. Detects HurtboxComponents via collision mask. One-hit-per-activation prevents multi-hits. |
+| **HurtboxComponent** | Area2D | Receives hits. Auto-routes damage to HealthComponent if assigned, or emits `hurt` signal for custom handling (e.g. boss `is_exposed` check). |
+
+### Collision Layers
+| Layer | Bit | Purpose |
+|-------|-----|---------|
+| 1 | 1 | Player body |
+| 3 | 4 | Enemy body |
+| 5 | 16 | Player hurtbox — enemy attacks detect this |
+| 6 | 32 | Enemy hurtbox — player attacks detect this |
+
+### Damage Flow
+
+**Player → Boss**: Attack state enables HitBox (mask=32) → overlaps boss HurtBox (layer=32) → boss checks `is_exposed` → if vulnerable, routes to HealthComponent.
+
+**Boss → Player**: Shockwave projectile (mask=16) → overlaps player HurtBox (layer=16) → HurtBox auto-routes to HealthComponent → i-frames prevent rapid multi-hits (0.8s).
+
+### Entities Using Components
+| Entity | HP | HitBox | HurtBox | Notes |
+|--------|----|--------|---------|-------|
+| Player | 5 | Yes (mask=32, enabled during attacks) | Yes (layer=16, auto-routes to health) | 0.8s i-frames |
+| Witch Boss | 100 | No (shockwaves are separate projectiles) | Yes (layer=32, manual damage via `is_exposed`) | No i-frames, only vulnerable after slam |
+| Mob Enemy | — | No (uses detonate on contact) | — | BT-driven pursue + explode |
+| Shockwave | — | Acts as hitbox (mask=16, area_entered) | — | Projectile, queue_free on hit |
 
 ---
 
@@ -181,22 +257,24 @@ Same style as beginning cutscene — static frames with text. One scene per endi
 
 ## MVP Checklist (Minimum Shippable Game)
 
-- [ ] Main menu (start button, that's it)
-- [ ] Beginning cutscene (static images + text)
-- [ ] NPC dialogue scene
+- [x] Main menu (start button, that's it)
+- [x] Beginning cutscene (static images + text)
+- [x] NPC dialogue scene
 - [ ] Arena scene with background
-- [ ] Player: move, jump, light attack, dash
-- [ ] Boss: walk + Demon Smash attack (glow → levitate → slam → shockwave)
-- [ ] Boss HP bar
+- [x] Player: move, jump, light attack, dash
+- [x] Boss: walk + Demon Smash attack (glow → levitate → slam → shockwave)
+- [x] Health/damage system (HealthComponent, HitboxComponent, HurtboxComponent)
+- [ ] Boss HP bar (SignalBus signals ready: `boss_health_changed`, `boss_died`)
+- [ ] Player HP bar (SignalBus signals ready: `player_health_changed`, `player_died`)
 - [ ] Choice trigger at low HP
 - [ ] Three ending screens
 - [ ] Basic sound effects
 
 ## Stretch Goals (if time allows)
 
-- [ ] Phase 2: Demon Spawn attack
+- [x] Phase 2: Demon Spawn attack (implemented, activates at 50% HP)
 - [ ] Phase 3: Combined + faster
-- [ ] Heavy attack for player
+- [x] Heavy attack for player (3 damage, 1.1s animation)
 - [ ] Mother's face flickering through demon in phase 3
 - [ ] Animated cutscenes instead of static
 - [ ] Music / ambient audio
@@ -206,10 +284,10 @@ Same style as beginning cutscene — static frames with text. One scene per endi
 
 ## Characters
 
-| Character | Role        | Sprite        | Name    |
-|-----------|-------------|---------------|---------|
-| Daughter  | Player      | `samurai.png` | —       |
-| Mother    | Boss        | `char1.png`   | Sanaki  |
+| Character | Role        | Sprites | Name    |
+|-----------|-------------|---------|---------|
+| Daughter  | Player      | `assets/sprites/player/` (idle, run, jump, dash, sword_attack, sword_stab) | —       |
+| Mother    | Boss (Witch)| `assets/sprites/witch/` (IDLE, MOVE, ATTACK, HURT, DEATH — 6 frames each) | Sanaki  |
 | Father    | NPC (fallen)| (need sprite) | Hitoshi |
 | NPC       | Village elder / warrior | (need sprite) | — |
 
