@@ -6,6 +6,7 @@ extends LimboState
 @export var animation_name: String = "light_attack"
 @export var damage: int = 1
 @export var hitbox: HitboxComponent
+@export var attack_sound: AudioStream
 
 func _enter() -> void:
 	var horizontal_direction = Input.get_axis(&"left", &"right")
@@ -16,6 +17,7 @@ func _enter() -> void:
 		hitbox.damage = damage
 		hitbox.enabled = true
 
+	agent.play_sound(attack_sound)
 	animation_player.play(animation_name)
 	await animation_player.animation_finished
 	if hitbox:

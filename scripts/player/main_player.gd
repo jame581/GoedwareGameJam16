@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var remote_transform: RemoteTransform2D = $RemoteTransform2D
 @onready var health: HealthComponent = $HealthComponent
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 #LimboHSM and LimboStates
 @onready var hms: LimboHSM = $LimboHSM
@@ -108,6 +109,11 @@ func dash(dash_velocity: float) -> void:
 func flip_sprite(horizontal_direction: float) -> void:
 	if horizontal_direction != 0.0:
 		sprite.scale.x = sign(horizontal_direction)
+
+func play_sound(stream: AudioStream) -> void:
+	if stream and is_instance_valid(audio_player):
+		audio_player.stream = stream
+		audio_player.play()
 
 func take_damage(amount: int) -> void:
 	health.take_damage(amount)

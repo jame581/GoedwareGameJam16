@@ -3,6 +3,7 @@ extends LimboState
 @export var animation_player: AnimationPlayer
 @export var animation_name: String = "fall"
 @export var movement_speed: float = 200.0
+@export var land_sound: AudioStream
 
 var horizontal_direction: float = 0.0
 
@@ -17,6 +18,7 @@ func _update(_delta: float) -> void:
 	agent.move(desired_velocity)
 
 	if agent.is_on_floor():
+		agent.play_sound(land_sound)
 		get_root().dispatch(EVENT_FINISHED)
 
 

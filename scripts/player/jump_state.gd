@@ -4,6 +4,8 @@ extends LimboState
 @export var animation_name: String = "jump"
 @export var jump_velocity: float = 400.0
 @export var movement_speed: float = 200.0
+@export var jump_sound: AudioStream
+@export var land_sound: AudioStream
 
 var horizontal_direction: float = 0.0
 var has_jumped: bool = false
@@ -12,6 +14,7 @@ func _enter() -> void:
 	animation_player.play(animation_name)
 	agent.jump(-jump_velocity)
 	has_jumped = true
+	agent.play_sound(jump_sound)
 
 
 func _update(_delta: float) -> void:
@@ -21,6 +24,7 @@ func _update(_delta: float) -> void:
 	agent.move(desired_velocity)
 
 	if agent.is_on_floor():
+		agent.play_sound(land_sound)
 		get_root().dispatch(EVENT_FINISHED)
 
 
