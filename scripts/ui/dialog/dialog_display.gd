@@ -55,6 +55,7 @@ func display_next_message(dialog_data: Dictionary) -> void:
 		wait_timer.wait_time = dialog_data["wait_time"] if dialog_data.has("wait_time") and dialog_data["wait_time"] > 0 else 2.0  
 		hide_dialog_after = dialog_data["hide_dialog_after"] if dialog_data.has("hide_dialog_after") else true
 		_set_portrait(dialog_data["portrait"] if dialog_data.has("portrait") else "")
+		dialog_image.texture = portrait
 
 		write_timer.start()
 		dialog_writing = true

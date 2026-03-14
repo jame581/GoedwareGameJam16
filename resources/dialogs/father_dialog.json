@@ -1,0 +1,34 @@
+{
+    "dialogs": [
+        {
+            "text": "Father! You're hurt...",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "It's... it's too late for me, daughter. She's... she's ahead.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "You must stop her... before the darkness consumes everything.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "I won't leave you!",
+            "wait_time": 3,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Go! Now!",
+            "wait_time": 3,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        }
+    ]
+}

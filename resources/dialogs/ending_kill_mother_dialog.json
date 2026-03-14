@@ -1,0 +1,34 @@
+{
+	"dialogs": [
+		{
+			"text": "It's done. The demon is gone.",
+			"wait_time": 4,
+			"hide_dialog_after": false,
+			"portrait": "res://assets/sprites/headshots/player.png"
+		},
+		{
+			"text": "But mother... she's gone too. I couldn't separate them.",
+			"wait_time": 4,
+			"hide_dialog_after": false,
+			"portrait": "res://assets/sprites/headshots/player.png"
+		},
+		{
+			"text": "Mina... you did what you had to. She wouldn't have wanted us to live in that darkness.",
+			"wait_time": 5,
+			"hide_dialog_after": false,
+			"portrait": "res://assets/sprites/headshots/father.png"
+		},
+		{
+			"text": "We are alive, father. But the village feels so much colder now.",
+			"wait_time": 4,
+			"hide_dialog_after": false,
+			"portrait": "res://assets/sprites/headshots/player.png"
+		},
+		{
+			"text": "We will rebuild. Together.",
+			"wait_time": 4,
+			"hide_dialog_after": true,
+			"portrait": "res://assets/sprites/headshots/father.png"
+		}
+	]
+}

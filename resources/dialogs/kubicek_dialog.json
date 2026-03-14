@@ -13,11 +13,12 @@
             "portrait": "res://assets/placeholders/placeholder_woman.png"
         },
         {
-            "text": "No... Mina... please... run. You can't save her....I cant... fight...any...",
+            "text": "No... Mina... please... run. You can't save her....I cant... fight...any.... ......",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/father.png"
         },
+
         {
             "text": "Dad... ",
             "wait_time": 3,

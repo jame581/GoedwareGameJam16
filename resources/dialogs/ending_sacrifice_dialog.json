@@ -1,0 +1,34 @@
+{
+    "dialogs": [
+        {
+            "text": "The curse... it's fading. But it's pulling on me now.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Mina! Stop! You don't have to do this!",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "It's the only way, father. You and mother have to survive. The village needs you.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "No! Not our daughter! Take me instead!",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "Goodbye... I'm so sorry. I love you both.",
+            "wait_time": 4,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        }
+    ]
+}

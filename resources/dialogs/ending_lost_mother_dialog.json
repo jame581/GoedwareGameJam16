@@ -1,0 +1,34 @@
+{
+    "dialogs": [
+        {
+            "text": " Mother? You're still in there, aren't you?",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Mina... my child...",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "But father... he's gone. The price was his life force.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Hitoshi... no... why did it have to be like this?",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "We're safe now, mother. But the price was too high.",
+            "wait_time": 4,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        }
+    ]
+}
