@@ -28,12 +28,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lu6se"]
 shader = ExtResource("2_i1llk")
 shader_parameter/get_hit = false
-shader_parameter/hit_effect = 0.0
-shader_parameter/shake_intensity = 10.0
-shader_parameter/flash_speed = 30.0
+shader_parameter/hit_effect = 0.10000000475
+shader_parameter/shake_intensity = 5.0
+shader_parameter/flash_speed = 35.0
 shader_parameter/flash_color = Color(1, 0, 0, 1)
 shader_parameter/render_noise = false
-shader_parameter/amplitude = 0.05
+shader_parameter/amplitude = 0.0
 shader_parameter/time_scale = 0.04
 shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 1.0
