@@ -56,7 +56,7 @@ _data = {
 "thank_you": SubResource("Animation_5nueo")
 }
 
-[node name="EndingKillMother" type="Node2D"]
+[node name="EndingSaveFather" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -66,7 +66,7 @@ dialog_display = NodePath("../DialogUI/DialogDisplay")
 start_wait_time = 2.0
 load_level_after = "res://levels/level_credits.tscn"
 animation_player = NodePath("../AnimationPlayer")
-dialog_text_file = "res://resources/dialogs/ending_kill_mother_dialog.json"
+dialog_text_file = "res://resources/dialogs/ending_save_father_dialog.json"
 wait_for_input = true
 
 [node name="Story" type="CanvasLayer" parent="."]
