@@ -5,14 +5,14 @@
             "wait_time": 4,
             "hide_dialog_after": false,
             "animation": "outro_start",
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
             "text": "In the end, I learned that you truly can't save them all.",
             "wait_time": 5,
             "hide_dialog_after": false,
             "animation": "thank_you",
-            "portrait": "res://assets/placeholders/placeholder_man.png"
+            "portrait": "res://assets/sprites/headshots/player.png"
         }
     ]
 }
