@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7urrr5poaxu7" path="res://scenes/main_player.tscn" id="4_kx6l7"]
 [ext_resource type="Texture2D" uid="uid://bae06vhsinyt6" path="res://assets/sprites/Tiles-rec.png" id="4_n46q3"]
 [ext_resource type="PackedScene" uid="uid://cbsexmkl8q1dh" path="res://scenes/boss/witch_boss.tscn" id="6_btoec"]
+[ext_resource type="AudioStream" uid="uid://lmultyhd5l48" path="res://assets/sounds/japanesebossfight.mp3" id="7_boss_music"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwceb"]
 texture = ExtResource("4_n46q3")
@@ -863,6 +864,7 @@ sources/0 = SubResource("TileSetAtlasSource_btoec")
 [node name="Level1" type="Node2D" unique_id=2076091239]
 script = ExtResource("1_test")
 next_level = "Outro"
+level_music = ExtResource("7_boss_music")
 
 [node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=1355143801]
 scroll_scale = Vector2(0.1, 1)
@@ -906,4 +908,4 @@ position_smoothing_enabled = true
 camera = NodePath("../Camera2D")
 
 [node name="WitchBoss" parent="." unique_id=188008074 instance=ExtResource("6_btoec")]
-position = Vector2(379, -28)
+position = Vector2(379, 59)
