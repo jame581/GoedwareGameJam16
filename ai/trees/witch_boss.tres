@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://b75hs4678x57m" path="res://ai/tasks/witch/reset_spawn_cooldown.gd" id="13_reset_spawn"]
 [ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="14_pursue"]
 [ext_resource type="Script" uid="uid://k4s3ycliyutd" path="res://ai/tasks/witch/return_to_hover.gd" id="15_return_hover"]
+[ext_resource type="Script" uid="uid://bgjcbfkixeo6j" path="res://ai/tasks/witch/is_staggered.gd" id="16_is_staggered"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1"]
 var/target/name = &"target"
@@ -61,6 +62,20 @@ var/ground_y/type = 3
 var/ground_y/value = 76.0
 var/ground_y/hint = 0
 var/ground_y/hint_string = ""
+var/is_staggered/name = &"is_staggered"
+var/is_staggered/type = 1
+var/is_staggered/value = false
+var/is_staggered/hint = 0
+var/is_staggered/hint_string = ""
+
+[sub_resource type="BTCondition" id="BTCondition_is_staggered"]
+script = ExtResource("16_is_staggered")
+
+[sub_resource type="BTWait" id="BTWait_stagger"]
+duration = 999.0
+
+[sub_resource type="BTSequence" id="BTSequence_stagger"]
+children = [SubResource("BTCondition_is_staggered"), SubResource("BTWait_stagger")]
 
 [sub_resource type="BTCondition" id="BTCondition_smash_ready"]
 script = ExtResource("1_smash_ready")
@@ -129,7 +144,7 @@ children = [SubResource("BTAction_face3"), SubResource("BTAction_pursue")]
 duration = 0.1
 
 [sub_resource type="BTSelector" id="BTSelector_root"]
-children = [SubResource("BTSequence_smash"), SubResource("BTSequence_spawn"), SubResource("BTSequence_pursue"), SubResource("BTWait_idle")]
+children = [SubResource("BTSequence_stagger"), SubResource("BTSequence_smash"), SubResource("BTSequence_spawn"), SubResource("BTSequence_pursue"), SubResource("BTWait_idle")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_1")

@@ -25,3 +25,7 @@ signal boss_health_changed(current_hp: int, max_hp: int)
 signal boss_activated
 @warning_ignore("unused_signal")
 signal boss_died
+@warning_ignore("unused_signal")
+signal boss_staggered
+@warning_ignore("unused_signal")
+signal ending_triggered(ending_type: String)

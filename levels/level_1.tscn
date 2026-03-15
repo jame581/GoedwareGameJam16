@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b822d1c0test"]
 
-[ext_resource type="Script" path="res://scripts/levels/game_level.gd" id="1_aerfg"]
+[ext_resource type="Script" uid="uid://ctnkhx112rtdq" path="res://scripts/levels/game_level.gd" id="1_aerfg"]
 [ext_resource type="Texture2D" uid="uid://bmj33cfnnfia0" path="res://assets/sprites/Background_0.png" id="1_jirdo"]
 [ext_resource type="Texture2D" uid="uid://dsx1kdclsaw2d" path="res://assets/sprites/Background_1.png" id="2_bt44k"]
 [ext_resource type="Texture2D" uid="uid://brp87xpkix3uv" path="res://assets/sprites/Grass_background_2.png" id="3_bt44k"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="10_nmsli"]
 [ext_resource type="Texture2D" uid="uid://cc7pypi3m4676" path="res://assets/sprites/father_injured.png" id="11_betor"]
 [ext_resource type="Script" uid="uid://bqkdefmfvds85" path="res://scripts/levels/tutorial_trigger.gd" id="12_vjtdm"]
+[ext_resource type="PackedScene" uid="uid://dbiui10l2lbeq" path="res://scenes/objects/cursed_stone.tscn" id="13_nmsli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwceb"]
 texture = ExtResource("4_n46q3")
@@ -963,3 +964,6 @@ pause_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IntroDialogSequence/FatherTrigger" unique_id=1864149744]
 shape = SubResource("RectangleShape2D_lrvbd")
+
+[node name="CursedStone" parent="." unique_id=2055184741 instance=ExtResource("13_nmsli")]
+position = Vector2(59, 98)
