@@ -48,3 +48,21 @@ func _on_main_menu_button_pressed() -> void:
 	AudioManager.play_button_sound()
 	get_tree().paused = false
 	SceneChanger.goto_main_menu()
+
+
+func _on_save_father_debug_pressed() -> void:
+	AudioManager.play_button_sound()
+	get_tree().paused = false
+	SceneChanger.goto_save_father_ending()
+
+
+func _on_save_mother_debug_pressed() -> void:
+	AudioManager.play_button_sound()
+	get_tree().paused = false
+	SceneChanger.goto_save_mother_ending()
+
+
+func _on_save_both_debug_pressed() -> void:
+	AudioManager.play_button_sound()
+	get_tree().paused = false
+	SceneChanger.goto_save_both_ending()
