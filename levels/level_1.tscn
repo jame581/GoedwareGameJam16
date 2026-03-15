@@ -971,7 +971,7 @@ autoplay = &"idle"
 position = Vector2(-128, 5)
 collision_mask = 3
 script = ExtResource("12_vjtdm")
-dialog_file = "res://resources/dialogs/kubicek_dialog.json"
+dialog_file = "res://resources/dialogs/pre_bossfight_dialog.json"
 dialog_player_path = NodePath("../DialogPlayer")
 pause_player = true
 

@@ -10,7 +10,7 @@
             "text": "Become one with me!",
             "wait_time": 3,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/mother.png"
         },
         {
             "text": "No... Mina... please... run. You can't save her....I cant... fight...any.... ......",

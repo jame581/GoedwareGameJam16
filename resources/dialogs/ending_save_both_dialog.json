@@ -22,7 +22,7 @@
             "text": "My sweet girl... don't leave us. Please... the world is too dark without you.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/mother.png"
         },
         {
             "text": "The darkness is fading for you now. Tell the village... tell them I wasn't afraid. Goodbye.",

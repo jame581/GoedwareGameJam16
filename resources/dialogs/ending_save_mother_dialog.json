@@ -10,7 +10,7 @@
             "text": "Mina? Is that... is that you? The darkness... it's retreating... but it's so cold.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/mother.png"
         },
         {
             "text": "You're safe now. But father... he gave everything to hold back the shadows. He's... he's gone.",
@@ -22,7 +22,7 @@
             "text": "Hitoshi... no. I can still feel his warmth on the breeze. He traded his light for mine.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
+            "portrait": "res://assets/sprites/headshots/mother.png"
         },
         {
             "text": "We have each other, mother. But the price of this mercy... I will feel it in my heart forever.",
