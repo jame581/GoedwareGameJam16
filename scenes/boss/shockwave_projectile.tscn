@@ -1,21 +1,85 @@
 [gd_scene format=3 uid="uid://cf4oemb4q1kkq"]
 
 [ext_resource type="Script" uid="uid://cvw8l26q62w3a" path="res://scripts/boss/shockwave_projectile.gd" id="1_sw_proj"]
+[ext_resource type="Texture2D" uid="uid://boxho2pr2lunm" path="res://assets/sprites/vfx/vfx_shockwave.png" id="2_wcy8i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj00m"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(0, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j1pn"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(128, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f5eh"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(256, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l0er"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(384, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8fwn"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(512, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fg8s"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(640, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2bky"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(768, 0, 128, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3k30"]
+atlas = ExtResource("2_wcy8i")
+region = Rect2(896, 0, 128, 147)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6w76b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj00m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j1pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f5eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l0er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8fwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fg8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2bky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3k30")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw"]
-size = Vector2(26, 50)
+size = Vector2(44, 54)
 
 [node name="ShockwaveProjectile" type="Area2D" unique_id=954479202]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_sw_proj")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=396788529]
-offset_right = 26.0
-offset_bottom = 50.0
-pivot_offset = Vector2(12, 25)
-color = Color(1, 0.5, 0, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=392665970]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_6w76b")
+frame_progress = 0.38502273
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=560967466]
-position = Vector2(13, 25)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_sw")

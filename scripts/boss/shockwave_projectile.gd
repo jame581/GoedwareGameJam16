@@ -5,10 +5,13 @@ extends Area2D
 @export var lifetime: float = 5.0
 @export var damage: int = 1
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 var _elapsed: float = 0.0
 
 
 func _ready() -> void:
+	sprite.play("default")
 	area_entered.connect(_on_area_entered)
 
 
