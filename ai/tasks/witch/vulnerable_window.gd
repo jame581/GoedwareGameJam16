@@ -24,7 +24,7 @@ func _tick(delta: float) -> Status:
 	return RUNNING
 
 func _exit() -> void:
-	if is_instance_valid(agent):
+	if is_instance_valid(agent) and not agent.is_staggered:
 		agent.is_exposed = false
 		_set_vulnerable_shader(false)
 

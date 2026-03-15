@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://rug8ncn35gpu" path="res://assets/sprites/witch/DEATH.png" id="8_fvlvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
-size = Vector2(34, 53)
+size = Vector2(18, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fvlvo"]
 shader = ExtResource("4_221eg")
@@ -469,7 +469,7 @@ shockwave_scene = ExtResource("2_d2gtl")
 demon_scene = ExtResource("3_gymyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=243540751]
-position = Vector2(9, 16.5)
+position = Vector2(1, 18)
 shape = SubResource("RectangleShape2D_f5ye7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=273742446]

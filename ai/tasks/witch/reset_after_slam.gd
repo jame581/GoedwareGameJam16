@@ -9,6 +9,8 @@ func _generate_name() -> String:
 	return "ResetAfterSlam (cd: %ss)" % [cooldown_value]
 
 func _tick(_delta: float) -> Status:
+	if agent.is_staggered:
+		return SUCCESS
 	blackboard.set_var(cooldown_var, cooldown_value)
 	agent.is_exposed = false
 	agent.is_attacking = false

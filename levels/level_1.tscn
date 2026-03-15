@@ -927,7 +927,10 @@ move_speed = 100.0
 hover_y = 20.0
 ground_y = 70.0
 levitate_height = 60.0
+levitate_duration = 1.0
 active_by_default = false
+vulnerable_duration_p1 = 4.0
+vulnerable_duration_p2 = 2.5
 shockwave_spawn_offset = Vector2(0, 25)
 
 [node name="HUD" parent="." unique_id=411540823 instance=ExtResource("9_3sk1a")]

@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var active_by_default: bool = true
 @export var phase2_threshold: float = 0.0
 @export var shockwave_speed: float = 200.0
+@export var half_hp_burst_delay: float = 1.5
 
 @export_group("Hit Effect")
 @export var hit_flash_duration: float = 0.3
@@ -127,11 +128,11 @@ func move(p_velocity: Vector2) -> void:
 
 func update_facing() -> void:
 	if velocity.x != 0:
-		sprite.flip_h = velocity.x > 0
+		sprite.scale.x = 1.0 if velocity.x < 0 else -1.0
 
 func face_toward(target: Node2D) -> void:
 	if is_instance_valid(target):
-		sprite.flip_h = target.global_position.x > global_position.x
+		sprite.scale.x = -1.0 if target.global_position.x > global_position.x else 1.0
 
 func spawn_shockwaves() -> void:
 	if not shockwave_scene:
@@ -193,6 +194,7 @@ func _clear_hit_effect() -> void:
 
 func _on_died() -> void:
 	print("[WitchBoss] Defeated!")
+	_set_stagger_shader(false)
 	play_animation("death")
 	# Wait for death animation to finish before transitioning
 	await animation_player.animation_finished
@@ -214,10 +216,28 @@ func _enter_stagger() -> void:
 	# Re-enable terrain collision so boss falls to ground with gravity
 	collision_mask = 1
 	play_animation("stage")
+	_set_stagger_shader(true)
 	if is_instance_valid(bt_player):
 		bt_player.blackboard.set_var(&"is_staggered", true)
 	print("[WitchBoss] Staggered! Choose: Kill, Spare, or Sacrifice.")
 	SignalBus.boss_staggered.emit()
+
+func _set_stagger_shader(enabled: bool) -> void:
+	var material: ShaderMaterial = sprite.material
+	if not material:
+		return
+	if enabled:
+		material.set_shader_parameter("get_hit", true)
+		material.set_shader_parameter("hit_effect", 0.6)
+		material.set_shader_parameter("shake_intensity", 1.5)
+		material.set_shader_parameter("flash_speed", 10.0)
+		material.set_shader_parameter("flash_color", Color(1.0, 0.5, 0.0, 1.0))
+	else:
+		material.set_shader_parameter("get_hit", false)
+		material.set_shader_parameter("hit_effect", 0.0)
+		material.set_shader_parameter("flash_speed", 30.0)
+		material.set_shader_parameter("flash_color", Color(1.0, 0.0, 0.0, 1.0))
+
 
 func _check_phase_transition() -> void:
 	if is_phase2:
