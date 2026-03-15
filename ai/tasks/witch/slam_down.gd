@@ -8,6 +8,7 @@ func _generate_name() -> String:
 	return "SlamDown (speed: %s)" % [slam_speed]
 
 func _enter() -> void:
+	agent.play_animation("smash")
 	agent.velocity = Vector2(0, slam_speed)
 
 func _tick(_delta: float) -> Status:

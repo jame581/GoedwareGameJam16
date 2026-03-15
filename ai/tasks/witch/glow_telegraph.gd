@@ -14,8 +14,7 @@ func _enter() -> void:
 	_duration = blackboard.get_var(glow_duration_var, 0.8)
 	_timer = 0.0
 	agent.get_node("Sprite2D").modulate = Color(2.0, 1.5, 0.5)
-	if agent.has_node("AnimationPlayer"):
-		agent.get_node("AnimationPlayer").play("attack")
+	agent.play_animation("charge")
 
 func _tick(delta: float) -> Status:
 	_timer += delta
