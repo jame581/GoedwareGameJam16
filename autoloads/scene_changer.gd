@@ -9,6 +9,7 @@ var credits_path = "res://levels/level_credits.tscn"
 var ending_save_both_path = "res://levels/ending_save_both.tscn"
 var ending_save_father_path = "res://levels/ending_save_father.tscn"
 var ending_save_mother_path = "res://levels/ending_save_mother.tscn"
+var ending_save_none_path = "res://levels/ending_save_none.tscn"
 
 @onready var animation_player = $AnimationPlayer
 
@@ -67,6 +68,9 @@ func goto_save_father_ending() -> void:
 
 func goto_save_mother_ending() -> void:
 	goto_scene(ending_save_mother_path)
+
+func goto_save_none_ending() -> void:
+	goto_scene(ending_save_none_path)
 
 func fade_in() -> void:
 	animation_player.play("just_fade_in")

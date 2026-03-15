@@ -79,9 +79,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "DEBUG: Save Both"
 
+[node name="SaveNoneDebug" type="Button" parent="DebugEndings/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "DEBUG: Save None (Fail)"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="DebugEndings/VBoxContainer/SaveFatherDebug" to="." method="_on_save_father_debug_pressed"]
 [connection signal="pressed" from="DebugEndings/VBoxContainer/SaveMotherDebug" to="." method="_on_save_mother_debug_pressed"]
 [connection signal="pressed" from="DebugEndings/VBoxContainer/SaveBothDebug" to="." method="_on_save_both_debug_pressed"]
+[connection signal="pressed" from="DebugEndings/VBoxContainer/SaveNoneDebug" to="." method="_on_save_none_debug_pressed"]

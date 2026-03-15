@@ -1,0 +1,34 @@
+{
+    "dialogs": [
+        {
+            "text": "I... I'm sorry, father. The shadows... they're too cold...",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "A noble effort, little samurai. But your light is mine now.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/mother.png"
+        },
+        {
+            "text": "Mina! No! Sanaki, stop! Don't let it take our child!",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "Sanaki is gone. There is only the hunger. And it is finally full.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/mother.png"
+        },
+        {
+            "text": "I failed you both. The mountains will weep for what we have become.",
+            "wait_time": 5,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        }
+    ]
+}

@@ -66,3 +66,9 @@ func _on_save_both_debug_pressed() -> void:
 	AudioManager.play_button_sound()
 	get_tree().paused = false
 	SceneChanger.goto_save_both_ending()
+
+
+func _on_save_none_debug_pressed() -> void:
+	AudioManager.play_button_sound()
+	get_tree().paused = false
+	SceneChanger.goto_save_none_ending()
