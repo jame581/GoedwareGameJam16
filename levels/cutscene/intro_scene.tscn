@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://duy1vdeh7bpf7"]
 
 [ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="1_h4nyc"]
+[ext_resource type="Script" uid="uid://k60hhccjyqb2" path="res://scripts/levels/intro_scene.gd" id="1_iy76w"]
 [ext_resource type="Texture2D" uid="uid://bmj33cfnnfia0" path="res://assets/sprites/Background_0.png" id="1_rsv5v"]
 [ext_resource type="Texture2D" uid="uid://dsx1kdclsaw2d" path="res://assets/sprites/Background_1.png" id="2_iy76w"]
 [ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="2_k1cft"]
@@ -62,6 +63,7 @@ _data = {
 }
 
 [node name="IntroScene" type="Node2D" unique_id=2084577372]
+script = ExtResource("1_iy76w")
 
 [node name="ParallaxLayer1" type="Parallax2D" parent="." unique_id=2117792423]
 scroll_scale = Vector2(0.1, 1)

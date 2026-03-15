@@ -4,11 +4,8 @@ extends Node2D
 @export var transition_delay: float = 0.0 # 0 means wait for boss
 @export var auto_transition: bool = false
 
-@export var level_music: AudioStream
-
 func _ready() -> void:
-	if level_music:
-		AudioManager.play_music(level_music)
+	AudioManager.play_music(AudioManager.main_game)
 	if auto_transition:
 		await get_tree().create_timer(transition_delay).timeout
 		_transition()
