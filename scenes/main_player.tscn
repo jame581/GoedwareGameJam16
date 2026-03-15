@@ -39,16 +39,16 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
-size = Vector2(20, 30)
-
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_ais3i"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
 size = Vector2(16, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
-size = Vector2(24, 20)
+size = Vector2(30, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr3bu"]
+size = Vector2(20, 30)
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ais3i"]
 
 [sub_resource type="Animation" id="Animation_7ughw"]
 length = 0.001
@@ -555,6 +555,25 @@ material = SubResource("ShaderMaterial_lu6se")
 texture = ExtResource("2_xr3bu")
 hframes = 10
 
+[node name="HurtBox" type="Area2D" parent="Sprite2D" unique_id=1106291908 node_paths=PackedStringArray("health_component")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("14_hurtbox")
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HurtBox" unique_id=628258163]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="HitBox" type="Area2D" parent="Sprite2D" unique_id=805436550]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("15_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HitBox" unique_id=1758773771]
+position = Vector2(21, 0)
+shape = SubResource("RectangleShape2D_hitbox")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=740946254]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_xr3bu")
@@ -589,13 +608,15 @@ land_sound = ExtResource("17_land_snd")
 [node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player", "hitbox")]
 script = ExtResource("11_light")
 animation_player = NodePath("../../AnimationPlayer")
-hitbox = NodePath("../../HitBox")
+damage = 5
+hitbox = NodePath("../../Sprite2D/HitBox")
 attack_sound = ExtResource("18_attack_snd")
 
 [node name="HeavyAttackState" type="LimboState" parent="LimboHSM" unique_id=1183741551 node_paths=PackedStringArray("animation_player", "hitbox")]
 script = ExtResource("12_heavy")
 animation_player = NodePath("../../AnimationPlayer")
-hitbox = NodePath("../../HitBox")
+damage = 10
+hitbox = NodePath("../../Sprite2D/HitBox")
 attack_sound = ExtResource("18_attack_snd")
 
 [node name="HurtState" type="LimboState" parent="LimboHSM" unique_id=1240843138]
@@ -609,25 +630,6 @@ animation_player = NodePath("../../AnimationPlayer")
 script = ExtResource("13_health")
 max_hp = 5
 invincibility_duration = 0.8
-
-[node name="HurtBox" type="Area2D" parent="." unique_id=1106291908 node_paths=PackedStringArray("health_component")]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("14_hurtbox")
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=628258163]
-position = Vector2(-0.5, 1)
-shape = SubResource("RectangleShape2D_hurtbox")
-
-[node name="HitBox" type="Area2D" parent="." unique_id=805436550]
-collision_layer = 0
-collision_mask = 32
-script = ExtResource("15_hitbox")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1758773771]
-position = Vector2(15, 0)
-shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1854812791]
 
