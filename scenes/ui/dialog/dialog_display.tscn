@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3hp38ybl556v"]
+[gd_scene format=3 uid="uid://c3hp38ybl556v"]
 
-[ext_resource type="Script" path="res://scripts/ui/dialog/dialog_display.gd" id="1_g5jqe"]
+[ext_resource type="Script" uid="uid://dms7h60bxhxs3" path="res://scripts/ui/dialog/dialog_display.gd" id="1_g5jqe"]
 
 [sub_resource type="Animation" id="Animation_dnlnj"]
 length = 0.001
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 210), Vector2(0, 370)]
+"values": [Vector2(0, 235), Vector2(0, 370)]
 }
 
 [sub_resource type="Animation" id="Animation_vfon6"]
@@ -46,17 +46,17 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 360), Vector2(0, 210)]
+"values": [Vector2(0, 360), Vector2(0, 235)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7wbcx"]
 _data = {
-"RESET": SubResource("Animation_dnlnj"),
-"hide_dialog": SubResource("Animation_15sip"),
-"show_dialog": SubResource("Animation_vfon6")
+&"RESET": SubResource("Animation_dnlnj"),
+&"hide_dialog": SubResource("Animation_15sip"),
+&"show_dialog": SubResource("Animation_vfon6")
 }
 
-[node name="DialogDisplay" type="MarginContainer"]
+[node name="DialogDisplay" type="MarginContainer" unique_id=2043417375]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -68,28 +68,21 @@ grow_vertical = 0
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_g5jqe")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1393711071]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="PressToContinueLabel" type="Label" parent="VBoxContainer"]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1655923800]
 layout_mode = 2
-text = "Press Enter to continue"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="PanelScreen" type="Panel" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="AIScreenTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelScreen"]
+[node name="AIScreenTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelScreen" unique_id=1069900708]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,35 +96,42 @@ stretch_mode = 5
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelText"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelText" unique_id=2016618326]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="DialogText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/PanelText/MarginContainer"]
+[node name="DialogText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/PanelText/MarginContainer" unique_id=1608972203]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
 text = "Sample dialogue text."
 scroll_following = true
 tab_size = 6
 
-[node name="WriteTimer" type="Timer" parent="."]
+[node name="PressToContinueLabel" type="Label" parent="VBoxContainer" unique_id=258078061]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Press Enter to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WriteTimer" type="Timer" parent="." unique_id=857731847]
 wait_time = 0.1
 
-[node name="WaitTimer" type="Timer" parent="."]
+[node name="WaitTimer" type="Timer" parent="." unique_id=754284313]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7wbcx")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1332597769]
+libraries/ = SubResource("AnimationLibrary_7wbcx")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=775597427]
 volume_db = -5.0
 
 [connection signal="timeout" from="WriteTimer" to="." method="_on_write_timer_timeout"]
