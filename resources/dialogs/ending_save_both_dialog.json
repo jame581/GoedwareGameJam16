@@ -1,32 +1,32 @@
 {
     "dialogs": [
         {
-            "text": "The curse... it's fading. But it's pulling on me now.",
+            "text": "The stone demands a life. It won't let go... unless I give it what it wants.",
             "wait_time": 4,
             "hide_dialog_after": false,
             "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
-            "text": "Mina! Stop! You don't have to do this!",
+            "text": "Mina, no! Step away from it! We will find another way!",
             "wait_time": 4,
             "hide_dialog_after": false,
             "portrait": "res://assets/sprites/headshots/father.png"
         },
         {
-            "text": "It's the only way, father. You and mother have to survive. The village needs you.",
+            "text": "There is no other way, father. I can feel the curse pulling at my very spirit. Better me than both of you.",
             "wait_time": 5,
             "hide_dialog_after": false,
             "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
-            "text": "No! Not our daughter! Take me instead!",
-            "wait_time": 4,
+            "text": "My sweet girl... don't leave us. Please... the world is too dark without you.",
+            "wait_time": 5,
             "hide_dialog_after": false,
             "portrait": "res://assets/placeholders/placeholder_woman.png"
         },
         {
-            "text": "Goodbye... I'm so sorry. I love you both.",
-            "wait_time": 4,
+            "text": "The darkness is fading for you now. Tell the village... tell them I wasn't afraid. Goodbye.",
+            "wait_time": 5,
             "hide_dialog_after": true,
             "portrait": "res://assets/sprites/headshots/player.png"
         }

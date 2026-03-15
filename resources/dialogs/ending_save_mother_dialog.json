@@ -1,32 +1,32 @@
 {
     "dialogs": [
         {
-            "text": " Mother? You're still in there, aren't you?",
+            "text": "Mother! Look at me! The stone... it's cracking!",
             "wait_time": 4,
             "hide_dialog_after": false,
             "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
-            "text": "Mina... my child...",
-            "wait_time": 4,
-            "hide_dialog_after": false,
-            "portrait": "res://assets/placeholders/placeholder_woman.png"
-        },
-        {
-            "text": "But father... he's gone. The price was his life force.",
-            "wait_time": 4,
-            "hide_dialog_after": false,
-            "portrait": "res://assets/sprites/headshots/player.png"
-        },
-        {
-            "text": "Hitoshi... no... why did it have to be like this?",
+            "text": "Mina? Is that... is that you? The darkness... it's retreating... but it's so cold.",
             "wait_time": 5,
             "hide_dialog_after": false,
             "portrait": "res://assets/placeholders/placeholder_woman.png"
         },
         {
-            "text": "We're safe now, mother. But the price was too high.",
-            "wait_time": 4,
+            "text": "You're safe now. But father... he gave everything to hold back the shadows. He's... he's gone.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "Hitoshi... no. I can still feel his warmth on the breeze. He traded his light for mine.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/placeholders/placeholder_woman.png"
+        },
+        {
+            "text": "We have each other, mother. But the price of this mercy... I will feel it in my heart forever.",
+            "wait_time": 5,
             "hide_dialog_after": true,
             "portrait": "res://assets/sprites/headshots/player.png"
         }

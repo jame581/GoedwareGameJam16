@@ -1,34 +1,34 @@
 {
-	"dialogs": [
-		{
-			"text": "It's done. The demon is gone.",
-			"wait_time": 4,
-			"hide_dialog_after": false,
-			"portrait": "res://assets/sprites/headshots/player.png"
-		},
-		{
-			"text": "But mother... she's gone too. I couldn't separate them.",
-			"wait_time": 4,
-			"hide_dialog_after": false,
-			"portrait": "res://assets/sprites/headshots/player.png"
-		},
-		{
-			"text": "Mina... you did what you had to. She wouldn't have wanted us to live in that darkness.",
-			"wait_time": 5,
-			"hide_dialog_after": false,
-			"portrait": "res://assets/sprites/headshots/father.png"
-		},
-		{
-			"text": "We are alive, father. But the village feels so much colder now.",
-			"wait_time": 4,
-			"hide_dialog_after": false,
-			"portrait": "res://assets/sprites/headshots/player.png"
-		},
-		{
-			"text": "We will rebuild. Together.",
-			"wait_time": 4,
-			"hide_dialog_after": true,
-			"portrait": "res://assets/sprites/headshots/father.png"
-		}
-	]
+    "dialogs": [
+        {
+            "text": "The blade... it felt so heavy. Is she... is it over?",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "The demon's scream has finally faded into the wind. But Sanaki... your mother... she didn't come back.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "I closed my eyes when I struck. I wanted to save her, father. I really did.",
+            "wait_time": 4,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        },
+        {
+            "text": "You saved me, Mina. And you saved what was left of her soul from that stone.",
+            "wait_time": 5,
+            "hide_dialog_after": false,
+            "portrait": "res://assets/sprites/headshots/father.png"
+        },
+        {
+            "text": "The village is silent now. But it's a cold, hollow kind of peace.",
+            "wait_time": 4,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        }
+    ]
 }
