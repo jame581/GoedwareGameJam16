@@ -2,13 +2,28 @@
 
 [ext_resource type="Script" uid="uid://b8jy654xqcwop" path="res://scripts/objects/cursed_stone.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dnc2k5fe8q1o7" path="res://assets/sprites/stone1.png" id="2_xwkht"]
+[ext_resource type="Shader" uid="uid://cxuiaxyn1cqoh" path="res://resources/shaders/hit_effect.gdshader" id="3_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stone"]
+shader = ExtResource("3_shader")
+shader_parameter/get_hit = false
+shader_parameter/hit_effect = 0.0
+shader_parameter/shake_intensity = 1.0
+shader_parameter/flash_speed = 12.0
+shader_parameter/flash_color = Color(0, 0.5, 1, 1)
+shader_parameter/render_noise = false
+shader_parameter/amplitude = 0.0
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwkht"]
 size = Vector2(33, 52)
 
 [node name="CursedStone" type="Area2D" unique_id=2055184741]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 1
 script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=444532899]
@@ -16,6 +31,7 @@ position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_xwkht")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=526349240]
+material = SubResource("ShaderMaterial_stone")
 position = Vector2(0, -8)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_xwkht")

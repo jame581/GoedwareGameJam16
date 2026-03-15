@@ -49,6 +49,7 @@ var is_attacking: bool = false
 var is_phase2: bool = false
 var is_staggered: bool = false
 var _spare_timer: float = 0.0
+var _ending_triggered: bool = false
 
 func _ready() -> void:
 	_setup_blackboard()
@@ -94,18 +95,17 @@ func _physics_process(delta: float) -> void:
 	_tick_cooldowns(delta)
 
 	# Stagger: apply gravity to bring boss to ground and tick spare timer
-	if is_staggered:
+	if is_staggered and not _ending_triggered:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		else:
 			velocity = Vector2.ZERO
 		_spare_timer += delta
 		var time_left := spare_timer_duration - _spare_timer
-		if time_left >= 0.0:
-			SignalBus.spare_timer_updated.emit(time_left)
+		SignalBus.spare_timer_updated.emit(maxf(time_left, 0.0))
 		if _spare_timer >= spare_timer_duration:
+			_ending_triggered = true
 			SignalBus.ending_triggered.emit("spare")
-			_spare_timer = -999.0  # Prevent re-triggering
 
 	move_and_slide()
 
@@ -167,9 +167,7 @@ func _on_damage_taken(_amount: int) -> void:
 	_play_hit_effect()
 	print("[WitchBoss] Hit! HP: %d/%d" % [health.hp, health.max_hp])
 	SignalBus.boss_health_changed.emit(health.hp, health.max_hp)
-	if is_staggered:
-		_spare_timer = 0.0  # Reset spare timer — player chose to attack
-	else:
+	if not is_staggered:
 		_check_phase_transition()
 		_check_stagger()
 

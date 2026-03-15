@@ -972,3 +972,4 @@ shape = SubResource("RectangleShape2D_lrvbd")
 
 [node name="CursedStone" parent="." unique_id=2055184741 instance=ExtResource("13_nmsli")]
 position = Vector2(59, 98)
+collision_mask = 2
