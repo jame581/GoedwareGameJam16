@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 @export_group("Combat")
 @export var active_by_default: bool = true
-@export var phase2_threshold: float = 0.5
+@export var phase2_threshold: float = 0.0
 @export var shockwave_speed: float = 200.0
 
 @export_group("Hit Effect")
@@ -19,10 +19,10 @@ extends CharacterBody2D
 @export var hit_shake_intensity: float = 2.0
 
 @export_group("Smash Attack")
-@export var smash_cooldown: float = 2.0
+@export var smash_cooldown: float = 1.5
 @export var glow_duration_p1: float = 0.8
 @export var glow_duration_p2: float = 0.5
-@export var vulnerable_duration_p1: float = 5.0
+@export var vulnerable_duration_p1: float = 2.5
 @export var vulnerable_duration_p2: float = 1.2
 
 @export_group("Demon Spawn")
