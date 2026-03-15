@@ -14,6 +14,10 @@ extends CharacterBody2D
 @export var phase2_threshold: float = 0.5
 @export var shockwave_speed: float = 200.0
 
+@export_group("Hit Effect")
+@export var hit_flash_duration: float = 0.3
+@export var hit_shake_intensity: float = 2.0
+
 @export_group("Smash Attack")
 @export var smash_cooldown: float = 2.0
 @export var glow_duration_p1: float = 0.8
@@ -140,12 +144,29 @@ func _on_hurtbox_hurt(damage: int, _hitbox: HitboxComponent) -> void:
 	health.take_damage(damage)
 
 func _on_damage_taken(_amount: int) -> void:
-	sprite.modulate = Color(1.0, 0.3, 0.3)
-	var tween := create_tween()
-	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
+	_play_hit_effect()
 	print("[WitchBoss] Hit! HP: %d/%d" % [health.hp, health.max_hp])
 	SignalBus.boss_health_changed.emit(health.hp, health.max_hp)
 	_check_phase_transition()
+
+
+func _play_hit_effect() -> void:
+	var material: ShaderMaterial = sprite.material
+	if not material:
+		return
+	material.set_shader_parameter("get_hit", true)
+	material.set_shader_parameter("hit_effect", 1.0)
+	material.set_shader_parameter("shake_intensity", hit_shake_intensity)
+	var tween := create_tween()
+	tween.tween_property(material, "shader_parameter/hit_effect", 0.0, hit_flash_duration)
+	tween.tween_callback(_clear_hit_effect)
+
+
+func _clear_hit_effect() -> void:
+	var material: ShaderMaterial = sprite.material
+	if material:
+		material.set_shader_parameter("get_hit", false)
+		material.set_shader_parameter("hit_effect", 0.0)
 
 func _on_died() -> void:
 	print("[WitchBoss] Defeated!")

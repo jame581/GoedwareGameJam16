@@ -5,10 +5,25 @@
 [ext_resource type="Texture2D" uid="uid://d4fnmxbpbl0k2" path="res://assets/sprites/witch/IDLE.png" id="2_qltcn"]
 [ext_resource type="PackedScene" uid="uid://0g6nk0lqrjor" path="res://scenes/enemy/mob_enemy.tscn" id="3_gymyl"]
 [ext_resource type="Texture2D" uid="uid://pw7vnpc22pyg" path="res://assets/sprites/witch/ATTACK.png" id="3_kibf7"]
+[ext_resource type="Shader" uid="uid://cxuiaxyn1cqoh" path="res://resources/shaders/hit_effect.gdshader" id="4_221eg"]
 [ext_resource type="Texture2D" uid="uid://cbgivxyet6snh" path="res://assets/sprites/witch/MOVE.png" id="4_d2gtl"]
 [ext_resource type="BehaviorTree" uid="uid://c1mvsq63aj35x" path="res://ai/trees/witch_boss.tres" id="5_bt"]
 [ext_resource type="Script" uid="uid://dpstpfpvalx46" path="res://scripts/components/health_component.gd" id="6_health"]
 [ext_resource type="Script" uid="uid://cut0p50nmyq4r" path="res://scripts/components/hurtbox_component.gd" id="7_hurtbox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvlvo"]
+shader = ExtResource("4_221eg")
+shader_parameter/get_hit = false
+shader_parameter/hit_effect = 0.50000002375
+shader_parameter/shake_intensity = 10.0
+shader_parameter/flash_speed = 30.0
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/render_noise = false
+shader_parameter/amplitude = 0.0
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
 size = Vector2(34, 53)
@@ -348,6 +363,7 @@ shockwave_scene = ExtResource("2_d2gtl")
 demon_scene = ExtResource("3_gymyl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=273742446]
+material = SubResource("ShaderMaterial_fvlvo")
 texture = ExtResource("2_qltcn")
 hframes = 6
 
