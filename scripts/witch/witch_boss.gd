@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export_group("Movement")
 @export var move_speed: float = 60.0
 @export var levitate_height: float = 80.0
-@export var levitate_duration: float = 0.5
+@export var levitate_duration: float = 1.5
 
 @export_group("Combat")
 @export var active_by_default: bool = true
@@ -18,7 +18,7 @@ extends CharacterBody2D
 @export var smash_cooldown: float = 2.0
 @export var glow_duration_p1: float = 0.8
 @export var glow_duration_p2: float = 0.5
-@export var vulnerable_duration_p1: float = 2.0
+@export var vulnerable_duration_p1: float = 5.0
 @export var vulnerable_duration_p2: float = 1.2
 
 @export_group("Demon Spawn")
@@ -33,6 +33,7 @@ extends CharacterBody2D
 @onready var hurtbox: HurtboxComponent = $HurtBox
 
 var is_exposed: bool = false
+var is_attacking: bool = false
 var is_phase2: bool = false
 var _original_y: float
 
@@ -63,6 +64,8 @@ func _setup_blackboard() -> void:
 	bb.set_var(&"spawn_cooldown_timer", spawn_cooldown)
 	bb.set_var(&"glow_duration", glow_duration_p1)
 	bb.set_var(&"vulnerable_duration", vulnerable_duration_p1)
+	bb.set_var(&"levitate_height", levitate_height)
+	bb.set_var(&"levitate_duration", levitate_duration)
 	bb.set_var(&"spawn_enabled", false)
 
 func _physics_process(delta: float) -> void:
@@ -75,8 +78,8 @@ func _physics_process(delta: float) -> void:
 	# Tick cooldown timers
 	_tick_cooldowns(delta)
 
-	# Gravity
-	if not is_on_floor():
+	# Gravity (suppressed during attack sequences like levitate/slam)
+	if not is_on_floor() and not is_attacking:
 		velocity += get_gravity() * delta
 
 	move_and_slide()

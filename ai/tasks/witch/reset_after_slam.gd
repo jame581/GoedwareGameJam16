@@ -11,6 +11,7 @@ func _generate_name() -> String:
 func _tick(_delta: float) -> Status:
 	blackboard.set_var(cooldown_var, cooldown_value)
 	agent.is_exposed = false
+	agent.is_attacking = false
 	if agent.has_node("AnimationPlayer"):
 		agent.get_node("AnimationPlayer").play("idle")
 	return SUCCESS
