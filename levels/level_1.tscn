@@ -944,7 +944,6 @@ position = Vector2(114, -32)
 active_by_default = false
 
 [node name="HUD" parent="." unique_id=411540823 instance=ExtResource("9_3sk1a")]
-visible = false
 
 [node name="IntroDialogSequence" type="Node2D" parent="." unique_id=830869985]
 
