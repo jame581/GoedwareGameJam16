@@ -4,6 +4,7 @@
             "text": "The stone demands a life. It won't let go... unless I give it what it wants.",
             "wait_time": 4,
             "hide_dialog_after": false,
+            "animation": "camera_pan",
             "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
@@ -22,7 +23,7 @@
             "text": "My sweet girl... don't leave us. Please... the world is too dark without you.",
             "wait_time": 5,
             "hide_dialog_after": false,
-            "portrait": "res://assets/sprites/headshots/mother.png"
+            "portrait": "res://assets/sprites/headshots/mother-healed-slightly-smiling.png"
         },
         {
             "text": "The darkness is fading for you now. Tell the village... tell them I wasn't afraid. Goodbye.",

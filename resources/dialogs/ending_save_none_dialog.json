@@ -4,6 +4,7 @@
             "text": "I... I'm sorry, father. The shadows... they're too cold...",
             "wait_time": 4,
             "hide_dialog_after": false,
+            "animation": "camera_pan",
             "portrait": "res://assets/sprites/headshots/player.png"
         },
         {
