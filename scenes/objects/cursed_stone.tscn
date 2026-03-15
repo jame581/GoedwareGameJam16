@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dbiui10l2lbeq"]
+
+[ext_resource type="Script" uid="uid://b8jy654xqcwop" path="res://scripts/objects/cursed_stone.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dnc2k5fe8q1o7" path="res://assets/sprites/stone1.png" id="2_xwkht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwkht"]
+size = Vector2(33, 52)
+
+[node name="CursedStone" type="Area2D" unique_id=2055184741]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=444532899]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_xwkht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=526349240]
+position = Vector2(0, -8)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_xwkht")
