@@ -358,6 +358,7 @@ size = Vector2(30, 48)
 
 [node name="WitchBoss" type="CharacterBody2D" unique_id=188008074 groups=["boss", "enemy"]]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_45u2h")
 shockwave_scene = ExtResource("2_d2gtl")
 demon_scene = ExtResource("3_gymyl")

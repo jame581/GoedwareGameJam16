@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @export_group("Movement")
 @export var move_speed: float = 60.0
+@export var hover_y: float = -60.0
+@export var ground_y: float = 76.0
 @export var levitate_height: float = 80.0
 @export var levitate_duration: float = 1.5
 
@@ -39,20 +41,19 @@ extends CharacterBody2D
 var is_exposed: bool = false
 var is_attacking: bool = false
 var is_phase2: bool = false
-var _original_y: float
 
 func _ready() -> void:
-	_original_y = global_position.y
 	_setup_blackboard()
 	health.damage_taken.connect(_on_damage_taken)
 	health.died.connect(_on_died)
 	hurtbox.hurt.connect(_on_hurtbox_hurt)
 	SignalBus.boss_health_changed.emit(health.hp, health.max_hp)
-	
+
 	if is_instance_valid(bt_player):
 		bt_player.set_active(active_by_default)
-	
+
 	SignalBus.boss_activated.connect(_on_boss_activated)
+	animation_player.play("idle")
 
 func _on_boss_activated() -> void:
 	if is_instance_valid(bt_player):
@@ -70,6 +71,8 @@ func _setup_blackboard() -> void:
 	bb.set_var(&"vulnerable_duration", vulnerable_duration_p1)
 	bb.set_var(&"levitate_height", levitate_height)
 	bb.set_var(&"levitate_duration", levitate_duration)
+	bb.set_var(&"hover_y", hover_y)
+	bb.set_var(&"ground_y", ground_y)
 	bb.set_var(&"spawn_enabled", false)
 
 func _physics_process(delta: float) -> void:
@@ -81,10 +84,6 @@ func _physics_process(delta: float) -> void:
 
 	# Tick cooldown timers
 	_tick_cooldowns(delta)
-
-	# Gravity (suppressed during attack sequences like levitate/slam)
-	if not is_on_floor() and not is_attacking:
-		velocity += get_gravity() * delta
 
 	move_and_slide()
 
@@ -118,12 +117,11 @@ func spawn_shockwaves() -> void:
 		push_warning("WitchBoss: shockwave_scene not assigned!")
 		return
 
-	var ground_y := global_position.y
 	for dir in [-1.0, 1.0]:
 		var wave: Area2D = shockwave_scene.instantiate()
 		wave.direction = dir
 		wave.speed = shockwave_speed
-		wave.global_position = Vector2(global_position.x, ground_y)
+		wave.global_position = Vector2(global_position.x, global_position.y)
 		get_tree().current_scene.add_child(wave)
 
 func spawn_demons() -> void:

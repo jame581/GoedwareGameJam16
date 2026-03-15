@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://0m0d0v88hs01" path="res://ai/tasks/witch/spawn_demons.gd" id="12_spawn_demons"]
 [ext_resource type="Script" uid="uid://b75hs4678x57m" path="res://ai/tasks/witch/reset_spawn_cooldown.gd" id="13_reset_spawn"]
 [ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="14_pursue"]
+[ext_resource type="Script" uid="uid://k4s3ycliyutd" path="res://ai/tasks/witch/return_to_hover.gd" id="15_return_hover"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1"]
 var/target/name = &"target"
@@ -50,6 +51,16 @@ var/spawn_enabled/type = 1
 var/spawn_enabled/value = false
 var/spawn_enabled/hint = 0
 var/spawn_enabled/hint_string = ""
+var/hover_y/name = &"hover_y"
+var/hover_y/type = 3
+var/hover_y/value = -60.0
+var/hover_y/hint = 0
+var/hover_y/hint_string = ""
+var/ground_y/name = &"ground_y"
+var/ground_y/type = 3
+var/ground_y/value = 76.0
+var/ground_y/hint = 0
+var/ground_y/hint_string = ""
 
 [sub_resource type="BTCondition" id="BTCondition_smash_ready"]
 script = ExtResource("1_smash_ready")
@@ -79,8 +90,11 @@ script = ExtResource("8_vulnerable")
 [sub_resource type="BTAction" id="BTAction_reset_slam"]
 script = ExtResource("9_reset_slam")
 
+[sub_resource type="BTAction" id="BTAction_return_hover"]
+script = ExtResource("15_return_hover")
+
 [sub_resource type="BTSequence" id="BTSequence_smash"]
-children = [SubResource("BTCondition_smash_ready"), SubResource("BTCondition_xvmox"), SubResource("BTAction_face1"), SubResource("BTAction_glow"), SubResource("BTAction_levitate"), SubResource("BTAction_slam"), SubResource("BTAction_shockwaves"), SubResource("BTAction_vulnerable"), SubResource("BTAction_reset_slam")]
+children = [SubResource("BTCondition_smash_ready"), SubResource("BTCondition_xvmox"), SubResource("BTAction_face1"), SubResource("BTAction_glow"), SubResource("BTAction_levitate"), SubResource("BTAction_slam"), SubResource("BTAction_shockwaves"), SubResource("BTAction_vulnerable"), SubResource("BTAction_reset_slam"), SubResource("BTAction_return_hover")]
 
 [sub_resource type="BTCondition" id="BTCondition_spawn_enabled"]
 script = ExtResource("10_check_var")
@@ -106,6 +120,7 @@ script = ExtResource("3_face")
 [sub_resource type="BTAction" id="BTAction_pursue"]
 script = ExtResource("14_pursue")
 approach_distance = 80.0
+hover_y_var = &"hover_y"
 
 [sub_resource type="BTSequence" id="BTSequence_pursue"]
 children = [SubResource("BTAction_face3"), SubResource("BTAction_pursue")]

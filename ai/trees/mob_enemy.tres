@@ -110,6 +110,7 @@ custom_name = "We are far away, lets pursue the player"
 
 [sub_resource type="BTAction" id="BTAction_pursue"]
 script = ExtResource("3_3")
+hover_y_var = null
 
 [sub_resource type="BTDecorator" id="BTDecorator_far"]
 children = [SubResource("BTAction_pursue")]

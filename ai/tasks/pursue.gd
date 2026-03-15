@@ -17,6 +17,9 @@ const TOLERANCE := 30.0
 ## Desired distance from target.
 @export var approach_distance: float = 0.0
 
+## Optional blackboard variable for hover Y position. When set, agent lerps toward this Y.
+@export var hover_y_var: StringName = &""
+
 var _target: Node2D
 
 func _generate_name() -> String:
@@ -39,9 +42,14 @@ func _tick(_delta: float) -> Status:
 
 	var speed: float = blackboard.get_var(speed_var, 200.0)
 	var dir_x: float = sign(_target.global_position.x - agent.global_position.x)
-	var desired_velocity := Vector2(dir_x * speed, agent.velocity.y)
+	var vel_y: float = agent.velocity.y
 
-	agent.move(desired_velocity)
+	# If hover_y is configured, smoothly approach the hover height
+	if hover_y_var != &"":
+		var target_y: float = blackboard.get_var(hover_y_var, agent.global_position.y)
+		vel_y = (target_y - agent.global_position.y) * 5.0
+
+	agent.move(Vector2(dir_x * speed, vel_y))
 
 	if agent.has_method(&"update_facing"):
 		agent.update_facing()
