@@ -1,6 +1,5 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://bi75h2nf8qcov"]
 
-[ext_resource type="Script" uid="uid://p4ce7hpg0j7a" path="res://ai/tasks/check_distance.gd" id="1_1"]
 [ext_resource type="Script" uid="uid://c7e052c5mppuy" path="res://ai/tasks/detonate.gd" id="2_2"]
 [ext_resource type="Script" uid="uid://bt2v3aqyvrwqk" path="res://ai/tasks/pursue.gd" id="3_3"]
 [ext_resource type="Script" uid="uid://nteq37yumq8j" path="res://ai/tasks/fall.gd" id="4_4"]
@@ -88,8 +87,6 @@ value = SubResource("BBVariant_5hd6b")
 
 [sub_resource type="BTDecorator" id="BTDecorator_close"]
 children = [SubResource("BTSetVar_cu6k4")]
-script = ExtResource("1_1")
-distance = 60.0
 
 [sub_resource type="BTSequence" id="BTSequence_8iegs"]
 children = [SubResource("BTComment_5hd6b"), SubResource("BTDecorator_close")]
@@ -116,9 +113,6 @@ script = ExtResource("3_3")
 
 [sub_resource type="BTDecorator" id="BTDecorator_far"]
 children = [SubResource("BTAction_pursue")]
-script = ExtResource("1_1")
-distance = 60.0
-check_less_than = false
 
 [sub_resource type="BTDecorator" id="BTDecorator_5hd6b"]
 children = [SubResource("BTDecorator_far")]

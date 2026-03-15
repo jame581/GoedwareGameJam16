@@ -54,9 +54,9 @@ var/spawn_enabled/hint_string = ""
 [sub_resource type="BTCondition" id="BTCondition_smash_ready"]
 script = ExtResource("1_smash_ready")
 
-[sub_resource type="BTDecorator" id="BTDecorator_dist_smash"]
+[sub_resource type="BTCondition" id="BTCondition_xvmox"]
 script = ExtResource("2_check_dist")
-distance = 120.0
+distance = 150.0
 
 [sub_resource type="BTAction" id="BTAction_face1"]
 script = ExtResource("3_face")
@@ -80,7 +80,7 @@ script = ExtResource("8_vulnerable")
 script = ExtResource("9_reset_slam")
 
 [sub_resource type="BTSequence" id="BTSequence_smash"]
-children = [SubResource("BTCondition_smash_ready"), SubResource("BTDecorator_dist_smash"), SubResource("BTAction_face1"), SubResource("BTAction_glow"), SubResource("BTAction_levitate"), SubResource("BTAction_slam"), SubResource("BTAction_shockwaves"), SubResource("BTAction_vulnerable"), SubResource("BTAction_reset_slam")]
+children = [SubResource("BTCondition_smash_ready"), SubResource("BTCondition_xvmox"), SubResource("BTAction_face1"), SubResource("BTAction_glow"), SubResource("BTAction_levitate"), SubResource("BTAction_slam"), SubResource("BTAction_shockwaves"), SubResource("BTAction_vulnerable"), SubResource("BTAction_reset_slam")]
 
 [sub_resource type="BTCondition" id="BTCondition_spawn_enabled"]
 script = ExtResource("10_check_var")
