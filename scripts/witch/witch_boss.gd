@@ -26,10 +26,11 @@ extends CharacterBody2D
 @export var glow_duration_p2: float = 0.5
 @export var vulnerable_duration_p1: float = 2.5
 @export var vulnerable_duration_p2: float = 1.2
+@export var shockwave_spawn_offset: Vector2 = Vector2(0.0, 0.0)
 
 @export_group("Stagger")
 @export var stagger_threshold: float = 0.1
-@export var spare_timer_duration: float = 8.0
+@export var spare_timer_duration: float = 10.0
 
 @export_group("Demon Spawn")
 @export var spawn_cooldown: float = 10.0
@@ -98,6 +99,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector2.ZERO
 		_spare_timer += delta
+		var time_left := spare_timer_duration - _spare_timer
+		if time_left >= 0.0:
+			SignalBus.spare_timer_updated.emit(time_left)
 		if _spare_timer >= spare_timer_duration:
 			SignalBus.ending_triggered.emit("spare")
 			_spare_timer = -999.0  # Prevent re-triggering
@@ -138,7 +142,7 @@ func spawn_shockwaves() -> void:
 		var wave: Area2D = shockwave_scene.instantiate()
 		wave.direction = dir
 		wave.speed = shockwave_speed
-		wave.global_position = Vector2(global_position.x, global_position.y)
+		wave.global_position = Vector2(global_position.x + shockwave_spawn_offset.x, global_position.y + shockwave_spawn_offset.y)
 		get_tree().current_scene.add_child(wave)
 
 func spawn_demons() -> void:

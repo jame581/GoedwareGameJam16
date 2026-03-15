@@ -29,3 +29,5 @@ signal boss_died
 signal boss_staggered
 @warning_ignore("unused_signal")
 signal ending_triggered(ending_type: String)
+@warning_ignore("unused_signal")
+signal spare_timer_updated(time_left: float)
