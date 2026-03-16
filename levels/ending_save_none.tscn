@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://e_save_none"]
+[gd_scene format=3 uid="uid://cdjyum00t82w0"]
 
 [ext_resource type="PackedScene" uid="uid://dnrarc37sqtj6" path="res://scenes/ui/dialog/dialog_player.tscn" id="1_ahlts"]
 [ext_resource type="PackedScene" uid="uid://c3hp38ybl556v" path="res://scenes/ui/dialog/dialog_display.tscn" id="2_ma1lu"]
-[ext_resource type="Texture2D" path="res://assets/sprites/outro/ending_save_none.png" id="3_sprite"]
+[ext_resource type="Texture2D" uid="uid://bkwsxarn45kew" path="res://assets/sprites/outro/ending_save_none.png" id="3_sprite"]
 
 [sub_resource type="Animation" id="Animation_yrjoe"]
 length = 0.001
@@ -36,7 +36,7 @@ resource_name = "camera_pan"
 length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -80,31 +80,29 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uu677"]
 _data = {
-"RESET": SubResource("Animation_yrjoe"),
-"camera_pan": SubResource("Animation_pan"),
-"outro_start": SubResource("Animation_j28lv"),
-"thank_you": SubResource("Animation_5nueo")
+&"RESET": SubResource("Animation_yrjoe"),
+&"camera_pan": SubResource("Animation_pan"),
+&"outro_start": SubResource("Animation_j28lv"),
+&"thank_you": SubResource("Animation_5nueo")
 }
 
-[node name="EndingSaveNone" type="Node2D"]
+[node name="EndingSaveNone" type="Node2D" unique_id=1082251244]
 
-[node name="EndingSprite" type="Sprite2D" parent="."]
-scale = Vector2(1.1, 1.1)
+[node name="EndingSprite" type="Sprite2D" parent="." unique_id=592016888]
 texture = ExtResource("3_sprite")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1820724540]
 
-[node name="DialogPlayer" parent="." node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_ahlts")]
+[node name="DialogPlayer" parent="." unique_id=837503214 node_paths=PackedStringArray("dialog_display", "animation_player") instance=ExtResource("1_ahlts")]
 dialog_display = NodePath("../DialogUI/DialogDisplay")
-start_wait_time = 2.0
 load_level_after = "res://levels/level_credits.tscn"
 animation_player = NodePath("../AnimationPlayer")
 dialog_text_file = "res://resources/dialogs/ending_save_none_dialog.json"
 wait_for_input = true
 
-[node name="Story" type="CanvasLayer" parent="."]
+[node name="Story" type="CanvasLayer" parent="." unique_id=510200355]
 
-[node name="ThankYouPanel" type="Panel" parent="Story"]
+[node name="ThankYouPanel" type="Panel" parent="Story" unique_id=915840685]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(450, 450)
 anchors_preset = 8
@@ -119,7 +117,7 @@ offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Story/ThankYouPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Story/ThankYouPanel" unique_id=377494598]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,11 +135,9 @@ Thank you for playing!
 [/center]"
 fit_content = true
 
-[node name="DialogUI" type="CanvasLayer" parent="."]
+[node name="DialogUI" type="CanvasLayer" parent="." unique_id=1108402029]
 
-[node name="DialogDisplay" parent="DialogUI" instance=ExtResource("2_ma1lu")]
+[node name="DialogDisplay" parent="DialogUI" unique_id=1239966919 instance=ExtResource("2_ma1lu")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_uu677")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1253390913]
+libraries/ = SubResource("AnimationLibrary_uu677")

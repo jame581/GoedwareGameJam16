@@ -37,6 +37,12 @@ window/stretch/scale_mode="integer"
 player=""
 enemy=""
 
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_subpixel_positioning=0
+theme/custom_font="uid://dq1dflpdh4jmo"
+
 [input]
 
 left={

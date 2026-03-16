@@ -908,10 +908,13 @@ tile_map_data = PackedByteArray("AAD0/wcAAAAEAAEAAAD0/wgAAAAEAAIAAAD1/wcAAAADAAE
 tile_set = SubResource("TileSet_gwceb")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1125381141]
+offset = Vector2(0, 10)
 limit_left = -350
 limit_top = -180
 limit_bottom = 180
+limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="MainPlayer" parent="." unique_id=1957947444 node_paths=PackedStringArray("camera") groups=["boss"] instance=ExtResource("4_kx6l7")]
 z_index = 1
@@ -942,7 +945,6 @@ shockwave_sound = null
 [node name="DialogUI" type="CanvasLayer" parent="IntroDialogSequence" unique_id=1811308907]
 
 [node name="DialogDisplay" parent="IntroDialogSequence/DialogUI" unique_id=807851715 instance=ExtResource("9_aerfg")]
-offset_top = 10.0
 offset_bottom = 144.0
 metadata/_edit_use_anchors_ = true
 

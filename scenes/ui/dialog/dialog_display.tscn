@@ -61,8 +61,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -120.0
-offset_bottom = 0.0
+offset_top = 10.0
+offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 10
@@ -78,7 +78,7 @@ layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="PanelScreen" type="Panel" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelScreen" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1862680788]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
@@ -92,7 +92,7 @@ grow_vertical = 2
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PanelText" type="Panel" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelText" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=30483766]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 
@@ -104,21 +104,21 @@ anchor_bottom = 1.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="DialogText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/PanelText/MarginContainer" unique_id=1608972203]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 8
 text = "Sample dialogue text."
 scroll_following = true
 tab_size = 6
 
 [node name="PressToContinueLabel" type="Label" parent="VBoxContainer" unique_id=258078061]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "Press Enter to continue"
 horizontal_alignment = 1
 vertical_alignment = 1

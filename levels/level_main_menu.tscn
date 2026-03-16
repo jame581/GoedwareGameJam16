@@ -165,6 +165,7 @@ size_flags_vertical = 3
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/RightVBoxContainer/VBoxContainer" unique_id=1169387984]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Someone Must Fall"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -172,6 +173,7 @@ vertical_alignment = 1
 [node name="VersionLabel" type="Label" parent="MarginContainer/HBoxContainer/RightVBoxContainer/VBoxContainer" unique_id=1428691138]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "v0.0.1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -179,30 +181,33 @@ vertical_alignment = 1
 [node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightVBoxContainer" unique_id=1330437306]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 15
 alignment = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/RightVBoxContainer/ButtonsVBoxContainer" unique_id=1956703870]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = ExtResource("3_7duva")
+theme_override_styles/pressed = ExtResource("5_ot7ug")
 theme_override_styles/hover = ExtResource("4_hmpdg")
 theme_override_styles/hover_pressed = ExtResource("4_hmpdg")
-theme_override_styles/hover_pressed_mirrored = ExtResource("5_ot7ug")
 text = "Start"
 
 [node name="CreditButton" type="Button" parent="MarginContainer/HBoxContainer/RightVBoxContainer/ButtonsVBoxContainer" unique_id=530684468]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = ExtResource("3_7duva")
+theme_override_styles/pressed = ExtResource("5_ot7ug")
 theme_override_styles/hover = ExtResource("4_hmpdg")
-theme_override_styles/hover_pressed_mirrored = ExtResource("5_ot7ug")
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/RightVBoxContainer/ButtonsVBoxContainer" unique_id=1306876986]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = ExtResource("3_7duva")
+theme_override_styles/pressed = ExtResource("5_ot7ug")
 theme_override_styles/hover = ExtResource("4_hmpdg")
-theme_override_styles/hover_pressed_mirrored = ExtResource("5_ot7ug")
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1713762036]
