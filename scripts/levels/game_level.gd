@@ -22,17 +22,17 @@ func _on_boss_staggered() -> void:
 			var dialog_ui = dialog_player.dialog_display.get_parent()
 			if dialog_ui and dialog_ui is CanvasLayer:
 				dialog_ui.process_mode = Node.PROCESS_MODE_ALWAYS
-		
+
 		# Pause the game tree
 		print("[GameLevel] Pausing game tree for stagger dialog.")
 		get_tree().paused = true
-		
+
 		# Set up the stagger dialog
 		dialog_player.dialog_text_file = "res://resources/dialogs/boss_staggered_dialog.json"
 		dialog_player.wait_for_input = true
 		dialog_player.parse_json()
 		dialog_player.next_message()
-		
+
 		# Reconnect dialog_finished to unpause the game
 		if not dialog_player.dialog_finished.is_connected(_on_stagger_dialog_finished):
 			dialog_player.dialog_finished.connect(_on_stagger_dialog_finished)
@@ -48,17 +48,18 @@ func _on_stagger_dialog_finished() -> void:
 	print("[GameLevel] Stagger dialog finished. Unpausing game.")
 	get_tree().paused = false
 	if dialog_player:
-		# Note: We don't necessarily need to revert process mode if it doesn't hurt, 
+		# Note: We don't necessarily need to revert process mode if it doesn't hurt,
 		# but let's keep it clean for future dialogs
 		dialog_player.process_mode = Node.PROCESS_MODE_INHERIT
 		if dialog_player.dialog_display:
 			dialog_player.dialog_display.process_mode = Node.PROCESS_MODE_INHERIT
-		
+
 		if dialog_player.dialog_finished.is_connected(_on_stagger_dialog_finished):
 			dialog_player.dialog_finished.disconnect(_on_stagger_dialog_finished)
 
 func _on_dialog_finished() -> void:
 	SignalBus.boss_activated.emit()
+	AudioManager.play_music(AudioManager.main_game)
 	if dialog_player and dialog_player.dialog_finished.is_connected(_on_dialog_finished):
 		dialog_player.dialog_finished.disconnect(_on_dialog_finished)
 

@@ -5,7 +5,7 @@ extends Node2D
 @export var auto_transition: bool = false
 
 func _ready() -> void:
-	AudioManager.play_music(AudioManager.main_game)
+	# AudioManager.play_music(AudioManager.intro_audio)
 	if auto_transition:
 		await get_tree().create_timer(transition_delay).timeout
 		_transition()
