@@ -932,6 +932,8 @@ active_by_default = false
 vulnerable_duration_p1 = 4.0
 vulnerable_duration_p2 = 2.5
 shockwave_spawn_offset = Vector2(0, 25)
+charge_sound = null
+shockwave_sound = null
 
 [node name="HUD" parent="." unique_id=411540823 instance=ExtResource("9_3sk1a")]
 

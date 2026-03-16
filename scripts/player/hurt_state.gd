@@ -4,11 +4,13 @@ extends LimboState
 
 @export var hurt_duration: float = 0.4
 @export var shake_intensity: float = 2.0
+@export var hurt_sound: AudioStream
 
 var _tween: Tween
 
 func _enter() -> void:
 	agent.velocity.x = 0.0
+	agent.play_sound(hurt_sound)
 
 	# Activate shader hit effect
 	var material: ShaderMaterial = agent.sprite.material

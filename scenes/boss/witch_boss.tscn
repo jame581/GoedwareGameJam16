@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://dpstpfpvalx46" path="res://scripts/components/health_component.gd" id="6_health"]
 [ext_resource type="Script" uid="uid://cut0p50nmyq4r" path="res://scripts/components/hurtbox_component.gd" id="7_hurtbox"]
 [ext_resource type="Texture2D" uid="uid://rug8ncn35gpu" path="res://assets/sprites/witch/DEATH.png" id="8_fvlvo"]
+[ext_resource type="AudioStream" uid="uid://chibdg730btbi" path="res://assets/sounds/charge_05.wav" id="9_charge"]
+[ext_resource type="AudioStream" uid="uid://d2w2h6ijdjryn" path="res://assets/sounds/fire_explosion_04_medium.wav" id="10_shockwave"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5ye7"]
 size = Vector2(18, 50)
@@ -467,6 +469,8 @@ collision_mask = 0
 script = ExtResource("1_45u2h")
 shockwave_scene = ExtResource("2_d2gtl")
 demon_scene = ExtResource("3_gymyl")
+charge_sound = ExtResource("9_charge")
+shockwave_sound = ExtResource("10_shockwave")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=243540751]
 position = Vector2(1, 18)
@@ -495,3 +499,6 @@ blackboard_plan = SubResource("BlackboardPlan_witch")
 [node name="HealthComponent" type="Node" parent="." unique_id=1938226626]
 script = ExtResource("6_health")
 max_hp = 100
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sfx"

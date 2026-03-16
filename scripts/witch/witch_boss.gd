@@ -38,11 +38,16 @@ extends CharacterBody2D
 @export var demon_spawn_count_min: int = 1
 @export var demon_spawn_count_max: int = 2
 
+@export_group("Sounds")
+@export var charge_sound: AudioStream
+@export var shockwave_sound: AudioStream
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bt_player: BTPlayer = $BTPlayer
 @onready var health: HealthComponent = $HealthComponent
 @onready var hurtbox: HurtboxComponent = $Sprite2D/HurtBox
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_exposed: bool = false
 var is_attacking: bool = false
@@ -251,3 +256,8 @@ func _check_phase_transition() -> void:
 func play_animation(anim_name: String) -> void:
 	if is_instance_valid(animation_player):
 		animation_player.play(anim_name)
+
+func play_sound(stream: AudioStream) -> void:
+	if stream and is_instance_valid(audio_player):
+		audio_player.stream = stream
+		audio_player.play()

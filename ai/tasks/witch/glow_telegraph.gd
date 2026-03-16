@@ -15,6 +15,7 @@ func _enter() -> void:
 	_timer = 0.0
 	agent.get_node("Sprite2D").modulate = Color(2.0, 1.5, 0.5)
 	agent.play_animation("charge")
+	agent.play_sound(agent.charge_sound)
 
 func _tick(delta: float) -> Status:
 	_timer += delta
