@@ -1,0 +1,10 @@
+{
+    "dialogs": [
+        {
+            "text": "The witch is staggered! Now is the time to decide her fate.",
+            "wait_time": 3,
+            "hide_dialog_after": true,
+            "portrait": "res://assets/sprites/headshots/player.png"
+        }
+    ]
+}

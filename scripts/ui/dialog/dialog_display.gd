@@ -49,7 +49,7 @@ func show_dialog(dialog_data: Dictionary) -> void:
 	visible = true
 
 func display_next_message(dialog_data: Dictionary) -> void:
-	if visible:
+	if dialog_shown:
 		dialog_text.set_visible_characters(0)
 		dialog_text.set_text(dialog_data["text"])
 		wait_timer.wait_time = dialog_data["wait_time"] if dialog_data.has("wait_time") and dialog_data["wait_time"] > 0 else 2.0  

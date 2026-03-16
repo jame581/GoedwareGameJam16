@@ -223,6 +223,7 @@ func _enter_stagger() -> void:
 	if is_instance_valid(bt_player):
 		bt_player.blackboard.set_var(&"is_staggered", true)
 	print("[WitchBoss] Staggered! Choose: Kill, Spare, or Sacrifice.")
+	SignalBus.spare_timer_updated.emit(spare_timer_duration)
 	SignalBus.boss_staggered.emit()
 
 func _set_stagger_shader(enabled: bool) -> void:
