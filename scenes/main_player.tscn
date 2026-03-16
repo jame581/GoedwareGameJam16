@@ -605,10 +605,10 @@ script = ExtResource("10_hjun7")
 animation_player = NodePath("../../AnimationPlayer")
 land_sound = ExtResource("17_land_snd")
 
-[node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player", "hitbox")]
+[node name="LightAttackState" type="LimboState" parent="LimboHSM" unique_id=1058200820 node_paths=PackedStringArray("animation_player", "hitbox") groups=["player"]]
 script = ExtResource("11_light")
 animation_player = NodePath("../../AnimationPlayer")
-damage = 5
+damage = 20
 hitbox = NodePath("../../Sprite2D/HitBox")
 attack_sound = ExtResource("18_attack_snd")
 

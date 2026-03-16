@@ -913,7 +913,7 @@ limit_top = -180
 limit_bottom = 180
 position_smoothing_enabled = true
 
-[node name="MainPlayer" parent="." unique_id=1957947444 node_paths=PackedStringArray("camera") instance=ExtResource("4_kx6l7")]
+[node name="MainPlayer" parent="." unique_id=1957947444 node_paths=PackedStringArray("camera") groups=["boss"] instance=ExtResource("4_kx6l7")]
 z_index = 1
 position = Vector2(-283, 99)
 collision_layer = 1
@@ -923,11 +923,11 @@ camera = NodePath("../Camera2D")
 z_index = 1
 position = Vector2(116, 46)
 collision_mask = 1
-move_speed = 100.0
-hover_y = 20.0
+move_speed = 110.0
+hover_y = 30.0
 ground_y = 70.0
-levitate_height = 60.0
-levitate_duration = 1.0
+levitate_height = 50.0
+levitate_duration = 0.8
 active_by_default = false
 vulnerable_duration_p1 = 4.0
 vulnerable_duration_p2 = 2.5
@@ -971,5 +971,5 @@ pause_player = true
 shape = SubResource("RectangleShape2D_lrvbd")
 
 [node name="CursedStone" parent="." unique_id=2055184741 instance=ExtResource("13_nmsli")]
-position = Vector2(59, 98)
+position = Vector2(160, 98)
 collision_mask = 2

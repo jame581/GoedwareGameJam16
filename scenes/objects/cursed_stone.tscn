@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dnc2k5fe8q1o7" path="res://assets/sprites/stone1.png" id="2_xwkht"]
 [ext_resource type="Shader" uid="uid://cxuiaxyn1cqoh" path="res://resources/shaders/hit_effect.gdshader" id="3_shader"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwkht"]
+size = Vector2(110, 100)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stone"]
 shader = ExtResource("3_shader")
 shader_parameter/get_hit = false
@@ -18,12 +21,9 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwkht"]
-size = Vector2(33, 52)
-
 [node name="CursedStone" type="Area2D" unique_id=2055184741]
 collision_layer = 0
-collision_mask = 1
+collision_mask = 3
 script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=444532899]
@@ -35,3 +35,6 @@ material = SubResource("ShaderMaterial_stone")
 position = Vector2(0, -8)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_xwkht")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
